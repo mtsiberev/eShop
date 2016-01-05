@@ -1,0 +1,51 @@
+﻿@{
+    Layout = null;
+}
+
+
+@model eShop.Models.Account
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+</head>
+<body>
+    <div>
+        @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+        {
+            <table>
+                <tr>
+                    <td>
+
+                        @ViewData["error"]
+                        <br>
+                        <br>
+                        <span>User</span>
+                        <br>
+                        @Html.TextBoxFor(m => m.UserName, new { @type = "text", @required = "required" })
+                        <br>
+                        <br>
+                        <span>Password</span>
+                        <br>
+                        @Html.PasswordFor(m => m.Password, new { @required = "required" })
+                        <br>
+                        <br>
+                        <input type="submit" value="OK">
+                        <br>
+                        <br>
+                    </td>
+                </tr>
+            </table>
+        }
+
+        <br>
+        <br>
+
+        @Html.ActionLink("Registration", "Register", "Account")
+
+    </div>
+</body>
+</html>

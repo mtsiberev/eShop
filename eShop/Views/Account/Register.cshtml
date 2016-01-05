@@ -1,0 +1,42 @@
+﻿@{
+    Layout = null;
+}
+
+@model eShop.Models.RegistrationAccount
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Register</title>
+</head>
+<body>
+    <div>
+        @using (Html.BeginForm("Register", "Account", FormMethod.Post))
+        {
+            <span>User</span>
+            <br>
+            @Html.TextBoxFor(m => m.UserName, new { @type = "text", @required = "required" })
+            <br>
+            <br>
+            <span>Password</span>
+            <br>
+            @Html.PasswordFor(m => m.Password, new { @required = "required" })
+            <br>
+            <br>
+            <span>Password Confirm</span>
+            <br>
+            @Html.PasswordFor(m => m.ConfirmPassword, new { @required = "required" })
+            <br>
+            <br>
+            <span>Address</span>
+            <br>
+            @Html.TextBoxFor(m => m.Address, new { @type = "text", @required = "required" })
+            <br>
+            <br>
+            <input type="submit" value="OK">
+        }
+    </div>
+</body>
+</html>
