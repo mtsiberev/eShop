@@ -10,29 +10,35 @@ using NLog;
 
 namespace ClassLibrary.Mappers
 {
-    public class UserMapper : BaseMapper<User>
+    public class UserMapper : IMapper<User>
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
-        protected override User GetEntityFromReader(DataTableReader reader)
+        public List<User> GetEntityList(string queryString)
         {
-            if (reader == null) return null;
-            try
+            var resultList = new List<User>();
+            using (var table = DataBaseHelper.GetExecutionResult(queryString))
             {
-                if (reader.Read())
+                if (table == null) return null;
+                try
                 {
-                    var id = (int)reader.GetValue(0);
-                    var name = reader.GetValue(1).ToString();
-                    var address = reader.GetValue(2).ToString();
-                    return new User(id, name, address);
+                    for (var i = 0; i < table.Rows.Count; i++)
+                    {
+                        var id = Convert.ToInt32(table.Rows[i]["Id"]);
+                        var name = table.Rows[i]["Name"].ToString();
+                        var address = table.Rows[i]["Address"].ToString();
+
+                        var entity = new User(id, name, address);
+                        resultList.Add(entity);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    logger.Error(ex.Message);
+                    return null;
                 }
             }
-            catch (Exception ex)
-            {
-                logger.Error(ex.Message);
-                return null;
-            }
-            return null;
+            return resultList;
         }
     }
 }

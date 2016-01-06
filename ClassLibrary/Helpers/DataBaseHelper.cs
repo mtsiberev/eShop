@@ -6,15 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
-using ClassLibrary.BusinessObjects;
 using NLog;
 
 namespace ClassLibrary.Helpers
 {
     class DataBaseHelper
     {
-        /////
-
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
         private static string GetConnectionString()
@@ -22,8 +19,8 @@ namespace ClassLibrary.Helpers
             return ConfigurationManager.
               ConnectionStrings["ConnectionString"].ConnectionString;
         }
-
-        public static DataTableReader GetExecutionResult(string queryString)
+        
+        public static DataTable GetExecutionResult(string queryString)
         {
             var table = new DataTable();
             using (var connection = new SqlConnection())
@@ -53,7 +50,7 @@ namespace ClassLibrary.Helpers
                     try
                     {
                         adapter.Fill(table);
-                        return table.CreateDataReader();
+                        return table;
                     }
                     catch (Exception ex)
                     {

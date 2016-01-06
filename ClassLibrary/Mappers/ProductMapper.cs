@@ -10,36 +10,13 @@ using NLog;
 
 namespace ClassLibrary.Mappers
 {
-    public class ProductMapper : BaseMapper<Product>
+    public class ProductMapper : IMapper<Product>
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
-        protected override Product GetEntityFromReader(DataTableReader reader)
+        public List<Product> GetEntityList(string queryString)
         {
-            if (reader == null) return null;
-            try
-            {
-                if (reader.Read())
-                {
-                    var id = (int)reader.GetValue(0);
-
-                    var catalogId = 0;
-                    var type = reader.GetValue(1).GetType();
-                    if (type.Name != "DBNull")
-                    {
-                        catalogId = (int)reader.GetValue(1);
-                    }
-                    var name = reader.GetValue(2).ToString();
-
-                    return new Product(id, catalogId, name);
-                }
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex.Message);
-                return null;
-            }
-            return null;
+            throw new NotImplementedException();
         }
     }
 }

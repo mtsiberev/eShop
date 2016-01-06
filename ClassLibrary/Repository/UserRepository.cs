@@ -12,9 +12,8 @@ namespace ClassLibrary.Repository
     public class UserRepository : IRepository<User>
     {
         private const string c_usersDatabaseName = "Users";
-        private readonly BaseMapper<User> m_userMapper = new UserMapper();
+        private readonly IMapper<User> m_userMapper = new UserMapper();
         
-
         public void Add(User entity)
         {
             var queryString = String.Format("INSERT INTO {0} (Name, Address) VALUES ('{1}', '{2}');",
@@ -51,8 +50,7 @@ namespace ClassLibrary.Repository
         public User GetById(int id)
         {
             var queryString = String.Format("SELECT TOP 1 * FROM {0} WHERE Id = {1};", c_usersDatabaseName, id);
-            var user = m_userMapper.GetEntity(queryString);
-            return user;
+            return m_userMapper.GetEntityList(queryString).First();
         }
     }
 }

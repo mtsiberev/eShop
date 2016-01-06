@@ -10,29 +10,13 @@ using NLog;
 
 namespace ClassLibrary.Mappers
 {
-    public class CatalogMapper : BaseMapper<Catalog>
+    public class CatalogMapper : IMapper<Catalog>
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
-        protected override Catalog GetEntityFromReader(DataTableReader reader)
+        public List<Catalog> GetEntityList(string queryString)
         {
-            if (reader == null) return null;
-            try
-            {
-                if (reader.Read())
-                {
-                    var id = (int)reader.GetValue(0);
-                    var name = reader.GetValue(1).ToString();
-
-                    return new Catalog(id, name);
-                }
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex.Message);
-                return null;
-            }
-            return null;
+            throw new NotImplementedException();
         }
     }
 }

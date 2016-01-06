@@ -8,12 +8,23 @@ using ClassLibrary.Repository;
 
 namespace ClassLibrary.Facade
 {
-    class Facade
+    public class Facade
     {
         private readonly IRepository<User> m_usersRepository;
         private readonly IRepository<Product> m_productsRepository;
         private readonly IRepository<Catalog> m_catalogsRepository;
         private readonly IRepository<Order> m_ordersRepository;
+
+        
+        public Facade(IRepository<User> users)
+        {
+            m_usersRepository = users;
+            m_productsRepository = null;
+            m_catalogsRepository = null;
+            m_ordersRepository = null;
+        }
+
+        
 
         public Facade(
             IRepository<User> users,
@@ -31,6 +42,11 @@ namespace ClassLibrary.Facade
         public List<User> GetAllUsers()
         {
             return m_usersRepository.GetAll();
+        }
+        
+        public User GetUserById(int id)
+        {
+            return m_usersRepository.GetById(id);
         }
         
         public List<Product> GetAllProducts()

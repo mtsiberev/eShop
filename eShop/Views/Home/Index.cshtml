@@ -12,12 +12,22 @@
 <body>
     <div>
         Home Index
+        <br>
+        <br>
+        @if (Roles.IsUserInRole("admin"))
+        {
+            @Html.ActionLink("Administration", "Index", "Administration")
+        }
         
+        <br>
+        <br>
+
+        @Html.ActionLink("eStore", "Index", "Shop")
+
         <br>
         <br>
         <br>
         @Html.ActionLink("Logout", "Logout", "Account")
-
         
     </div>
 </body>

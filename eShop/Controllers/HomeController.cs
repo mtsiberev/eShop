@@ -13,29 +13,11 @@ namespace eShop.Controllers
     {
         public ActionResult Index()
         {
-            
             if (!WebSecurity.IsAuthenticated)
             {
                 return RedirectToAction("Login", "Account");
             }
-
-            
-            var userRepo = new UserRepository();
-            //userRepo.Add(new User(0, "second", "city"));
-         //   userRepo.Add(new User(0, "third", "city"));
-
-        //    var getUser = userRepo.GetById(1);
-
-            userRepo.Update(new User(1, "firstUpdate", "cityUpdate"));
-
-            var getAfterUpdating = userRepo.GetById(1);
-
-            userRepo.Delete(1);
-
-            var getAfterDeleting = userRepo.GetById(1);
-
             return View();
         }
-
     }
 }
