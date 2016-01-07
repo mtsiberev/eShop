@@ -10,23 +10,25 @@
 <table class="table table-bordered">
 
     <tr ng-repeat="user in users | orderBy:'name' | filter:search">
-
-        <td class="tdCenter"><img ng-src="img/products/{{user.id}}.jpg" alt="{{user.name}}" /></td>
         
         <td>
             {{user.id}}
             {{user.name}}
         </td>
-        
+    
         <td>
-            <a href="#/products/{{user.id}}"><b>{{user.name}}</b></a><br />
+            <button ng-click="editUser(user.id)">
+                Update
+            </button>
         </td>
-
-        <td class="tdCenter">
-            <a href="" ng-click="cart.addItem(product.sku, product.name, product.price, 1)">
-                add to cart
-            </a>
+        <td>
+            <button ng-click="deleteUser(user.id)">
+                Delete
+            </button>
         </td>
     </tr>
-
 </table>
+
+
+
+       

@@ -23,7 +23,6 @@ namespace ClassLibrary.Facade
             m_catalogsRepository = null;
             m_ordersRepository = null;
         }
-
         
 
         public Facade(
@@ -41,13 +40,25 @@ namespace ClassLibrary.Facade
 
         public List<User> GetAllUsers()
         {
-            return m_usersRepository.GetAll();
+            var users = m_usersRepository.GetAll();
+            return users;
         }
         
         public User GetUserById(int id)
         {
             return m_usersRepository.GetById(id);
         }
+
+        public void UpdateUser(User user)
+        {
+            m_usersRepository.Update(user);
+        }
+
+        public void DeleteUser(int id)
+        {
+            m_usersRepository.Delete(id);
+        }
+        
         
         public List<Product> GetAllProducts()
         {

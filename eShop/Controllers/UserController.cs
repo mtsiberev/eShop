@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 using ClassLibrary.BusinessObjects;
@@ -20,14 +21,26 @@ namespace eShop.Controllers
         public JsonResult GetUser(int id)
         {
             var userBo = m_facade.GetUserById(id);
+            if (userBo == null) 
+                return Json(new {success = false}, JsonRequestBehavior.AllowGet);
+            
             var user = new { id = userBo.Id, name = userBo.Name };
             return Json(user, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult GetAllUsers()
         {
+
+            int milliseconds = 1000;
+            Thread.Sleep(milliseconds);
+
+
+
             var usersListBo = m_facade.GetAllUsers();
-           
+
+            if (usersListBo == null)
+                return Json(new { success = false }, JsonRequestBehavior.AllowGet);
+            
             var anonArray = new List<dynamic>();
             foreach (var user in usersListBo)
             {
@@ -35,6 +48,20 @@ namespace eShop.Controllers
             }
 
             return Json(anonArray, JsonRequestBehavior.AllowGet);
+        }
+        
+        public JsonResult UpdateUser(int id, string name, string address)
+        {
+            var updatedUser = new User(id, name, address);
+            m_facade.UpdateUser(updatedUser);
+        
+            return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult DeleteUser(int id)
+        {
+            m_facade.DeleteUser(id);
+            return Json(new { success = true }, JsonRequestBehavior.AllowGet);
         }
         
     }

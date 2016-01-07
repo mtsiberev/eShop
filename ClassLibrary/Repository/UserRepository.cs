@@ -6,11 +6,14 @@ using System.Threading.Tasks;
 using ClassLibrary.BusinessObjects;
 using ClassLibrary.Helpers;
 using ClassLibrary.Mappers;
+using NLog;
 
 namespace ClassLibrary.Repository
 {
     public class UserRepository : IRepository<User>
     {
+        private static Logger logger = LogManager.GetCurrentClassLogger();
+
         private const string c_usersDatabaseName = "Users";
         private readonly IMapper<User> m_userMapper = new UserMapper();
         
@@ -50,7 +53,18 @@ namespace ClassLibrary.Repository
         public User GetById(int id)
         {
             var queryString = String.Format("SELECT TOP 1 * FROM {0} WHERE Id = {1};", c_usersDatabaseName, id);
-            return m_userMapper.GetEntityList(queryString).First();
+
+            try
+            {
+                var user = m_userMapper.GetEntityList(queryString).First();
+                return user;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                return null;
+            }
+            
         }
     }
 }

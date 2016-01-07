@@ -4,6 +4,9 @@ var AdminApp = angular.module('AdminApp', ["ngRoute"]);
 
 AdminApp.controller('AdminMenuController', AdminMenuController);
 AdminApp.controller('UsersController', UsersController);
+AdminApp.controller('UserDetailController', UserDetailController);
+
+
 AdminApp.factory('UsersService', UsersService);
 
 var configFunction = function ($routeProvider) {
@@ -12,18 +15,24 @@ var configFunction = function ($routeProvider) {
             templateUrl: '/AngularJS/PartialViews/users.html',
             controller: UsersController
         }).
-        when('/catalogs', {
-            templateUrl: '/AngularJS/PartialViews/users.html',
-            controller: UsersController
+        when('/user-detail/:id', {
+            templateUrl: '/AngularJS/PartialViews/user-detail.html',
+            controller: UserDetailController
         }).
-        when('/products', {
-            templateUrl: '/AngularJS/PartialViews/users.html',
-            controller: UsersController
-        }).
+        //////////////////////////////////////////
         
-        otherwise({
-            redirectTo: '/users'
-        });
+    when('/catalogs', {
+        templateUrl: '/AngularJS/PartialViews/users.html',
+        controller: UsersController
+    }).
+    when('/products', {
+        templateUrl: '/AngularJS/PartialViews/users.html',
+        controller: UsersController
+    }).
+
+    otherwise({
+        redirectTo: '/users'
+    });
 };
 
 configFunction.$inject = ['$routeProvider', '$httpProvider'];
