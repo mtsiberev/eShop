@@ -1,0 +1,40 @@
+﻿<p class="text-info">
+
+    Products List<br />
+</p>
+
+<p>
+    Search: <input ng-model="search">
+</p>
+
+<table class="table table-bordered">
+
+    <tr ng-repeat="product in products | orderBy:'name' | filter:search">
+
+        <td>
+            {{product.id}}
+            {{product.catalogId}}
+            {{product.name}}
+            {{product.description}}
+        </td>
+
+        <td>
+            <button ng-click="editProduct(product.id)">
+                Update
+            </button>
+        </td>
+        <td>
+            <button ng-click="deleteProduct(product.id)">
+                Delete
+            </button>
+        </td>
+    </tr>
+</table>
+
+<button ng-click="addProduct()">
+    Add Product
+</button>
+
+
+
+

@@ -1,93 +1,68 @@
 ﻿var UsersService = function ($http, $q) {
-
+    
+    console.log("UsersService");
 
     var getUserFunction = function (id) {
-        var deferred = $q.defer();
-        getJson(id)
-            .success(function (json) {
-                deferred.resolve(json);
-            })
-            .error(function (error) {
-                console.log(error);
-                deferred.reject(error);
-            });
-        return deferred.promise;
-    };
-    function getJson(id) {
+    
+        console.log("UsersService: getUserFunction" );
+
         return $http({
             url: "User/GetUser",
             method: "GET",
-            params: { id: id }
-                  , cache: false
+            params: { id: id },
+            cache: false
+        }).then(function (result) {
+            console.log("UsersService: getUserFunction in then");
+     
+            return result.data;
         });
     };
-  
 
     var getUsersFunction = function () {
-        var deferred = $q.defer();
-        getAllUsersJson()
-            .success(function (json) {
-                deferred.resolve(json);
-            })
-            .error(function (error) {
-                console.log(error);
-                deferred.reject(error);
-            });
-        return deferred.promise;
-    };
-    function getAllUsersJson() {
+ 
+        console.log("UsersService: getUsersFunction");
+        
         return $http({
             url: "User/GetAllUsers",
-            method: "GET"
-                  , cache: false
+            method: "GET",
+            cache: false
+        }).then(function (result) {
+            console.log("UsersService: getUsersFunction in then");
+      
+            return result.data;
         });
     };
-    
-    
+
     var getUpdateUserFunction = function (id, name, address) {
-        var deferred = $q.defer();
-        updateUserJson(id, name, address)
-            .success(function (json) {
-                deferred.resolve(json);
-            })
-            .error(function (error) {
-                console.log(error);
-                deferred.reject(error);
-            });
-        return deferred.promise;
-    };
-    function updateUserJson(id, name, address) {
+        console.log("UsersService: getUpdateUserFunction" );
+
         return $http({
             url: "User/UpdateUser",
             method: "GET",
-            params: { id: id, name: name, address: address }
-            ,cache: false
+            params: { id: id, name: name, address: address },
+            cache: false
+        }).then(function (result) {
+            console.log("UsersService: getUpdateUserFunction in then");
+
+            return result.data;
         });
     };
-    
-    
+
     var getDeleteUserFunction = function (id) {
-        var deferred = $q.defer();
-        deleteUserJson(id)
-            .success(function (json) {
-                deferred.resolve(json);
-            })
-            .error(function (error) {
-                console.log(error);
-                deferred.reject(error);
-            });
-        return deferred.promise;
-    };
-    function deleteUserJson(id) {
+      
+        console.log("UsersService: getDeleteUserFunction");
+
         return $http({
             url: "User/DeleteUser",
             method: "GET",
-            params: { id: id }
-                  , cache: false
+            params: { id: id },
+            cache: false
+        }).then(function (result) {
+            console.log("UsersService: getDeleteUserFunction in then");
+         
+            return result.data;
         });
     };
-    
-
 
     return {
         getUser: getUserFunction,

@@ -8,7 +8,7 @@ namespace eShop.Models
 {
     public class RegistrationAccount
     {
-       /*
+        /*
         [Remote("IsUserNameExist", "Account", HttpMethod = "POST",
             ErrorMessageResourceType = typeof(Resource),
             ErrorMessageResourceName = "UserExists"

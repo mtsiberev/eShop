@@ -1,29 +1,23 @@
 ﻿'use strict';
 
 var UsersController = function ($scope, $routeParams, $http, $location, UsersService) {
-    //$scope.users = UsersService.users;
-    // use routing to pick the selected product
-    if ($routeParams.productSku != null) {
-        $scope.product = $scope.store.getProduct($routeParams.productSku);
-    };
-    ////////////////////
     
-    UsersService.getUsers().then(function (data) { $scope.users = data; });
-    
- 
+    setTimeout(function () {
+        UsersService.getUsers().then(function (data) { $scope.users = data; });
+    }, 100);
+
     $scope.editUser = function (userId) {
+        console.log("UsersController: editUser");
         $location.path('/user-detail/' + userId);
     };
-    
-    $scope.deleteUser = function (userId) {
-        UsersService.deleteUser(userId).then(function(data) {
-    
-        });
-        $location.path('/user-list');
-   
-    };
 
-    ////////////////////////
+    $scope.deleteUser = function (userId) {
+        console.log("UsersController: deleteUser before UsersService.deleteUser call");
+        UsersService.deleteUser(userId).then(function (data) {
+        });
+        console.log("UsersController: deleteUser after UsersService.deleteUser call");
+        $location.path('/users');
+    };
 };
 
 UsersController.$inject = ['$scope', '$routeParams', '$http', '$location', 'UsersService'];

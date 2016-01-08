@@ -1,36 +1,50 @@
 ﻿<div class="container">
     <h1>User detail</h1>
-    
+
     <form novalidate="novalidate" class="form-horizontal">
         <div class="control-group">
             <label class="control-label" for="inputFirstName">Id:</label>
             <div class="controls">
-                <input type="text" id="inputFirstName" ng-model="user.id" />
+                <input type="text" id="inputFirstName" ng-model="product.id" />
             </div>
         </div>
 
         <div class="control-group">
             <label class="control-label" for="inputLastName">Name:</label>
             <div class="controls">
-                <input type="text" id="inputLastName" ng-model="user.name" />
+                <input type="text" id="inputLastName" ng-model="product.name" />
             </div>
         </div>
+
+        <div class="control-group">
+            <label class="control-label" for="inputLastName">Address:</label>
+            <div class="controls">
+                <input type="text" id="inputLastName" ng-model="product.catalogId" />
+            </div>
+        </div>
+        
         
         <div class="control-group">
             <label class="control-label" for="inputLastName">Address:</label>
             <div class="controls">
-                <input type="text" id="inputLastName" ng-model="user.address" />
+                <input type="text" id="inputLastName" ng-model="product.description" />
             </div>
         </div>
         
         <div class="control-group">
             <div class="controls">
-                <button ng-click="updateUser()">
+                
+                <button ng-click="createProduct()">
+                    Create
+                </button>
+        
+                <button ng-click="updateProduct()">
                     Update
                 </button>
                 <button ng-click="cancel()">
                     Cancel
                 </button>
+                
             </div>
         </div>
     </form>

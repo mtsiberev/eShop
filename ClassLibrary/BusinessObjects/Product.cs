@@ -8,11 +8,12 @@ namespace ClassLibrary.BusinessObjects
 {
     public class Product
     {
-        public Product(int id, int catalogId, string name)
+        public Product(int id, int catalogId, string name, string description)
         {
             Id = id;
             CatalogId = catalogId;
             Name = name;
+            Description = description;
         }
 
         public int Id { get; private set; }

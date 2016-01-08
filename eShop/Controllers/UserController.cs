@@ -24,18 +24,12 @@ namespace eShop.Controllers
             if (userBo == null) 
                 return Json(new {success = false}, JsonRequestBehavior.AllowGet);
             
-            var user = new { id = userBo.Id, name = userBo.Name };
+            var user = new { id = userBo.Id, name = userBo.Name, address = userBo.Address };
             return Json(user, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult GetAllUsers()
         {
-
-            int milliseconds = 1000;
-            Thread.Sleep(milliseconds);
-
-
-
             var usersListBo = m_facade.GetAllUsers();
 
             if (usersListBo == null)
@@ -63,6 +57,5 @@ namespace eShop.Controllers
             m_facade.DeleteUser(id);
             return Json(new { success = true }, JsonRequestBehavior.AllowGet);
         }
-        
     }
 }
