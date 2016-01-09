@@ -8,27 +8,50 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Index</title>
+    
+    <link rel="stylesheet" href="~/AngularJS/Mdl/material.css">
+    <script src="~/AngularJS/Mdl/material.js"></script>
+    
 </head>
 <body>
-    <div>
-        Home Index
-        <br>
-        <br>
-        @if (Roles.IsUserInRole("admin"))
-        {
-            @Html.ActionLink("Administration", "Index", "Administration")
-        }
-        
-        <br>
-        <br>
+    
+    <!-- No header, and the drawer stays open on larger screens (fixed drawer). -->
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer">
+        <div class="mdl-layout__drawer">
+            <span class="mdl-layout-title">Title</span>
+            <nav class="mdl-navigation">
+                <a class="mdl-navigation__link" href="">Link</a>
+                @if (Roles.IsUserInRole("admin"))
+                {
+                    <a class="mdl-navigation__link" href="@Url.Action("Index", "Administration")"><span>Administration</span></a>
+                }
+                <a class="mdl-navigation__link" href="@Url.Action("Index", "Shop")"><span>eStore</span></a>
 
-        @Html.ActionLink("eStore", "Index", "Shop")
+                <a class="mdl-navigation__link" href="@Url.Action("Logout", "Account")"><span>Logout</span></a>
 
-        <br>
-        <br>
-        <br>
-        @Html.ActionLink("Logout", "Logout", "Account")
-        
+                <a class="mdl-navigation__link" href="">Link</a>
+            </nav>
+        </div>
+        <main class="mdl-layout__content">
+            <div class="page-content"><!-- Your content goes here --></div>
+        </main>
     </div>
+ 
+ 
 </body>
 </html>
+
+
+
+
+
+
+
+
+@if (Roles.IsUserInRole("admin"))
+{
+    <a class="mdl-navigation__link" href="@Url.Action("Index", "Administration")"><span>Administration</span></a>
+}
+<a class="mdl-navigation__link" href="@Url.Action("Index", "Shop")"><span>eStore</span></a>
+
+<a class="mdl-navigation__link" href="@Url.Action("Logout", "Account")"><span>Logout</span></a>

@@ -6,22 +6,23 @@
     Search: <input ng-model="search">
 </p>
 
+
 <table class="table table-bordered">
-
     <tr ng-repeat="catalog in catalogs | orderBy:'name' | filter:search">
-
         <td>
             {{catalog.id}}
             {{catalog.name}}
         </td>
 
         <td>
-            <button ng-click="editCatalog(catalog.id)">
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                    ng-click="editCatalog(catalog.id)">
                 Update
             </button>
         </td>
         <td>
-            <button ng-click="deleteCatalog(catalog.id)">
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                    ng-click="deleteCatalog(catalog.id)">
                 Delete
             </button>
         </td>
@@ -33,5 +34,35 @@
 </button>
 
 
-
-
+<table class="mdl-data-table mdl-js-data-table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th class="mdl-data-table__cell--non-numeric">Name</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="catalog in catalogs | orderBy:'name' | filter:search">
+            <td>
+                {{catalog.id}}
+            </td>
+            <td>
+                {{catalog.name}}
+            </td>
+            <td>
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                        ng-click="editCatalog(catalog.id)">
+                    Update
+                </button>
+            </td>
+            <td>
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                        ng-click="deleteCatalog(catalog.id)">
+                    Delete
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>

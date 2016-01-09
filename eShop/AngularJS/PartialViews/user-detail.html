@@ -1,6 +1,6 @@
 ﻿<div class="container">
     <h1>User detail</h1>
-    
+
     <form novalidate="novalidate" class="form-horizontal">
         <div class="control-group">
             <label class="control-label" for="inputFirstName">Id:</label>
@@ -15,20 +15,22 @@
                 <input type="text" id="inputLastName" ng-model="user.name" />
             </div>
         </div>
-        
+
         <div class="control-group">
             <label class="control-label" for="inputLastName">Address:</label>
             <div class="controls">
                 <input type="text" id="inputLastName" ng-model="user.address" />
             </div>
         </div>
-        
+
         <div class="control-group">
             <div class="controls">
-                <button ng-click="updateUser()">
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                        ng-click="updateUser()">
                     Update
                 </button>
-                <button ng-click="cancel()">
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                        ng-click="cancel()">
                     Cancel
                 </button>
             </div>

@@ -1,4 +1,5 @@
-﻿<p class="text-info">
+﻿
+<p class="text-info">
 
     Users List<br />
 </p>
@@ -10,25 +11,23 @@
 <table class="table table-bordered">
 
     <tr ng-repeat="user in users | orderBy:'name' | filter:search">
-        
+
         <td>
             {{user.id}}
             {{user.name}}
         </td>
-    
+
         <td>
-            <button ng-click="editUser(user.id)">
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                    ng-click="editUser(user.id)">
                 Update
             </button>
         </td>
         <td>
-            <button ng-click="deleteUser(user.id)">
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                    ng-click="deleteUser(user.id)">
                 Delete
             </button>
         </td>
     </tr>
 </table>
-
-
-
-       

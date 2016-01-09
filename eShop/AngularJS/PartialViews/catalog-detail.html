@@ -8,7 +8,7 @@
                 <input readonly="readonly" type="text" id="inputFirstName" ng-model="catalog.id" />
             </div>
         </div>
-        
+
         <div class="control-group">
             <label class="control-label" for="inputLastName">Name:</label>
             <div class="controls">
@@ -20,10 +20,12 @@
         <div class="control-group">
             <div class="controls">
 
-                <button ng-click="updateCatalog()">
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                        ng-click="updateCatalog()">
                     Update
                 </button>
-                <button ng-click="cancel()">
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                        ng-click="cancel()">
                     Cancel
                 </button>
 

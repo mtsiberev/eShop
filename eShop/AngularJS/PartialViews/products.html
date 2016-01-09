@@ -1,4 +1,5 @@
-﻿<p class="text-info">
+﻿
+<p class="text-info">
 
     Products List<br />
 </p>
@@ -19,12 +20,14 @@
         </td>
 
         <td>
-            <button ng-click="editProduct(product.id)">
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                    ng-click="editProduct(product.id)">
                 Update
             </button>
         </td>
         <td>
-            <button ng-click="deleteProduct(product.id)">
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                    ng-click="deleteProduct(product.id)">
                 Delete
             </button>
         </td>

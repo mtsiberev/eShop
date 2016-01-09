@@ -14,6 +14,7 @@ namespace eShop.Controllers
     {
         public ActionResult Index()
         {
+            /*
             var facadeProduct = new Facade(new ProductRepository());
             var facadeCatalog = new Facade(new CatalogRepository());
 
@@ -29,7 +30,7 @@ namespace eShop.Controllers
                 var newCatalog = new Catalog(0, catalogName);
                 facadeCatalog.AddCatalog(newCatalog);
             }
-
+            */
 
             if (!WebSecurity.IsAuthenticated)
             {

@@ -156,6 +156,8 @@
     <Content Include="AngularJS\Controllers\ShopController.js" />
     <Content Include="AngularJS\Controllers\UserDetailController.js" />
     <Content Include="AngularJS\Controllers\UsersController.js" />
+    <Content Include="AngularJS\Mdl\material.css" />
+    <Content Include="AngularJS\Mdl\material.js" />
     <Content Include="AngularJS\Objects\catalog.js" />
     <Content Include="AngularJS\Objects\product.js" />
     <Content Include="AngularJS\Objects\shoppingCart.js" />
