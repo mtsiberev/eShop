@@ -15,7 +15,6 @@ namespace eShop.Controllers
         private Facade m_facade = new Facade(new ProductRepository());
 
         private static Logger logger = LogManager.GetCurrentClassLogger();
-
         
         public JsonResult GetProduct(int id)
         {
@@ -48,10 +47,7 @@ namespace eShop.Controllers
             }
             return Json(anonArray, JsonRequestBehavior.AllowGet);
         }
-
         
-        
-
         [Authorize(Roles = "admin")]
         public JsonResult AddProduct(int catalogId, string name, string description)
         {
@@ -61,9 +57,6 @@ namespace eShop.Controllers
             return Json(new { success = true }, JsonRequestBehavior.AllowGet);
         }
         
-
-
-
         [Authorize(Roles = "admin")]
         public JsonResult UpdateProduct(int id, int catalogId, string name, string description)
         {

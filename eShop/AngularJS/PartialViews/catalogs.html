@@ -1,0 +1,37 @@
+﻿<p class="text-info">
+
+    Catalogs List<br />
+</p>
+<p>
+    Search: <input ng-model="search">
+</p>
+
+<table class="table table-bordered">
+
+    <tr ng-repeat="catalog in catalogs | orderBy:'name' | filter:search">
+
+        <td>
+            {{catalog.id}}
+            {{catalog.name}}
+        </td>
+
+        <td>
+            <button ng-click="editCatalog(catalog.id)">
+                Update
+            </button>
+        </td>
+        <td>
+            <button ng-click="deleteCatalog(catalog.id)">
+                Delete
+            </button>
+        </td>
+    </tr>
+</table>
+
+<button ng-click="addCatalog()">
+    Add Catalog
+</button>
+
+
+
+

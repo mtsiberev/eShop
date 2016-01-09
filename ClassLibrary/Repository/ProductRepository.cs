@@ -21,33 +21,58 @@ namespace ClassLibrary.Repository
 
         public void Add(Product entity)
         {
-       //     NULL
+            var queryString = "";
 
-            var queryString = String.Format("INSERT INTO {0} (Name, Description) VALUES ('{2}', '{3}');",
-            //var queryString = String.Format("INSERT INTO {0} (CatalogId, Name, Description) VALUES ('{1}', '{2}', '{3}');",
-                c_productsDatabaseName,
-                entity.CatalogId,
-                entity.Name,
-                entity.Description);
+            if (entity.CatalogId == 0)
+            {
+                queryString = String.Format("INSERT INTO {0} (Name, Description) VALUES ('{1}', '{2}');",
+                    c_productsDatabaseName,
+                    entity.Name,
+                    entity.Description
+                  );
+            }
+            else
+            {
+                queryString = String.Format("INSERT INTO {0} (Name, Description, CatalogId) VALUES ('{1}', '{2}', {3});",
+                    c_productsDatabaseName,
+                    entity.Name,
+                    entity.Description,
+                    entity.CatalogId);
+            }
+
             DataBaseHelper.ExecuteCommand(queryString);
         }
 
         public void Delete(int id)
         {
             var queryString = String.Format("DELETE FROM {0} WHERE Id = {1};",
-           c_productsDatabaseName,
-           id);
+                c_productsDatabaseName,
+                id);
             DataBaseHelper.ExecuteCommand(queryString);
         }
 
         public void Update(Product entity)
         {
-            var queryString = String.Format("UPDATE {0} SET CatalogId = '{1}', Name = '{2}', Description = '{3}' WHERE Id = {4}",
+            var queryString = "";
+
+            if (entity.CatalogId == 0)
+            {
+                queryString = String.Format("UPDATE {0} SET Name = '{1}', Description = '{2}' WHERE Id = {3}",
                 c_productsDatabaseName,
-                entity.CatalogId,
                 entity.Name,
                 entity.Description,
                 entity.Id);
+            }
+            else
+            {
+                queryString = String.Format("UPDATE {0} SET CatalogId = '{1}', Name = '{2}', Description = '{3}' WHERE Id = {4}",
+                   c_productsDatabaseName,
+                   entity.CatalogId,
+                   entity.Name,
+                   entity.Description,
+                   entity.Id);
+            }
+
             DataBaseHelper.ExecuteCommand(queryString);
         }
 

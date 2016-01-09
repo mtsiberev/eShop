@@ -30,7 +30,15 @@ namespace ClassLibrary.Facade
             m_catalogsRepository = null;
             m_ordersRepository = null;
         }
-
+        
+        public Facade(IRepository<Catalog> catalogs)
+        {
+            m_usersRepository = null;
+            m_productsRepository = null;
+            m_catalogsRepository = catalogs;
+            m_ordersRepository = null;
+        }
+        
         public Facade(
             IRepository<User> users,
             IRepository<Product> products,
@@ -49,7 +57,22 @@ namespace ClassLibrary.Facade
             return m_usersRepository.GetAll();
         }
 
+        public User GetUserById(int id)
+        {
+            return m_usersRepository.GetById(id);
+        }
+
+        public void UpdateUser(User user)
+        {
+            m_usersRepository.Update(user);
+        }
         
+        public void DeleteUser(int id)
+        {
+            m_usersRepository.Delete(id);
+        }
+        
+
         public void AddProduct(Product product)
         {
             m_productsRepository.Add(product);
@@ -59,46 +82,54 @@ namespace ClassLibrary.Facade
         {
             return m_productsRepository.GetAll();
         }
-        
-        public User GetUserById(int id)
-        {
-            return m_usersRepository.GetById(id);
-        }
-        
+    
         public Product GetProductById(int id)
         {
             return m_productsRepository.GetById(id);
-        }
-        
-        public void UpdateUser(User user)
-        {
-            m_usersRepository.Update(user);
         }
         
         public void UpdateProduct(Product product)
         {
             m_productsRepository.Update(product);
         }
-        
-        public void DeleteUser(int id)
-        {
-            m_usersRepository.Delete(id);
-        }
-
+      
         public void DeleteProduct(int id)
         {
             m_productsRepository.Delete(id);
         }
 
+        
+        public void AddCatalog(Catalog catalog)
+        {
+            var cat = catalog;
+            m_catalogsRepository.Add(catalog);
+        }
+        
         public List<Catalog> GetAllCatalogs()
         {
             return m_catalogsRepository.GetAll();
         }
         
+        public Catalog GetCatalogById(int id)
+        {
+            return m_catalogsRepository.GetById(id);
+        }
+
+        public void UpdateCatalog(Catalog catalog)
+        {
+            m_catalogsRepository.Update(catalog);
+        }
+
+        public void DeleteCatalog(int id)
+        {
+            m_catalogsRepository.Delete(id);
+        }
+
+        
+        
         public List<Order> GetAllOrders()
         {
             return m_ordersRepository.GetAll();
         }
-
     }
 }

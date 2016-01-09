@@ -10,10 +10,13 @@ AdminApp.controller('UserDetailController', UserDetailController);
 AdminApp.controller('ProductsController', ProductsController);
 AdminApp.controller('ProductDetailController', ProductDetailController);
 
-AdminApp.controller('ProductCreateController', ProductCreateController);
+AdminApp.controller('CatalogsController', CatalogsController);
+AdminApp.controller('CatalogDetailController', CatalogDetailController);
+
 
 AdminApp.factory('UsersService', UsersService);
 AdminApp.factory('ProductsService', ProductsService);
+AdminApp.factory('CatalogsService', CatalogsService);
 
 
 var configFunction = function ($routeProvider) {
@@ -39,16 +42,25 @@ var configFunction = function ($routeProvider) {
         }).
 
         when('/product-create/', {
-            templateUrl: '/AngularJS/PartialViews/product-detail.html',
+            templateUrl: '/AngularJS/PartialViews/product-create.html',
             controller: ProductDetailController
         }).
-        
+           /*-----------------------------------------------------*/
            when('/catalogs', {
-               templateUrl: '/AngularJS/PartialViews/users.html',
-               controller: UsersController
+               templateUrl: '/AngularJS/PartialViews/catalogs.html',
+               controller: CatalogsController
            }).
 
+           when('/catalog-detail/:id', {
+               templateUrl: '/AngularJS/PartialViews/catalog-detail.html',
+               controller: CatalogDetailController
+           }).
 
+            when('/catalog-create', {
+                templateUrl: '/AngularJS/PartialViews/catalog-create.html',
+                controller: CatalogDetailController
+            }).
+               /*-----------------------------------------------------*/
     otherwise({
         redirectTo: '/users'
     });

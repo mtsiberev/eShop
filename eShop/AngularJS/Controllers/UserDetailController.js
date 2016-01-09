@@ -8,9 +8,10 @@ var UserDetailController = function ($scope, $routeParams, $http, $location, Use
     
     $scope.updateUser = function () {
         console.log("UserDetailController: updateUser function before UsersService.updateUser call");
-        UsersService.updateUser($scope.user.id, $scope.user.name, $scope.user.address);
+        UsersService.updateUser($scope.user.id, $scope.user.name, $scope.user.address).then(function () {
+            $location.path('/users');
+        });
         console.log("UserDetailController: updateUser function after UsersService.updateUser call");
-        $location.path('/users');
     };
 
     $scope.cancel = function () {

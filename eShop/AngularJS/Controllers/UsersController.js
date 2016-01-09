@@ -2,9 +2,8 @@
 
 var UsersController = function ($scope, $routeParams, $http, $location, UsersService) {
     
-    setTimeout(function () {
-        UsersService.getUsers().then(function (data) { $scope.users = data; });
-    }, 100);
+    UsersService.getUsers().then(function (data) { $scope.users = data; });
+    
 
     $scope.editUser = function (userId) {
         console.log("UsersController: editUser");
@@ -13,10 +12,10 @@ var UsersController = function ($scope, $routeParams, $http, $location, UsersSer
 
     $scope.deleteUser = function (userId) {
         console.log("UsersController: deleteUser before UsersService.deleteUser call");
-        UsersService.deleteUser(userId).then(function (data) {
+        UsersService.deleteUser(userId).then(function () {
+                  UsersService.getUsers().then(function (data) { $scope.users = data; });
         });
         console.log("UsersController: deleteUser after UsersService.deleteUser call");
-        $location.path('/users');
     };
 };
 

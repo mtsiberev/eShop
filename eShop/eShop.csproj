@@ -130,6 +130,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdministrationController.cs" />
+    <Compile Include="Controllers\CatalogController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ShopController.cs" />
@@ -148,7 +149,8 @@
     <Content Include="AngularJS\Applications\AdminApp.js" />
     <Content Include="AngularJS\Applications\ShopApp.js" />
     <Content Include="AngularJS\Controllers\AdminMenuController.js" />
-    <Content Include="AngularJS\Controllers\ProductCreateController.js" />
+    <Content Include="AngularJS\Controllers\CatalogDetailController.js" />
+    <Content Include="AngularJS\Controllers\CatalogsController.js" />
     <Content Include="AngularJS\Controllers\ProductDetailController.js" />
     <Content Include="AngularJS\Controllers\ProductsController.js" />
     <Content Include="AngularJS\Controllers\ShopController.js" />
@@ -158,11 +160,16 @@
     <Content Include="AngularJS\Objects\product.js" />
     <Content Include="AngularJS\Objects\shoppingCart.js" />
     <Content Include="AngularJS\Objects\store.js" />
+    <Content Include="AngularJS\PartialViews\catalog-create.html" />
+    <Content Include="AngularJS\PartialViews\catalog-detail.html" />
+    <Content Include="AngularJS\PartialViews\catalogs.html" />
+    <Content Include="AngularJS\PartialViews\product-create.html" />
     <Content Include="AngularJS\PartialViews\product-detail.html" />
     <Content Include="AngularJS\PartialViews\products.html" />
     <Content Include="AngularJS\PartialViews\shop.html" />
     <Content Include="AngularJS\PartialViews\user-detail.html" />
     <Content Include="AngularJS\PartialViews\users.html" />
+    <Content Include="AngularJS\Services\CatalogsService.js" />
     <Content Include="AngularJS\Services\DataService.js" />
     <Content Include="AngularJS\Services\ProductsService.js" />
     <Content Include="AngularJS\Services\UsersService.js" />
