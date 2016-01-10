@@ -8,9 +8,6 @@ namespace eShop.Controllers
 {
     public class AdministrationController : Controller
     {
-        //
-        // GET: /Administration/
-
         public ActionResult Index()
         {
             return View();

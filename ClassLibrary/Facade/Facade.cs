@@ -72,7 +72,6 @@ namespace ClassLibrary.Facade
             m_usersRepository.Delete(id);
         }
         
-
         public void AddProduct(Product product)
         {
             m_productsRepository.Add(product);
@@ -97,7 +96,6 @@ namespace ClassLibrary.Facade
         {
             m_productsRepository.Delete(id);
         }
-
         
         public void AddCatalog(Catalog catalog)
         {
@@ -124,8 +122,6 @@ namespace ClassLibrary.Facade
         {
             m_catalogsRepository.Delete(id);
         }
-
-        
         
         public List<Order> GetAllOrders()
         {

@@ -1,57 +1,70 @@
-﻿@{
-    Layout = null;
-}
+﻿<!doctype html>
+<!--
 
-<!DOCTYPE html>
-
-<html>
+-->
+<html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Material Design Lite</title>
+
+    <link rel="shortcut icon" href="images/favicon.png">
     
     <link rel="stylesheet" href="~/AngularJS/Mdl/material.css">
-    <script src="~/AngularJS/Mdl/material.js"></script>
+    <link rel="stylesheet" href="~/AngularJS/Mdl/styles.css">
     
+    <style>
+        #view-source {
+            position: fixed;
+            display: block;
+            right: 0;
+            bottom: 0;
+            margin-right: 40px;
+            margin-bottom: 40px;
+            z-index: 900;
+        }
+    </style>
 </head>
 <body>
-    
-    <!-- No header, and the drawer stays open on larger screens (fixed drawer). -->
-    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer">
-        <div class="mdl-layout__drawer">
-            <span class="mdl-layout-title">Title</span>
-            <nav class="mdl-navigation">
-                <a class="mdl-navigation__link" href="">Link</a>
+    <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+        <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
+            
+        </header>
+        <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
+            <header class="demo-drawer-header">
+
+                <img src="/AngularJS/Mdl/ic_mood_white_24px.svg" class="demo-avatar">
+                <div class="demo-avatar-dropdown">
+                    <span>@WebSecurity.CurrentUserName</span>
+                    <div class="mdl-layout-spacer"></div>
+                    <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                        <img src="~/AngularJS/Mdl/ic_arrow_drop_down_white_24px.svg" class="mdl-color-text--blue-grey-400 material-icons">
+                        <span class="visuallyhidden">Accounts</span>
+                    </button>
+                    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
+                        <li class="mdl-menu__item">
+                            <a class="mdl-navigation__link" href="@Url.Action("Logout", "Account")"><span>   Logout   </span></a>
+                        </li>
+                    </ul>
+                </div>
+            </header>
+            <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
+                <a class="mdl-navigation__link" href="@Url.Action("Index", "Shop")">
+                    <img src="~/AngularJS/Mdl/ic_shopping_cart_white_24px.svg" class="mdl-color-text--blue-grey-400 material-icons">eStore
+                </a>
                 @if (Roles.IsUserInRole("admin"))
                 {
-                    <a class="mdl-navigation__link" href="@Url.Action("Index", "Administration")"><span>Administration</span></a>
+                    <a class="mdl-navigation__link" href="@Url.Action("Index", "Administration")">
+                        <img src="~/AngularJS/Mdl/ic_build_white_24px.svg" class="mdl-color-text--blue-grey-400 material-icons">Administration
+                    </a>
                 }
-                <a class="mdl-navigation__link" href="@Url.Action("Index", "Shop")"><span>eStore</span></a>
-
-                <a class="mdl-navigation__link" href="@Url.Action("Logout", "Account")"><span>Logout</span></a>
-
-                <a class="mdl-navigation__link" href="">Link</a>
             </nav>
         </div>
-        <main class="mdl-layout__content">
-            <div class="page-content"><!-- Your content goes here --></div>
+        <main class="mdl-layout__content mdl-color--grey-100">
         </main>
     </div>
- 
- 
+    <script src="~/AngularJS/Mdl/material.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-@if (Roles.IsUserInRole("admin"))
-{
-    <a class="mdl-navigation__link" href="@Url.Action("Index", "Administration")"><span>Administration</span></a>
-}
-<a class="mdl-navigation__link" href="@Url.Action("Index", "Shop")"><span>eStore</span></a>
-
-<a class="mdl-navigation__link" href="@Url.Action("Logout", "Account")"><span>Logout</span></a>

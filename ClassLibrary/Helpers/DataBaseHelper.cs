@@ -10,7 +10,7 @@ using NLog;
 
 namespace ClassLibrary.Helpers
 {
-    class DataBaseHelper
+    public class DataBaseHelper
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 

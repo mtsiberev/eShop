@@ -12,7 +12,6 @@ namespace eShop.Controllers
 {
     public class AccountController : Controller
     {
-
         private Logger m_logger = LogManager.GetCurrentClassLogger();
         //   private Facade m_facade = ContainerWrapper.Container.GetInstance<Facade>();
 
@@ -68,57 +67,42 @@ namespace eShop.Controllers
         [HttpPost]
         public ActionResult Register(RegistrationAccount account)
         {
-            for(int i = 0; i < 10; i++)
+            try
             {
-                account = new RegistrationAccount();
-
-                account.UserName = i.ToString();
-                account.Password = i.ToString();
-                account.Address = i.ToString();
-
-                try
                 {
-                    {
-                        WebSecurity.CreateUserAndAccount(
-                            account.UserName,
-                            account.Password,
-                            propertyValues: new
-                            {
-                                Address = account.Address
-                            });
-                    }
-
-                    if (account.UserName == "admin")
-                    {
-                        var role = System.Web.Security.Roles.Provider;
-                        role.AddUsersToRoles(
-                            new[] { account.UserName },
-                            new[] { "admin" });
-                    }
-                    else
-                    {
-                        var role = System.Web.Security.Roles.Provider;
-                        role.AddUsersToRoles(
-                            new[] { account.UserName },
-                            new[] { "user" });
-                    }
-                }
-                catch (Exception)
-                {
-                    return RedirectToAction("Register", "Account");
+                    WebSecurity.CreateUserAndAccount(
+                        account.UserName,
+                        account.Password,
+                        propertyValues: new
+                        {
+                            Address = account.Address
+                        });
                 }
 
+                if (account.UserName == "admin")
+                {
+                    var role = System.Web.Security.Roles.Provider;
+                    role.AddUsersToRoles(
+                        new[] { account.UserName },
+                        new[] { "admin" });
+                }
+                else
+                {
+                    var role = System.Web.Security.Roles.Provider;
+                    role.AddUsersToRoles(
+                        new[] { account.UserName },
+                        new[] { "user" });
+                }
             }
-            
-            return Login(new Account("admin", "admin"));
-            //return Login(new Account(account.UserName, account.Password));
+            catch (Exception ex)
+            {
+                m_logger.Error(ex);
+                return RedirectToAction("Register", "Account");
+            }
+       
+            return Login(new Account(account.UserName, account.Password));
         }
-
-
-
-
-
-
+        
 
 
         public ActionResult Administration()
@@ -156,10 +140,6 @@ namespace eShop.Controllers
             }
             return result;
         }
-
-
-
-
 
     }
 }
