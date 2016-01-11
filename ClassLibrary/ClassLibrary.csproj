@@ -53,12 +53,14 @@
     <Compile Include="Helpers\DataBaseHelper.cs" />
     <Compile Include="Mappers\CatalogMapper.cs" />
     <Compile Include="Mappers\IMapper.cs" />
+    <Compile Include="Mappers\OrderItemMapper.cs" />
     <Compile Include="Mappers\OrderMapper.cs" />
     <Compile Include="Mappers\ProductMapper.cs" />
     <Compile Include="Mappers\UserMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\CatalogRepository.cs" />
     <Compile Include="Repository\IRepository.cs" />
+    <Compile Include="Repository\OrderItemRepository.cs" />
     <Compile Include="Repository\OrderRepository.cs" />
     <Compile Include="Repository\ProductRepository.cs" />
     <Compile Include="Repository\UserRepository.cs" />

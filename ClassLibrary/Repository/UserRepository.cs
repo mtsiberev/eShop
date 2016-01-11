@@ -64,7 +64,16 @@ namespace ClassLibrary.Repository
                 logger.Error(ex.Message);
                 return null;
             }
-            
+        }
+
+        public void DeleteByCompoundId(int id1, int id2)
+        {
+            throw new NotImplementedException();
+        }
+
+        public User GetByCompoundId(int id1, int id2)
+        {
+            throw new NotImplementedException();
         }
     }
 }

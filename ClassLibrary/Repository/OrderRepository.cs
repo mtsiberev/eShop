@@ -35,36 +35,9 @@ namespace ClassLibrary.Repository
             DataBaseHelper.ExecuteCommand(queryString);
         }
         
-        public void Update(Order entity)
-        {
-            throw new NotImplementedException();
-        }
-        
-        public List<Order> GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
         public Order GetById(int id)
         {
-            /*             
-            var queryString1 =
-                String.Format("SELECT * FROM Orders, OrderItems WHERE (OrderItems.OrderId = Orders.Id AND Orders.Id = 1)");
-
-            var queryString2 =
-            String.Format(
-                "SELECT * FROM OrderItems INNER JOIN Orders ON OrderItems.OrderId = Orders.Id WHERE (OrderItems.OrderId = Orders.Id AND Orders.Id = 1)");
-            
-            var queryString3 =
-            String.Format(
-            "SELECT * FROM OrderItems INNER JOIN Orders ON OrderItems.OrderId = Orders.Id WHERE (Orders.Id = 1)");
-            
-            var queryString4 =
-                String.Format(
-                "SELECT * FROM OrderItems INNER JOIN Orders ON OrderItems.OrderId = Orders.Id WHERE (Orders.UserId = 158)");            
-             */
-            //var queryString = String.Format("SELECT TOP 1 * FROM {0} WHERE Id = {1};", c_ordersDatabaseName, id);
-            var queryString = String.Format("SELECT * FROM {0} INNER JOIN {1} ON {0}.OrderId = {1}.Id WHERE ({1}.UserId = {2})",
+           var queryString = String.Format("SELECT * FROM {0} INNER JOIN {1} ON {0}.OrderId = {1}.Id WHERE ({1}.UserId = {2})",
                 c_orderItemsDatabaseName,
                 c_ordersDatabaseName,
                 id);
@@ -78,6 +51,26 @@ namespace ClassLibrary.Repository
                 logger.Error(ex.Message);
                 return null;
             }
+        }
+
+        public void DeleteByCompoundId(int id1, int id2)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Order GetByCompoundId(int id1, int id2)
+        {
+            throw new NotImplementedException();
+        }
+        
+        public void Update(Order entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Order> GetAll()
+        {
+            throw new NotImplementedException();
         }
     }
 }

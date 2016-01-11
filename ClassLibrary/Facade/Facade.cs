@@ -14,44 +14,23 @@ namespace ClassLibrary.Facade
         private readonly IRepository<Product> m_productsRepository;
         private readonly IRepository<Catalog> m_catalogsRepository;
         private readonly IRepository<Order> m_ordersRepository;
-        
-        public Facade(IRepository<User> users)
-        {
-            m_usersRepository = users;
-            m_productsRepository = null;
-            m_catalogsRepository = null;
-            m_ordersRepository = null;
-        }
-        
-        public Facade(IRepository<Product> products)
-        {
-            m_usersRepository = null;
-            m_productsRepository = products;
-            m_catalogsRepository = null;
-            m_ordersRepository = null;
-        }
-        
-        public Facade(IRepository<Catalog> catalogs)
-        {
-            m_usersRepository = null;
-            m_productsRepository = null;
-            m_catalogsRepository = catalogs;
-            m_ordersRepository = null;
-        }
+        private readonly IRepository<OrderItem> m_orderItemsRepository;
         
         public Facade(
             IRepository<User> users,
             IRepository<Product> products,
             IRepository<Catalog> catalogs,
-            IRepository<Order> orders
+            IRepository<Order> orders,
+            IRepository<OrderItem> orderItems 
             )
         {
             m_usersRepository = users;
             m_productsRepository = products;
             m_catalogsRepository = catalogs;
             m_ordersRepository = orders;
+            m_orderItemsRepository = orderItems;
         }
-
+        //------------------Users methods
         public List<User> GetAllUsers()
         {
             return m_usersRepository.GetAll();
@@ -71,7 +50,7 @@ namespace ClassLibrary.Facade
         {
             m_usersRepository.Delete(id);
         }
-        
+        //------------------Products methods
         public void AddProduct(Product product)
         {
             m_productsRepository.Add(product);
@@ -96,7 +75,7 @@ namespace ClassLibrary.Facade
         {
             m_productsRepository.Delete(id);
         }
-        
+        //------------------Catalogs methods
         public void AddCatalog(Catalog catalog)
         {
             var cat = catalog;
@@ -122,10 +101,47 @@ namespace ClassLibrary.Facade
         {
             m_catalogsRepository.Delete(id);
         }
-        
+        //------------------Orders methods
         public List<Order> GetAllOrders()
         {
             return m_ordersRepository.GetAll();
         }
+
+        public void AddOrder(Order order)
+        {
+            m_ordersRepository.Add(order);
+        }
+
+        public void DeleteOrder(int id)
+        {
+            m_ordersRepository.Delete(id);
+        }
+
+        public Order GetOrderByUserId(int id)
+        {
+            return m_ordersRepository.GetById(id);
+        }
+
+        //------------------OrderItems methods
+        public void AddOrderItem(OrderItem orderItem)
+        {
+            m_orderItemsRepository.Add(orderItem);
+        }
+
+        public void DeleteOrderItem(OrderItem orderItem)
+        {
+            m_orderItemsRepository.DeleteByCompoundId(orderItem.OrderId, orderItem.ProductId);
+        }
+
+        public OrderItem GetOrderItem(int id1, int id2)
+        {
+            return m_orderItemsRepository.GetByCompoundId(id1, id2);
+        }
+
+        public void UpdateOrderItem(OrderItem oredItem)
+        {
+            m_orderItemsRepository.Update(oredItem);
+        }
+
     }
 }

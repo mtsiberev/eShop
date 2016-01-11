@@ -12,10 +12,16 @@ namespace eShop.Controllers
 {
     public class CatalogController : Controller
     {
-        private Facade m_facade = new Facade(new CatalogRepository());
+        private Facade m_facade = new Facade(
+            new UserRepository(),
+            new ProductRepository(),
+            new CatalogRepository(),
+            new OrderRepository(),
+            new OrderItemRepository());
+
 
         private static Logger logger = LogManager.GetCurrentClassLogger();
-        
+
         public JsonResult GetCatalog(int id)
         {
             var catalogBo = m_facade.GetCatalogById(id);
@@ -45,7 +51,7 @@ namespace eShop.Controllers
             }
             return Json(anonArray, JsonRequestBehavior.AllowGet);
         }
-        
+
         [Authorize(Roles = "admin")]
         public JsonResult AddCatalog(string name)
         {
@@ -54,11 +60,11 @@ namespace eShop.Controllers
 
             return Json(new { success = true }, JsonRequestBehavior.AllowGet);
         }
-        
+
         [Authorize(Roles = "admin")]
         public JsonResult UpdateCatalog(int id, string name)
         {
-            var updatedCatalog = new Catalog(id, name );
+            var updatedCatalog = new Catalog(id, name);
             m_facade.UpdateCatalog(updatedCatalog);
 
             return Json(new { success = true }, JsonRequestBehavior.AllowGet);
