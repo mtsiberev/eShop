@@ -13,9 +13,5 @@ namespace ClassLibrary.Repository
         void Update(T entity);
         List<T> GetAll();
         T GetById(int id);
-
-
-        void DeleteByCompoundId(int id1, int id2);
-        T GetByCompoundId(int id1, int id2);
     }
 }

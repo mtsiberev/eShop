@@ -97,15 +97,5 @@ namespace ClassLibrary.Repository
                 return null;
             }
         }
-
-        public void DeleteByCompoundId(int id1, int id2)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Product GetByCompoundId(int id1, int id2)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

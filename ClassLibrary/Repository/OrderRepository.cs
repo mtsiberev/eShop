@@ -37,7 +37,7 @@ namespace ClassLibrary.Repository
         
         public Order GetById(int id)
         {
-           var queryString = String.Format("SELECT * FROM {0} INNER JOIN {1} ON {0}.OrderId = {1}.Id WHERE ({1}.UserId = {2})",
+           var queryString = String.Format("SELECT * FROM {0} INNER JOIN {1} ON {0}.OrderId = {1}.Id WHERE ({1}.UserId = {2});",
                 c_orderItemsDatabaseName,
                 c_ordersDatabaseName,
                 id);
@@ -52,16 +52,6 @@ namespace ClassLibrary.Repository
                 return null;
             }
         }
-
-        public void DeleteByCompoundId(int id1, int id2)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Order GetByCompoundId(int id1, int id2)
-        {
-            throw new NotImplementedException();
-        }
         
         public void Update(Order entity)
         {
@@ -70,7 +60,18 @@ namespace ClassLibrary.Repository
 
         public List<Order> GetAll()
         {
-            throw new NotImplementedException();
+            var queryString = String.Format("SELECT * FROM {0} INNER JOIN {1} ON {0}.OrderId = {1}.Id;",
+          c_orderItemsDatabaseName,
+          c_ordersDatabaseName);
+            try
+            {
+                return  m_orderMapper.GetEntityList(queryString);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                return null;
+            }
         }
     }
 }

@@ -10,10 +10,10 @@ using NLog;
 
 namespace ClassLibrary.Repository
 {
-    public class OrderItemRepository : IRepository<OrderItem>
+    public class OrderItemRepository : IJunctionEntityRepository<OrderItem>
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
-        private readonly IMapper<OrderItem> m_orderMapper = new OrderItemMapper();
+        private readonly IMapper<OrderItem> m_orderItemMapper = new OrderItemMapper();
 
         private const string c_ordersDatabaseName = "Orders";
         private const string c_orderItemsDatabaseName = "OrderItems";
@@ -31,12 +31,11 @@ namespace ClassLibrary.Repository
         
         public void DeleteByCompoundId(int id1, int id2)
         {
-            var queryString = String.Format("DELETE FROM {0} WHERE OrderId = {1} and ProductId = {2};",
+            var queryString = String.Format("DELETE FROM {0} WHERE OrderId = {1} AND ProductId = {2};",
                 c_orderItemsDatabaseName,
                 id1,
                 id2
             );
-
             DataBaseHelper.ExecuteCommand(queryString);
         }
 
@@ -48,7 +47,7 @@ namespace ClassLibrary.Repository
                 id2);
             try
             {
-                var orderItem = m_orderMapper.GetEntityList(queryString).First();
+                var orderItem = m_orderItemMapper.GetEntityList(queryString).First();
                 return orderItem;
             }
             catch (Exception ex)
@@ -57,7 +56,7 @@ namespace ClassLibrary.Repository
                 return null;
             }
         }
-
+        
         public void Update(OrderItem entity)
         {
             var queryString = String.Format("UPDATE {0} SET Qty = '{1}' WHERE OrderId = {2} AND ProductId =  {3};",
@@ -68,20 +67,51 @@ namespace ClassLibrary.Repository
                 );
             DataBaseHelper.ExecuteCommand(queryString);
         }
-
-        public void Delete(int id)
-        {
-            throw new NotImplementedException();
-        }
         
         public List<OrderItem> GetAll()
         {
-            throw new NotImplementedException();
+            var queryString = String.Format("SELECT * FROM {0};", c_orderItemsDatabaseName);
+            try
+            {
+                return m_orderItemMapper.GetEntityList(queryString);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                return null;
+            }
         }
 
-        public OrderItem GetById(int id)
+        public List<OrderItem> GetAllByFirstKeyId(int id)
         {
-            throw new NotImplementedException();
+            var queryString = String.Format("SELECT * FROM {0} WHERE OrderId = {1};",
+                c_orderItemsDatabaseName,
+                id);
+            try
+            {
+                return m_orderItemMapper.GetEntityList(queryString);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                return null;
+            }
+        }
+        
+        public List<OrderItem> GetAllBySecondKeyId(int id)
+        {
+            var queryString = String.Format("SELECT * FROM {0} WHERE ProductId = {1};",
+                c_orderItemsDatabaseName,
+                id);
+            try
+            {
+                return m_orderItemMapper.GetEntityList(queryString);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                return null;
+            }
         }
     }
 }

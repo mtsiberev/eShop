@@ -14,14 +14,14 @@ namespace ClassLibrary.Facade
         private readonly IRepository<Product> m_productsRepository;
         private readonly IRepository<Catalog> m_catalogsRepository;
         private readonly IRepository<Order> m_ordersRepository;
-        private readonly IRepository<OrderItem> m_orderItemsRepository;
+        private readonly IJunctionEntityRepository<OrderItem> m_orderItemsRepository;
         
         public Facade(
             IRepository<User> users,
             IRepository<Product> products,
             IRepository<Catalog> catalogs,
             IRepository<Order> orders,
-            IRepository<OrderItem> orderItems 
+            IJunctionEntityRepository<OrderItem> orderItems 
             )
         {
             m_usersRepository = users;
@@ -138,9 +138,25 @@ namespace ClassLibrary.Facade
             return m_orderItemsRepository.GetByCompoundId(id1, id2);
         }
 
-        public void UpdateOrderItem(OrderItem oredItem)
+        public void UpdateOrderItem(OrderItem orderItem)
         {
-            m_orderItemsRepository.Update(oredItem);
+            m_orderItemsRepository.Update(orderItem);
+        }
+        
+        public List<OrderItem> GetAllOrderItems()
+        {
+            return m_orderItemsRepository.GetAll();
+        }
+
+
+        public List<OrderItem> GetAllOrderItemsByOrderId(int id)
+        {
+            return m_orderItemsRepository.GetAllByFirstKeyId(id);
+        }
+
+        public List<OrderItem> GetAllOrderItemsByProductId(int id)
+        {
+            return m_orderItemsRepository.GetAllBySecondKeyId(id);
         }
 
     }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ClassLibrary.BusinessObjects;
+using ClassLibrary.Facade;
 using ClassLibrary.Repository;
 using WebMatrix.WebData;
 
