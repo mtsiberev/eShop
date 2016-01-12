@@ -18,7 +18,7 @@ AdminApp.factory('UsersService', UsersService);
 AdminApp.factory('ProductsService', ProductsService);
 AdminApp.factory('CatalogsService', CatalogsService);
 
-
+/*--------------------users----------------------------*/
 var configFunction = function ($routeProvider) {
     $routeProvider.
         when('/users', {
@@ -30,7 +30,7 @@ var configFunction = function ($routeProvider) {
             templateUrl: '/AngularJS/PartialViews/user-detail.html',
             controller: UserDetailController
         }).
-        /*-----------------------------------------------------*/
+        /*--------------products-------------------------------*/
         when('/products', {
         templateUrl: '/AngularJS/PartialViews/products.html',
         controller: ProductsController
@@ -45,7 +45,7 @@ var configFunction = function ($routeProvider) {
             templateUrl: '/AngularJS/PartialViews/product-create.html',
             controller: ProductDetailController
         }).
-           /*-----------------------------------------------------*/
+           /*--------------catalogs-------------------------------*/
            when('/catalogs', {
                templateUrl: '/AngularJS/PartialViews/catalogs.html',
                controller: CatalogsController

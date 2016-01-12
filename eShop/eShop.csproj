@@ -133,6 +133,7 @@
     <Compile Include="Controllers\CatalogController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\ShopController.cs" />
     <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -156,6 +157,7 @@
     <Content Include="AngularJS\Controllers\CatalogsController.js" />
     <Content Include="AngularJS\Controllers\ProductDetailController.js" />
     <Content Include="AngularJS\Controllers\ProductsController.js" />
+    <Content Include="AngularJS\Controllers\ShopController.js" />
     <Content Include="AngularJS\Controllers\ShoppingCartController.js" />
     <Content Include="AngularJS\Controllers\UserDetailController.js" />
     <Content Include="AngularJS\Controllers\UsersController.js" />

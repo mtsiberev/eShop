@@ -3,24 +3,22 @@
 var ShopApp = angular.module('ShopApp', ["ngRoute"]);
 
 ShopApp.controller('ShopController', ShopController);
-ShopApp.factory('DataService', DataService);
+
+ShopApp.factory('ProductsService', ProductsService);
+ShopApp.factory('CatalogsService', CatalogsService);
 
 var configFunction = function ($routeProvider) {
     $routeProvider.
-        when('/store', {
-            templateUrl: '/AngularJS/PartialViews/shop.html',
-            controller: ShopController
-        }).
-        when('/products/:productSku', {
+        when('/shop', {
             templateUrl: '/AngularJS/PartialViews/shop.html',
             controller: ShopController
         }).
         when('/cart', {
-            templateUrl: '/AngularJS/PartialViews/shop.html',
+            templateUrl: '/AngularJS/PartialViews/cart.html',
             controller: ShopController
         }).
         otherwise({
-            redirectTo: '/store'
+            redirectTo: '/shop'
         });
 };
 
