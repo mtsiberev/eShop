@@ -4,7 +4,6 @@
 </p>
 
 <table class="table table-bordered">
-    
     <thead>
         <tr>
             <th>Id</th>
@@ -13,21 +12,61 @@
             <th>Description</th>
         </tr>
     </thead>
-
     <tbody>
-    <tr ng-repeat="product in products | orderBy:'name' | filter:search">
-        <td>
-            {{product.id}}
-        </td>
-        <td>
-            {{product.catalogId}}
-        </td>
-        <td>
-            {{product.name}}
-        </td>
-        <td>
-            {{product.description}}
-        </td>
-    </tr>
-        </tbody>
+        <tr ng-repeat="product in products | orderBy:'name' | filter:search">
+            <td>
+                {{product.id}}
+            </td>
+            <td>
+                {{product.catalogId}}
+            </td>
+            <td>
+                {{product.name}}
+            </td>
+            <td>
+                {{product.description}}
+            </td>
+            <td>
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                        ng-click="addToCart(product.id)">
+                    Add to Cart
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+Shopping Cart
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>OrderId</th>
+            <th>ProductId</th>
+            <th>Qty</th>
+            <th>ProductName</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="item in content.OrderItemsList | orderBy:'name' | filter:search">
+            <td>
+                {{item.OrderId}}
+            </td>
+            <td>
+                {{item.ProductId}}
+            </td>
+            <td>
+                {{item.Qty}}
+            </td>
+            <td>
+                {{item.ProductName}}
+            </td>
+            <td>
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                        ng-click="deleteFromCart(item.ProductId)">
+                    Delete From Cart
+                </button>
+            </td>
+        </tr>
+    </tbody>
 </table>

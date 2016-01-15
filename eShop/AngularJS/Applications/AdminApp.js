@@ -6,13 +6,10 @@ AdminApp.controller('AdminMenuController', AdminMenuController);
 
 AdminApp.controller('UsersController', UsersController);
 AdminApp.controller('UserDetailController', UserDetailController);
-
 AdminApp.controller('ProductsController', ProductsController);
 AdminApp.controller('ProductDetailController', ProductDetailController);
-
 AdminApp.controller('CatalogsController', CatalogsController);
 AdminApp.controller('CatalogDetailController', CatalogDetailController);
-
 
 AdminApp.factory('UsersService', UsersService);
 AdminApp.factory('ProductsService', ProductsService);
@@ -60,7 +57,7 @@ var configFunction = function ($routeProvider) {
                 templateUrl: '/AngularJS/PartialViews/catalog-create.html',
                 controller: CatalogDetailController
             }).
-               /*-----------------------------------------------------*/
+               /*-------------default---------------------------------*/
     otherwise({
         redirectTo: '/users'
     });

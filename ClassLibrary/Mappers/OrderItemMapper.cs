@@ -18,7 +18,8 @@ namespace ClassLibrary.Mappers
             var resultList = new List<OrderItem>();
             using (var table = DataBaseHelper.GetExecutionResult(queryString))
             {
-                if (table == null) return null;
+                //if (table == null) return null;
+                if (table.Rows.Count == 0) return null;
                 try
                 {
                     for (var i = 0; i < table.Rows.Count; i++)
@@ -26,8 +27,9 @@ namespace ClassLibrary.Mappers
                         var orderId = Convert.ToInt32(table.Rows[i]["OrderId"]);
                         var productId = Convert.ToInt32(table.Rows[i]["ProductId"]);
                         var qty = Convert.ToInt32(table.Rows[i]["Qty"]);
+                        var name = table.Rows[i]["Name"].ToString();
 
-                        var entity = new OrderItem(orderId, productId, qty);
+                        var entity = new OrderItem(orderId, productId, qty, name);
                         resultList.Add(entity);
                     }
                 }

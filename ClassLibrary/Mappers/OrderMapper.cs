@@ -12,13 +12,15 @@ namespace ClassLibrary.Mappers
     public class OrderMapper : IMapper<Order>
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
-        
+
         public List<Order> GetEntityList(string queryString)
         {
             var resultList = new List<Order>();
             using (var table = DataBaseHelper.GetExecutionResult(queryString))
             {
-                if (table == null) return null;
+                //if (table == null) return null;
+                if (table.Rows.Count == 0) return null;
+
                 try
                 {
                     var orderItemsList = new List<OrderItem>();
@@ -28,11 +30,23 @@ namespace ClassLibrary.Mappers
                     for (var i = 0; i < table.Rows.Count; i++)
                     {
                         userId = Convert.ToInt32(table.Rows[i]["UserId"]);
-                        orderId = Convert.ToInt32(table.Rows[i]["OrderId"]);
-                        var productId = Convert.ToInt32(table.Rows[i]["ProductId"]);
-                        var qty = Convert.ToInt32(table.Rows[i]["Qty"]);
+                        orderId = Convert.ToInt32(table.Rows[i]["Id"]);
 
-                        var entity = new OrderItem(orderId, productId, qty);
+                        var productId = 0;
+                        var qty = 0;
+                        var name = "";
+                   
+                        var type = table.Rows[i]["ProductId"].GetType();
+                        if (type.Name == "DBNull")
+                        {
+                            break;
+                        }
+                        
+                        productId = Convert.ToInt32(table.Rows[i]["ProductId"]);
+                        qty = Convert.ToInt32(table.Rows[i]["Qty"]);
+                        table.Rows[i]["Name"].ToString();
+                        
+                        var entity = new OrderItem(orderId, productId, qty, name);
                         orderItemsList.Add(entity);
                     }
                     resultList.Add(new Order(orderId, userId, orderItemsList));

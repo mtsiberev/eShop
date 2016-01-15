@@ -3,9 +3,7 @@
     console.log("UsersService");
 
     var getUserFunction = function (id) {
-    
         console.log("UsersService: getUserFunction" );
-
         return $http({
             url: "User/GetUser",
             method: "GET",
@@ -13,7 +11,6 @@
             cache: false
         }).then(function (result) {
             console.log("UsersService: getUserFunction in then");
-     
             return result.data;
         });
     };
@@ -63,12 +60,25 @@
             return result.data;
         });
     };
-
+    
+    var getCurrentUserFunction = function () {
+        console.log("UsersService: getCurrentUserFunction");
+        return $http({
+            url: "User/GetUserId",
+            method: "GET",
+            cache: false
+        }).then(function (result) {
+            console.log("UsersService: getCurrentUserFunction in then");
+            return result.data;
+        });
+    };
+    
     return {
         getUser: getUserFunction,
         getUsers: getUsersFunction,
         updateUser: getUpdateUserFunction,
-        deleteUser: getDeleteUserFunction
+        deleteUser: getDeleteUserFunction,
+        getCurrentUser: getCurrentUserFunction
     };
 };
 

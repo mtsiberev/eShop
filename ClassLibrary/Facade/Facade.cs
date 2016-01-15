@@ -133,9 +133,9 @@ namespace ClassLibrary.Facade
             m_orderItemsRepository.DeleteByCompoundId(orderItem.OrderId, orderItem.ProductId);
         }
 
-        public OrderItem GetOrderItem(int id1, int id2)
+        public OrderItem GetOrderItem(int orderId, int productId)
         {
-            return m_orderItemsRepository.GetByCompoundId(id1, id2);
+            return m_orderItemsRepository.GetByCompoundId(orderId, productId);
         }
 
         public void UpdateOrderItem(OrderItem orderItem)

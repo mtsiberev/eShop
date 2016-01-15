@@ -6,6 +6,8 @@ ShopApp.controller('ShopController', ShopController);
 
 ShopApp.factory('ProductsService', ProductsService);
 ShopApp.factory('CatalogsService', CatalogsService);
+ShopApp.factory('OrdersService', OrdersService);
+ShopApp.factory('UsersService', UsersService);
 
 var configFunction = function ($routeProvider) {
     $routeProvider.

@@ -17,6 +17,7 @@ namespace ClassLibrary.Repository
 
         private const string c_ordersDatabaseName = "Orders";
         private const string c_orderItemsDatabaseName = "OrderItems";
+        private const string c_productsDatabaseName = "Products";
 
         public void Add(Order entity)
         {
@@ -34,25 +35,31 @@ namespace ClassLibrary.Repository
              id);
             DataBaseHelper.ExecuteCommand(queryString);
         }
-        
+
         public Order GetById(int id)
         {
-           var queryString = String.Format("SELECT * FROM {0} INNER JOIN {1} ON {0}.OrderId = {1}.Id WHERE ({1}.UserId = {2});",
-                c_orderItemsDatabaseName,
-                c_ordersDatabaseName,
-                id);
+            var queryString =
+            String.Format("SELECT * FROM {0} LEFT JOIN {1} ON {0}.Id = {1}.OrderId LEFT JOIN {2} ON {1}.ProductId = {2}.Id WHERE UserId = {3};",
+            c_ordersDatabaseName,
+            c_orderItemsDatabaseName,
+            c_productsDatabaseName,
+            id);
+
             try
             {
                 var order = m_orderMapper.GetEntityList(queryString).First();
+                var t = 9;
+
                 return order;
             }
+
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
                 return null;
             }
         }
-        
+
         public void Update(Order entity)
         {
             throw new NotImplementedException();
@@ -60,12 +67,14 @@ namespace ClassLibrary.Repository
 
         public List<Order> GetAll()
         {
-            var queryString = String.Format("SELECT * FROM {0} INNER JOIN {1} ON {0}.OrderId = {1}.Id;",
-          c_orderItemsDatabaseName,
-          c_ordersDatabaseName);
+            var queryString =
+              String.Format("SELECT * FROM {0} LEFT JOIN {1} ON {0}.Id = {1}.OrderId LEFT JOIN {2} ON {1}.ProductId = {2}.Id;",
+              c_ordersDatabaseName,
+              c_orderItemsDatabaseName,
+              c_productsDatabaseName);
             try
             {
-                return  m_orderMapper.GetEntityList(queryString);
+                return m_orderMapper.GetEntityList(queryString);
             }
             catch (Exception ex)
             {

@@ -19,7 +19,9 @@ namespace ClassLibrary.Mappers
             var resultList = new List<Product>();
             using (var table = DataBaseHelper.GetExecutionResult(queryString))
             {
-                if (table == null) return null;
+                if (table.Rows.Count == 0) return null;
+                //if (table == null) return null;
+                //if (table == null) return null;
                 try
                 {
                     for (var i = 0; i < table.Rows.Count; i++)

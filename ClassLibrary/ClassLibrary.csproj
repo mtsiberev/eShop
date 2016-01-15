@@ -48,7 +48,6 @@
     <Compile Include="BusinessObjects\OrderItem.cs" />
     <Compile Include="BusinessObjects\Product.cs" />
     <Compile Include="BusinessObjects\User.cs" />
-    <Compile Include="Class1.cs" />
     <Compile Include="Facade\Facade.cs" />
     <Compile Include="Helpers\DataBaseHelper.cs" />
     <Compile Include="Mappers\CatalogMapper.cs" />

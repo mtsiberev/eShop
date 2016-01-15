@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using ClassLibrary.BusinessObjects;
 using ClassLibrary.Facade;
 using ClassLibrary.Repository;
@@ -22,6 +23,14 @@ namespace eShop.Controllers
             new OrderItemRepository());
 
         private static Logger logger = LogManager.GetCurrentClassLogger();
+        
+
+        public JsonResult GetUserId()
+        {
+            var userId = Convert.ToInt32(Membership.GetUser().ProviderUserKey.ToString());
+            return Json(userId, JsonRequestBehavior.AllowGet);
+        }
+
 
         public JsonResult GetUser(int id)
         {

@@ -158,7 +158,6 @@
     <Content Include="AngularJS\Controllers\ProductDetailController.js" />
     <Content Include="AngularJS\Controllers\ProductsController.js" />
     <Content Include="AngularJS\Controllers\ShopController.js" />
-    <Content Include="AngularJS\Controllers\ShoppingCartController.js" />
     <Content Include="AngularJS\Controllers\UserDetailController.js" />
     <Content Include="AngularJS\Controllers\UsersController.js" />
     <Content Include="AngularJS\Mdl\ic_arrow_drop_down_white_24px.svg" />
@@ -171,10 +170,6 @@
     <Content Include="AngularJS\Mdl\material.css" />
     <Content Include="AngularJS\Mdl\material.js" />
     <Content Include="AngularJS\Mdl\styles.css" />
-    <Content Include="AngularJS\Objects\catalog.js" />
-    <Content Include="AngularJS\Objects\product.js" />
-    <Content Include="AngularJS\Objects\shoppingCart.js" />
-    <Content Include="AngularJS\Objects\store.js" />
     <Content Include="AngularJS\PartialViews\catalog-create.html" />
     <Content Include="AngularJS\PartialViews\catalog-detail.html" />
     <Content Include="AngularJS\PartialViews\catalogs.html" />
@@ -185,8 +180,8 @@
     <Content Include="AngularJS\PartialViews\user-detail.html" />
     <Content Include="AngularJS\PartialViews\users.html" />
     <Content Include="AngularJS\Services\CatalogsService.js" />
-    <Content Include="AngularJS\Services\DataService.js" />
     <Content Include="AngularJS\Services\ProductsService.js" />
+    <Content Include="AngularJS\Services\OrdersService.js" />
     <Content Include="AngularJS\Services\UsersService.js" />
     <Content Include="App_Data\Data.mdf" />
     <Content Include="App_Data\Data_log.ldf">
