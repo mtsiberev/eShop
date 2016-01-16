@@ -50,6 +50,12 @@
     <Reference Include="NLog">
       <HintPath>..\packages\NLog.4.2.3\lib\net45\NLog.dll</HintPath>
     </Reference>
+    <Reference Include="StructureMap">
+      <HintPath>..\packages\structuremap.4.0.1.318\lib\net40\StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap.Net4">
+      <HintPath>..\packages\structuremap.4.0.1.318\lib\net40\StructureMap.Net4.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -170,10 +176,8 @@
     <Content Include="AngularJS\Mdl\material.css" />
     <Content Include="AngularJS\Mdl\material.js" />
     <Content Include="AngularJS\Mdl\styles.css" />
-    <Content Include="AngularJS\PartialViews\catalog-create.html" />
     <Content Include="AngularJS\PartialViews\catalog-detail.html" />
     <Content Include="AngularJS\PartialViews\catalogs.html" />
-    <Content Include="AngularJS\PartialViews\product-create.html" />
     <Content Include="AngularJS\PartialViews\product-detail.html" />
     <Content Include="AngularJS\PartialViews\products.html" />
     <Content Include="AngularJS\PartialViews\shop.html" />

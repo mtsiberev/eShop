@@ -48,8 +48,6 @@ namespace ClassLibrary.Repository
             try
             {
                 var order = m_orderMapper.GetEntityList(queryString).First();
-                var t = 9;
-
                 return order;
             }
 
@@ -68,10 +66,10 @@ namespace ClassLibrary.Repository
         public List<Order> GetAll()
         {
             var queryString =
-              String.Format("SELECT * FROM {0} LEFT JOIN {1} ON {0}.Id = {1}.OrderId LEFT JOIN {2} ON {1}.ProductId = {2}.Id;",
-              c_ordersDatabaseName,
-              c_orderItemsDatabaseName,
-              c_productsDatabaseName);
+                String.Format("SELECT * FROM {0} LEFT JOIN {1} ON {0}.Id = {1}.OrderId LEFT JOIN {2} ON {1}.ProductId = {2}.Id;",
+                c_ordersDatabaseName,
+                c_orderItemsDatabaseName,
+                c_productsDatabaseName);
             try
             {
                 return m_orderMapper.GetEntityList(queryString);

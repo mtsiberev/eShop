@@ -21,7 +21,6 @@ namespace ClassLibrary.Mappers
             {
                 if (table.Rows.Count == 0) return null;
                 //if (table == null) return null;
-                //if (table == null) return null;
                 try
                 {
                     for (var i = 0; i < table.Rows.Count; i++)

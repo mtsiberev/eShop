@@ -6,7 +6,6 @@
     Search: <input ng-model="search">
 </p>
 
-
 <table class="table table-bordered">
     <tr ng-repeat="catalog in catalogs | orderBy:'name' | filter:search">
         <td>
@@ -32,7 +31,6 @@
 <button ng-click="addCatalog()">
     Add Catalog
 </button>
-
 
 <table class="mdl-data-table mdl-js-data-table">
     <thead>

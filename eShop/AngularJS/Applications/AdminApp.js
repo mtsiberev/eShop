@@ -39,7 +39,7 @@ var configFunction = function ($routeProvider) {
         }).
 
         when('/product-create/', {
-            templateUrl: '/AngularJS/PartialViews/product-create.html',
+            templateUrl: '/AngularJS/PartialViews/product-detail.html',
             controller: ProductDetailController
         }).
            /*--------------catalogs-------------------------------*/
@@ -54,7 +54,7 @@ var configFunction = function ($routeProvider) {
            }).
 
             when('/catalog-create', {
-                templateUrl: '/AngularJS/PartialViews/catalog-create.html',
+                templateUrl: '/AngularJS/PartialViews/catalog-detail.html',
                 controller: CatalogDetailController
             }).
                /*-------------default---------------------------------*/

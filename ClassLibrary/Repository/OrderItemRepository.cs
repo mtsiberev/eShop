@@ -19,7 +19,6 @@ namespace ClassLibrary.Repository
         private const string c_orderItemsDatabaseName = "OrderItems";
         private const string c_productsDatabaseName = "Products";
 
-
         public void Add(OrderItem entity)
         {
             var queryString = String.Format("INSERT INTO {0} (OrderId, ProductId, Qty) VALUES ({1}, {2}, {3});",
@@ -44,12 +43,12 @@ namespace ClassLibrary.Repository
         public OrderItem GetByCompoundId(int id1, int id2)
         {
             var queryString =
-          String.Format("SELECT * FROM {0} LEFT JOIN {1} ON {0}.ProductId = {1}.Id WHERE OrderId = {2} AND ProductId = {3};",
-              c_orderItemsDatabaseName,
-              c_productsDatabaseName,
-              id1, 
-              id2);
-            
+                String.Format("SELECT * FROM {0} LEFT JOIN {1} ON {0}.ProductId = {1}.Id WHERE OrderId = {2} AND ProductId = {3};",
+                c_orderItemsDatabaseName,
+                c_productsDatabaseName,
+                id1,
+                id2);
+
             try
             {
                 var orderItem = m_orderItemMapper.GetEntityList(queryString).First();
@@ -76,11 +75,9 @@ namespace ClassLibrary.Repository
         public List<OrderItem> GetAll()
         {
             var queryString =
-                String.Format(
-                    "SELECT * FROM {0} LEFT JOIN {1} ON {0}.ProductId = {1}.Id;",
-                    c_orderItemsDatabaseName,
-                    c_productsDatabaseName);
-          //  var queryString = String.Format("SELECT * FROM {0};", c_orderItemsDatabaseName);
+                String.Format("SELECT * FROM {0} LEFT JOIN {1} ON {0}.ProductId = {1}.Id;",
+                c_orderItemsDatabaseName,
+                c_productsDatabaseName);
             try
             {
                 return m_orderItemMapper.GetEntityList(queryString);
@@ -95,18 +92,10 @@ namespace ClassLibrary.Repository
         public List<OrderItem> GetAllByFirstKeyId(int id)
         {
             var queryString =
-         String.Format(
-             "SELECT * FROM {0} LEFT JOIN {1} ON {0}.ProductId = {1}.Id WHERE OrderId = {2};",
-             c_orderItemsDatabaseName,
-             c_productsDatabaseName,
-             id);
-            /*
-            var queryString =
-            String.Format("SELECT * FROM {0} JOIN {1} ON {0}.Id = {1}.ProductId WHERE OrderId = {2};",
-                c_productsDatabaseName,
+                String.Format("SELECT * FROM {0} LEFT JOIN {1} ON {0}.ProductId = {1}.Id WHERE OrderId = {2};",
                 c_orderItemsDatabaseName,
+                c_productsDatabaseName,
                 id);
-            */
             try
             {
                 return m_orderItemMapper.GetEntityList(queryString);
@@ -117,22 +106,14 @@ namespace ClassLibrary.Repository
                 return null;
             }
         }
-        
+
         public List<OrderItem> GetAllBySecondKeyId(int id)
         {
             var queryString =
-    String.Format(
-        "SELECT * FROM {0} LEFT JOIN {1} ON {0}.ProductId = {1}.Id WHERE ProductId = {2};",
-        c_orderItemsDatabaseName,
-        c_productsDatabaseName,
-        id);
-    /*
-            var queryString =
-                String.Format("SELECT * FROM {0} JOIN {1} ON {0}.Id = {1}.ProductId WHERE ProductId = {2};",
-                    c_productsDatabaseName,
-                    c_orderItemsDatabaseName,
-                    id);
-            */
+                String.Format("SELECT * FROM {0} LEFT JOIN {1} ON {0}.ProductId = {1}.Id WHERE ProductId = {2};",
+                c_orderItemsDatabaseName,
+                c_productsDatabaseName,
+                id);
             try
             {
                 return m_orderItemMapper.GetEntityList(queryString);

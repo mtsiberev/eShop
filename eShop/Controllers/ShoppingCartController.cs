@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 using ClassLibrary.BusinessObjects;
 using ClassLibrary.Facade;
+using ClassLibrary.IoC;
 using ClassLibrary.Repository;
 using WebMatrix.WebData;
 
@@ -13,12 +14,7 @@ namespace eShop.Controllers
 {
     public class ShoppingCartController : Controller
     {
-        private Facade m_facade = new Facade(
-            new UserRepository(), 
-            new ProductRepository(), 
-            new CatalogRepository(), 
-            new OrderRepository(), 
-            new OrderItemRepository());
+        private Facade m_facade = ContainerWrapper.Container.GetInstance<Facade>();
         
         public void AddToCart(int productId)
         {

@@ -2,7 +2,7 @@
 
     console.log("OrdersService");
     
-    var getContentOfShoppingCart = function (userId) {
+    var getOrderContentFunction = function (userId) {
         console.log("OrdersService: getContentOfShoppingCart");
 
         return $http({
@@ -16,7 +16,6 @@
             return result.data;
         });
     };
-
     
     var addToCartFunction = function (productId) {
         console.log("OrdersService: addToCartFunction");
@@ -32,7 +31,6 @@
             return result.data;
         });
     };
-
 
     var deleteFromCartFunction = function (productId) {
         console.log("OrdersService: addToCartFunction");
@@ -50,7 +48,7 @@
     };
     
     return {
-        getOrderContent: getContentOfShoppingCart,
+        getOrderContent: getOrderContentFunction,
         addToCart: addToCartFunction,
         deleteFromCart: deleteFromCartFunction
     };

@@ -11,6 +11,7 @@
             cache: false
         }).then(function (result) {
             console.log("UsersService: getUserFunction in then");
+
             return result.data;
         });
     };
@@ -69,6 +70,7 @@
             cache: false
         }).then(function (result) {
             console.log("UsersService: getCurrentUserFunction in then");
+
             return result.data;
         });
     };

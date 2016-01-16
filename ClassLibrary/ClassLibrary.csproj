@@ -33,6 +33,12 @@
     <Reference Include="NLog">
       <HintPath>..\packages\NLog.4.2.3\lib\net45\NLog.dll</HintPath>
     </Reference>
+    <Reference Include="StructureMap">
+      <HintPath>..\packages\structuremap.4.0.1.318\lib\net40\StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap.Net4">
+      <HintPath>..\packages\structuremap.4.0.1.318\lib\net40\StructureMap.Net4.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -50,6 +56,7 @@
     <Compile Include="BusinessObjects\User.cs" />
     <Compile Include="Facade\Facade.cs" />
     <Compile Include="Helpers\DataBaseHelper.cs" />
+    <Compile Include="IoC\ContainerWrapper.cs" />
     <Compile Include="Mappers\CatalogMapper.cs" />
     <Compile Include="Mappers\IMapper.cs" />
     <Compile Include="Mappers\OrderItemMapper.cs" />

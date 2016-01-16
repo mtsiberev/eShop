@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 using ClassLibrary.BusinessObjects;
 using ClassLibrary.Facade;
+using ClassLibrary.IoC;
 using ClassLibrary.Repository;
 using NLog;
 
@@ -15,23 +16,16 @@ namespace eShop.Controllers
     [Authorize(Roles = "admin")]
     public class UserController : Controller
     {
-        private Facade m_facade = new Facade(
-            new UserRepository(),
-            new ProductRepository(),
-            new CatalogRepository(),
-            new OrderRepository(),
-            new OrderItemRepository());
-
+        private Facade m_facade = ContainerWrapper.Container.GetInstance<Facade>();
+        
         private static Logger logger = LogManager.GetCurrentClassLogger();
         
-
         public JsonResult GetUserId()
         {
             var userId = Convert.ToInt32(Membership.GetUser().ProviderUserKey.ToString());
             return Json(userId, JsonRequestBehavior.AllowGet);
         }
-
-
+        
         public JsonResult GetUser(int id)
         {
             var userBo = m_facade.GetUserById(id);

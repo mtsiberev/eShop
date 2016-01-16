@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using ClassLibrary.BusinessObjects;
 using ClassLibrary.Facade;
+using ClassLibrary.IoC;
 using ClassLibrary.Repository;
 using NLog;
 
@@ -12,13 +13,7 @@ namespace eShop.Controllers
 {
     public class ProductController : Controller
     {
-        private Facade m_facade = new Facade(
-            new UserRepository(),
-            new ProductRepository(),
-            new CatalogRepository(),
-            new OrderRepository(),
-            new OrderItemRepository());
-
+        private Facade m_facade = ContainerWrapper.Container.GetInstance<Facade>();
 
         private static Logger logger = LogManager.GetCurrentClassLogger();
 

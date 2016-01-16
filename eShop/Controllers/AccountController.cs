@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using ClassLibrary.Facade;
+using ClassLibrary.IoC;
 using eShop.Models;
 using NLog;
 using WebMatrix.WebData;
@@ -13,8 +15,6 @@ namespace eShop.Controllers
     public class AccountController : Controller
     {
         private Logger m_logger = LogManager.GetCurrentClassLogger();
-        //   private Facade m_facade = ContainerWrapper.Container.GetInstance<Facade>();
-
 
         [HttpGet]
         public ActionResult Login()
@@ -99,12 +99,10 @@ namespace eShop.Controllers
                 m_logger.Error(ex);
                 return RedirectToAction("Register", "Account");
             }
-       
+
             return Login(new Account(account.UserName, account.Password));
         }
         
-
-
         public ActionResult Administration()
         {
             return RedirectToAction("Index", "Home");
