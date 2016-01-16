@@ -191,6 +191,7 @@
     <Content Include="App_Data\Data_log.ldf">
       <DependentUpon>Data.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\orange.jpg" />
     <Content Include="Css\styles.css" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\angular-route.js" />
