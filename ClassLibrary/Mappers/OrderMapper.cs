@@ -44,7 +44,7 @@ namespace ClassLibrary.Mappers
                         
                         productId = Convert.ToInt32(table.Rows[i]["ProductId"]);
                         qty = Convert.ToInt32(table.Rows[i]["Qty"]);
-                        table.Rows[i]["Name"].ToString();
+                        name = table.Rows[i]["Name"].ToString();
                         
                         var entity = new OrderItem(orderId, productId, qty, name);
                         orderItemsList.Add(entity);

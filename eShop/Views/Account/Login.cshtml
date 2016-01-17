@@ -1,51 +1,56 @@
-﻿@{
-    Layout = null;
-}
+﻿@model eShop.Models.Account
 
+<!doctype html>
 
-@model eShop.Models.Account
-
-<!DOCTYPE html>
-
-<html>
+<html ng-app="AccountApp">
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Login</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>eShop</title>
+
+    @*
+        <link rel="stylesheet" href="~/AngularJS/Bootstrap/bootstrap.css">
+        <link rel="stylesheet" href="~/AngularJS/Bootstrap/bootstrap-combined.css">
+    *@
+
+    <link rel="stylesheet" href="~/AngularJS/Mdl/material.css">
+
+    <style>
+        #view-source {
+            position: fixed;
+            display: block;
+            right: 0;
+            bottom: 0;
+            margin-right: 40px;
+            margin-bottom: 40px;
+            z-index: 900;
+        }
+    </style>
 </head>
 <body>
-    <div>
-        @using (Html.BeginForm("Login", "Account", FormMethod.Post))
-        {
-            <table>
-                <tr>
-                    <td>
 
-                        @ViewData["error"]
-                        <br>
-                        <br>
-                        <span>User</span>
-                        <br>
-                        @Html.TextBoxFor(m => m.UserName, new { @type = "text", @required = "required" })
-                        <br>
-                        <br>
-                        <span>Password</span>
-                        <br>
-                        @Html.PasswordFor(m => m.Password, new { @required = "required" })
-                        <br>
-                        <br>
-                        <input type="submit" value="OK">
-                        <br>
-                        <br>
-                    </td>
-                </tr>
-            </table>
-        }
+    <div ng-view></div>
 
-        <br>
-        <br>
+    <script src="~/Scripts/jquery-2.1.4.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/angular.js"></script>
+    <script src="~/Scripts/angular-route.js"></script>
+    <script src="~/AngularJS/Mdl/material.js"></script>
+    
+    <script src="~/AngularJS/Services/UsersService.js"></script>
 
-        @Html.ActionLink("Registration", "Register", "Account")
+    <script src="~/AngularJS/Controllers/AdminMenuController.js"></script>
+    <script src="~/AngularJS/Controllers/UsersController.js"></script>
+   
+     
+    @*TODO: Delete this dependency. It is needed for something*@
+    <script src="~/AngularJS/Controllers/ShopController.js"></script>
+    <script src="~/AngularJS/Controllers/AccountController.js"></script>
 
-    </div>
+    <script src="~/AngularJS/Applications/AccountApp.js"></script>
+
 </body>
 </html>

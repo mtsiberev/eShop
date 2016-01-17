@@ -3,76 +3,6 @@
     Search: <input ng-model="search">
 </p>
 
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>catalogId</th>
-            <th>Name</th>
-            <th>Description</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr ng-repeat="product in products | orderBy:'name' | filter:search">
-            <td>
-                {{product.id}}
-            </td>
-            <td>
-                {{product.catalogId}}
-            </td>
-            <td>
-                {{product.name}}
-            </td>
-            <td>
-                {{product.description}}
-            </td>
-            <td>
-                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-                        ng-click="addToCart(product.id)">
-                    Add to Cart
-                </button>
-            </td>
-        </tr>
-    </tbody>
-</table>
-
-<h4 class="well">
-    Shopping Cart
-</h4>
-
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>OrderId</th>
-            <th>ProductId</th>
-            <th>Qty</th>
-            <th>ProductName</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr ng-repeat="item in content.OrderItemsList | orderBy:'name' | filter:search">
-            <td>
-                {{item.OrderId}}
-            </td>
-            <td>
-                {{item.ProductId}}
-            </td>
-            <td>
-                {{item.Qty}}
-            </td>
-            <td>
-                {{item.ProductName}}
-            </td>
-            <td>
-                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-                        ng-click="deleteFromCart(item.ProductId)">
-                    Remove
-                </button>
-            </td>
-        </tr>
-    </tbody>
-</table>
-
 
 <div style="background-color: #eee">
     <div class="snippet-demo">
@@ -90,14 +20,23 @@
                 .demo-grid .mdl-grid:first-of-type .mdl-cell {
                     height: 500px;
                 }
+
+                .add-to-cart {
+                    text-align: right;
+                    position: absolute;
+                    bottom: 20px;
+                    right: 20px;
+                    font-size: 14px;
+                    color: #FF0000;
+                }
             </style>
 
             <div class="mdl-grid">
                 <div ng-repeat="product in products | orderBy:'name' | filter:search"
                      class="
-                     mdl-cell mdl-cell--4-col
-                     mdl-shadow--4dp">
-
+                     mdl-cell mdl-cell--3-col
+                     mdl-shadow--4dp"
+                     style="position:relative;">
 
                     <img src="../../Content/orange.jpg" alt="Smiley face">
 
@@ -108,8 +47,8 @@
                             </div>
                         </h1>
                     </div>
-                    <div>
-                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                    <div class="add-to-cart">
+                        <button class=" mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
                                 ng-click="addToCart(product.id)">
                             Add to Cart
                         </button>
@@ -119,32 +58,50 @@
         </div>
     </div>
 </div>
+<!--
+-->
+<!--
+-->
+<h4 class="well">
+    Shopping Cart
+</h4>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+                <!--debug   
+            <th>OrderId</th>
+            <th>ProductId</th>
+            <th>Qty</th>
+                 -->
+            <th>ProductName</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="item in content.OrderItemsList | orderBy:'name' | filter:search">
+            
+            <!--debug            
+            <td>
+                {{item.OrderId}}
+            </td>
+            <td>
+                {{item.ProductId}}
+            </td>
+            <td>
+                {{item.Qty}}
+            </td>            
+            -->
 
-
-
-<div class="row">
-    <div ng-repeat="product in products | orderBy:'name' | filter:search" class="col-md-4">
-        <div class="mdl-cell mdl-cell--4-col">4</div>
-        <div>
-            {{product.id}}
-        </div>
-        <div>
-            {{product.catalogId}}
-        </div>
-        <div>
-            {{product.name}}
-        </div>
-        <div>
-            {{product.description}}
-        </div>
-        <div>
-            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-                    ng-click="addToCart(product.id)">
-                Add to Cart
-            </button>
-        </div>
-    </div>
-</div>
-
-
-
+            <td>
+                {{item.ProductName}}
+            </td>
+            <td>
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                        ng-click="deleteFromCart(item.ProductId)">
+                    Remove
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<!--
+-->

@@ -21,11 +21,29 @@ namespace eShop.Controllers
         {
             return View();
         }
+        
 
-        [HttpPost]
-        public ActionResult Login(Account account)
+        [HttpGet]
+        public ActionResult RedirectToHome()
         {
-            bool success = WebSecurity.Login(account.UserName, account.Password, false);
+            return RedirectToAction("Index", "Home");
+        }
+
+        
+        /*
+        [HttpPost]
+        public ActionResult Login(string username, string password)
+        {
+            bool success = false;
+            try
+            {
+                success = WebSecurity.Login(username, password, false);
+            }
+            catch (Exception ex)
+            {
+                m_logger.Error(ex);
+            }
+
             if (success)
             {
                 return RedirectToAction("Index", "Home");
@@ -37,6 +55,54 @@ namespace eShop.Controllers
 
             return View();
         }
+        */
+        
+
+        [HttpPost]
+        public JsonResult Login(string username, string password)
+        {
+            bool success = false;
+            try
+            {
+                success = WebSecurity.Login(username, password, false);
+            }
+            catch (Exception ex)
+            {
+                m_logger.Error(ex);
+            }
+
+            return Json(success);
+        }
+        
+
+        /*
+
+        [HttpPost]
+        public ActionResult Login(Account account)
+        {
+            bool success = false;
+            try
+            {
+                success = WebSecurity.Login(account.UserName, account.Password, false);
+            }
+            catch (Exception ex)
+            {
+                m_logger.Error(ex);
+            }
+            
+            if (success)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            const string loginErrorMsg = "Login error";
+            ViewData["error"] = loginErrorMsg;
+            m_logger.Error(loginErrorMsg);
+
+            return View();
+        }
+
+        */
 
 
         public ActionResult Logout()
@@ -100,7 +166,8 @@ namespace eShop.Controllers
                 return RedirectToAction("Register", "Account");
             }
 
-            return Login(new Account(account.UserName, account.Password));
+            return null;
+            //return Login(new Account(account.UserName, account.Password));
         }
         
         public ActionResult Administration()

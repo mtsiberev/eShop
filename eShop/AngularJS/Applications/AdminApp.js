@@ -1,6 +1,14 @@
 ﻿'use strict';
 
-var AdminApp = angular.module('AdminApp', ["ngRoute"]);
+//var AdminApp = angular.module('AdminApp', ["ngRoute"]);
+var AdminApp = angular.module('AdminApp', ["ngRoute"]).run(function ($rootScope, $location, $timeout) {
+    $rootScope.$on('$viewContentLoaded', function () {
+        $timeout(function () {
+            componentHandler.upgradeAllRegistered();
+        });
+    });
+});
+
 
 AdminApp.controller('AdminMenuController', AdminMenuController);
 
@@ -29,13 +37,13 @@ var configFunction = function ($routeProvider) {
         }).
         /*--------------products-------------------------------*/
         when('/products', {
-        templateUrl: '/AngularJS/PartialViews/products.html',
-        controller: ProductsController
+            templateUrl: '/AngularJS/PartialViews/products.html',
+            controller: ProductsController
         }).
 
         when('/product-detail/:id', {
-               templateUrl: '/AngularJS/PartialViews/product-detail.html',
-               controller: ProductDetailController
+            templateUrl: '/AngularJS/PartialViews/product-detail.html',
+            controller: ProductDetailController
         }).
 
         when('/product-create/', {

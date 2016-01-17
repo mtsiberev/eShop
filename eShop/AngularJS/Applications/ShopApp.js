@@ -1,6 +1,14 @@
 ﻿'use strict';
 
-var ShopApp = angular.module('ShopApp', ["ngRoute"]);
+//var ShopApp = angular.module('ShopApp', ["ngRoute"]);
+var ShopApp = angular.module('ShopApp', ["ngRoute"]).run(function ($rootScope, $location, $timeout) {
+    $rootScope.$on('$viewContentLoaded', function () {
+        $timeout(function () {
+            componentHandler.upgradeAllRegistered();
+        });
+    });
+});
+
 
 ShopApp.controller('ShopController', ShopController);
 

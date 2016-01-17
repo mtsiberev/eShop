@@ -10,17 +10,13 @@
 </head>
 
 <body>
-    <div class="container-fluid">
-        <div class="row-fluid">
-            <div class="span10 offset1">
-                <h4 class="well">
-                    @Html.ActionLink("Main Menu", "Index", "Home")
-                    Angular Shop Page
-                </h4>
-                <div ng-view></div>
-            </div>
-        </div>
-    </div>
+
+    <h4 class="well">
+        @Html.ActionLink("Main Menu", "Index", "Home")
+        Angular Shop Page
+    </h4>
+    <div ng-view></div>
+
 
     /@*Bundle is not working yet*@
     @Scripts.Render("~/angularBundle")
@@ -50,5 +46,6 @@
 
     <script src="~/AngularJS/Bootstrap/bootstrap.js"></script>
     <script src="~/AngularJS/Mdl/material.js"></script>
+
 </body>
 </html>

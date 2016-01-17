@@ -153,11 +153,13 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="AngularJS\Applications\AccountApp.js" />
     <Content Include="AngularJS\Applications\AdminApp.js" />
     <Content Include="AngularJS\Applications\ShopApp.js" />
     <Content Include="AngularJS\Bootstrap\bootstrap-combined.css" />
     <Content Include="AngularJS\Bootstrap\bootstrap.css" />
     <Content Include="AngularJS\Bootstrap\bootstrap.js" />
+    <Content Include="AngularJS\Controllers\AccountController.js" />
     <Content Include="AngularJS\Controllers\AdminMenuController.js" />
     <Content Include="AngularJS\Controllers\CatalogDetailController.js" />
     <Content Include="AngularJS\Controllers\CatalogsController.js" />
@@ -178,8 +180,10 @@
     <Content Include="AngularJS\Mdl\styles.css" />
     <Content Include="AngularJS\PartialViews\catalog-detail.html" />
     <Content Include="AngularJS\PartialViews\catalogs.html" />
+    <Content Include="AngularJS\PartialViews\login.html" />
     <Content Include="AngularJS\PartialViews\product-detail.html" />
     <Content Include="AngularJS\PartialViews\products.html" />
+    <Content Include="AngularJS\PartialViews\register.html" />
     <Content Include="AngularJS\PartialViews\shop.html" />
     <Content Include="AngularJS\PartialViews\user-detail.html" />
     <Content Include="AngularJS\PartialViews\users.html" />
