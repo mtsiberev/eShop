@@ -2,18 +2,14 @@
 
 <!doctype html>
 
-<html ng-app="AccountApp">
+<html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>eShop</title>
-
-    @*
-        <link rel="stylesheet" href="~/AngularJS/Bootstrap/bootstrap.css">
-        <link rel="stylesheet" href="~/AngularJS/Bootstrap/bootstrap-combined.css">
-    *@
+    
 
     <link rel="stylesheet" href="~/AngularJS/Mdl/material.css">
 
@@ -30,27 +26,86 @@
     </style>
 </head>
 <body>
+    
 
-    <div ng-view></div>
+    <div class="demo-layout mdl-layout mdl-layout--fixed-header mdl-js-layout mdl-color--grey-100">
+        <header class=" demo-header mdl-layout__header mdl-layout__header--scroll mdl-color--grey-100 mdl-color-text--grey-800">
+            <div class="mdl-layout__header-row">
+                <span class="mdl-layout-title">eShop</span>
+                <div class="mdl-layout-spacer"></div>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+                </div>
+            </div>
+        </header>
+        <div></div>
 
+        <main class="mdl-layout__content">
+            <div class="mdl-grid">
+                <div class="mdl-cell mdl-cell--4-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
+                <div class="mdl-color--white
+                 mdl-shadow--4dp
+                 mdl-color-text--grey-800
+                 mdl-cell mdl-cell--3-col"
+                     style="position:relative;">
+
+                    <div style="padding-left: 90px; padding-top: 4px;">
+                        <h3>Please login</h3>
+
+                        <span class="text-danger">
+                            @ViewData["error"]
+                        </span>
+
+                        @using (Html.BeginForm("Login", "Account"))
+                        {
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    @Html.PasswordFor(m => m.UserName, new { @class = "mdl-textfield__input", @id = "username" })
+                                    @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+                                    <label class="mdl-textfield__label" for="username">Username...</label>
+                                </div>
+                      
+                      
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    @Html.PasswordFor(m => m.Password, new { @class = "mdl-textfield__input", @id = "password" })
+                                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                    <label class="mdl-textfield__label" for="password">Password...</label>
+                                </div>
+                            <br>
+                            <br>
+                            <br>
+                            <input type="submit" value="OK" class="mdl-button mdl-button--raised">
+                        }
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <div style="position: absolute; bottom: 20px; right: 20px;">
+                        <div class="mdl-button">
+                            @Html.ActionLink("Registration", "Register", "Account")
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="demo-footer mdl-mini-footer">
+                <div class="mdl-mini-footer--left-section">
+                    <ul class="mdl-mini-footer--link-list">
+                        <li><a href="#">Help</a></li>
+                        <li><a href="#">Privacy and Terms</a></li>
+                        <li><a href="#">User Agreement</a></li>
+                    </ul>
+                </div>
+            </footer>
+        </main>
+    </div>
+    
+    
     <script src="~/Scripts/jquery-2.1.4.js"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
     <script src="~/Scripts/jquery.validate.js"></script>
     <script src="~/Scripts/angular.js"></script>
     <script src="~/Scripts/angular-route.js"></script>
     <script src="~/AngularJS/Mdl/material.js"></script>
-    
-    <script src="~/AngularJS/Services/UsersService.js"></script>
-
-    <script src="~/AngularJS/Controllers/AdminMenuController.js"></script>
-    <script src="~/AngularJS/Controllers/UsersController.js"></script>
-   
-     
-    @*TODO: Delete this dependency. It is needed for something*@
-    <script src="~/AngularJS/Controllers/ShopController.js"></script>
-    <script src="~/AngularJS/Controllers/AccountController.js"></script>
-
-    <script src="~/AngularJS/Applications/AccountApp.js"></script>
 
 </body>
 </html>

@@ -1,107 +1,177 @@
-﻿
-<p>
-    Search: <input ng-model="search">
-</p>
+﻿<style>
+    .layer1 {
+        float: left; 
+        padding: 10px; 
+        margin-right: 20px; 
+        margin-left: 20px; 
+        width: 70%; 
+    }
+
+    .layer2 {
+        float: right; 
+        padding: 0px; 
+        margin: 0 0 0 25%;
+        left: 50%;
+        position: fixed;
+    }
+
+    .demo-grid .mdl-cell {
+        box-sizing: border-box;
+        background-color: #ffffff;
+        height: 200px;
+        padding-left: 8px;
+        padding-top: 4px;
+        color: white;
+    }
+
+    .demo-grid .mdl-grid:first-of-type .mdl-cell {
+        height: 300px;
+    }
+
+    .add-to-cart {
+        text-align: right;
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        font-size: 14px;
+        color: #FF0000;
+    }
+</style>
 
 
-<div style="background-color: #eee">
-    <div class="snippet-demo">
-        <div class="snippet-demo-container demo-grid demo-grid__grid">
-            <style>
-                .demo-grid .mdl-cell {
-                    box-sizing: border-box;
-                    background-color: #ffffff;
-                    height: 200px;
-                    padding-left: 8px;
-                    padding-top: 4px;
-                    color: white;
-                }
 
-                .demo-grid .mdl-grid:first-of-type .mdl-cell {
-                    height: 500px;
-                }
+<div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+    <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
+        <div class="mdl-layout__header-row">
+            <span class="mdl-layout-title">Home</span>
+            <div class="mdl-layout-spacer"></div>
 
-                .add-to-cart {
-                    text-align: right;
-                    position: absolute;
-                    bottom: 20px;
-                    right: 20px;
-                    font-size: 14px;
-                    color: #FF0000;
-                }
-            </style>
 
-            <div class="mdl-grid">
-                <div ng-repeat="product in products | orderBy:'name' | filter:search"
-                     class="
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+                <label class="mdl-button mdl-js-button mdl-button--icon" for="search">
+                    <img src="../../AngularJS/Mdl/ic_search_black_24px.svg" alt="search">
+                </label>
+                <div class="mdl-textfield__expandable-holder">
+                    <input class="mdl-textfield__input" type="text" id="search" ng-model="search">
+                    <label class="mdl-textfield__label" for="search">Enter your query...</label>
+                </div>
+            </div>
+
+            
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
+                <img src="../../AngularJS/Mdl/ic_menu_black_24px.svg" alt="search">
+            </button>
+        
+
+            <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
+                <li class="mdl-menu__item">About</li>
+                <li class="mdl-menu__item">Contact</li>
+                <li class="mdl-menu__item">Legal information</li>
+            </ul>
+        </div>
+    </header>
+    
+    <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">Title</span>
+        <nav class="mdl-navigation">
+
+            <a class="mdl-navigation__link" href="@Url.Action(" index", "Home" )"><span>Main Menu</span></a>
+            <a class="mdl-navigation__link" href="@Url.Action(" index", "Home" )"><span>Main Menu</span></a>
+            <a class="mdl-navigation__link" href="@Url.Action(" index", "Home" )"><span>Main Menu</span></a>
+            <a class="mdl-navigation__link" href="@Url.Action(" index", "Home" )"><span>Main Menu</span></a>
+
+        </nav>
+    </div>
+    
+    <main class="mdl-layout__content mdl-color--grey-100">
+        <div class="mdl-grid demo-content">
+            
+            <div class="layer1">
+                <div style="background-color: #eee">
+                    <div>
+                        <div class="demo-grid">
+                            <div class="mdl-grid">
+                                <div ng-repeat="product in products | orderBy:'name' | filter:search"
+                                     class="
                      mdl-cell mdl-cell--3-col
                      mdl-shadow--4dp"
-                     style="position:relative;">
+                                     style="position:relative;">
 
-                    <img src="../../Content/orange.jpg" alt="Smiley face">
+                                    <img src="../../Content/orange.jpg" alt="Smiley face" style="max-width: 100%; max-height: 100%;">
 
-                    <div class="mdl-card__title">
-                        <h1 class="mdl-card__title-text">
-                            <div>
-                                {{product.name}}
+                                    <div class="mdl-card__title">
+                                        <h1 class="mdl-card__title-text">
+                                            <div>
+                                                {{product.name}}
+                                            </div>
+                                        </h1>
+                                    </div>
+                                    <div class="add-to-cart">
+                                        <button class=" mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                                                ng-click="addToCart(product.id)">
+                                            Add to Cart
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
-                        </h1>
-                    </div>
-                    <div class="add-to-cart">
-                        <button class=" mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-                                ng-click="addToCart(product.id)">
-                            Add to Cart
-                        </button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-<!--
--->
-<!--
--->
-<h4 class="well">
-    Shopping Cart
-</h4>
-<table class="table table-bordered">
-    <thead>
-        <tr>
-                <!--debug   
-            <th>OrderId</th>
-            <th>ProductId</th>
-            <th>Qty</th>
-                 -->
-            <th>ProductName</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr ng-repeat="item in content.OrderItemsList | orderBy:'name' | filter:search">
-            
-            <!--debug            
-            <td>
-                {{item.OrderId}}
-            </td>
-            <td>
-                {{item.ProductId}}
-            </td>
-            <td>
-                {{item.Qty}}
-            </td>            
-            -->
 
-            <td>
-                {{item.ProductName}}
-            </td>
-            <td>
-                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-                        ng-click="deleteFromCart(item.ProductId)">
-                    Remove
-                </button>
-            </td>
-        </tr>
-    </tbody>
-</table>
-<!--
--->
+            
+            <div class="layer2">
+                <h4 class="well">
+                    Shopping Cart
+                </h4>
+                <table class="mdl-data-table mdl-js-data-table">
+                    <thead>
+                        <tr>
+                            <th>OrderId</th>
+                            <th>ProductId</th>
+                            <th>Qty</th>
+                            <th>ProductName</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in content.OrderItemsList | orderBy:'name' | filter:search">
+                            <td>
+                                {{item.OrderId}}
+                            </td>
+                            <td>
+                                {{item.ProductId}}
+                            </td>
+                            <td>
+                                {{item.Qty}}
+                            </td>
+                            <td>
+                                {{item.ProductName}}
+                            </td>
+                            <td>
+                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                                        ng-click="deleteFromCart(item.ProductId)">
+                                    Remove
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </main>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

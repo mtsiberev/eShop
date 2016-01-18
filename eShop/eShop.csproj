@@ -171,12 +171,16 @@
     <Content Include="AngularJS\Mdl\ic_arrow_drop_down_white_24px.svg" />
     <Content Include="AngularJS\Mdl\ic_build_white_24px.svg" />
     <Content Include="AngularJS\Mdl\ic_delete_black_24px.svg" />
+    <Content Include="AngularJS\Mdl\ic_menu_black_24px.svg" />
     <Content Include="AngularJS\Mdl\ic_mode_edit_black_24px.svg" />
     <Content Include="AngularJS\Mdl\ic_mood_white_24px.svg" />
+    <Content Include="AngularJS\Mdl\ic_more_vert_black_24px.svg" />
+    <Content Include="AngularJS\Mdl\ic_search_black_24px.svg" />
     <Content Include="AngularJS\Mdl\ic_shopping_cart_black_24px.svg" />
     <Content Include="AngularJS\Mdl\ic_shopping_cart_white_24px.svg" />
     <Content Include="AngularJS\Mdl\material.css" />
     <Content Include="AngularJS\Mdl\material.js" />
+    <Content Include="AngularJS\Mdl\orange.jpg" />
     <Content Include="AngularJS\Mdl\styles.css" />
     <Content Include="AngularJS\PartialViews\catalog-detail.html" />
     <Content Include="AngularJS\PartialViews\catalogs.html" />

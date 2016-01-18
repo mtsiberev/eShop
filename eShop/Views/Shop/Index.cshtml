@@ -3,22 +3,21 @@
 <html ng-app="ShopApp">
 <head>
     <title>Shopping with AngularJS</title>
+  
+    
 
-    <link rel="stylesheet" href="~/AngularJS/Bootstrap/bootstrap.css">
-    <link rel="stylesheet" href="~/AngularJS/Bootstrap/bootstrap-combined.css">
     <link rel="stylesheet" href="~/AngularJS/Mdl/material.css">
 </head>
 
 <body>
 
-    <h4 class="well">
+   <h3>
         @Html.ActionLink("Main Menu", "Index", "Home")
-        Angular Shop Page
-    </h4>
+  </h3>
     <div ng-view></div>
 
 
-    /@*Bundle is not working yet*@
+    @*Bundle is not working yet*@
     @Scripts.Render("~/angularBundle")
 
     <script src="~/Scripts/jquery-2.1.4.js"></script>
