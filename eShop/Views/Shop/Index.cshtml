@@ -3,19 +3,11 @@
 <html ng-app="ShopApp">
 <head>
     <title>Shopping with AngularJS</title>
-  
-    
-
     <link rel="stylesheet" href="~/AngularJS/Mdl/material.css">
 </head>
 
 <body>
-
-   <h3>
-        @Html.ActionLink("Main Menu", "Index", "Home")
-  </h3>
     <div ng-view></div>
-
 
     @*Bundle is not working yet*@
     @Scripts.Render("~/angularBundle")

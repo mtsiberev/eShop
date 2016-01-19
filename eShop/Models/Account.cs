@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace eShop.Models
 {
-    public class Account
+    public class Account : BaseAccount
     {
 
         public Account()
@@ -26,8 +26,6 @@ namespace eShop.Models
             ErrorMessageResourceName = "UserNotExists"
             )]
         */
-
-        public string UserName { get; set; }
-        public string Password { get; set; }
+   
     }
 }

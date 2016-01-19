@@ -60,7 +60,12 @@ namespace ClassLibrary.Facade
         {
             return m_productsRepository.GetAll();
         }
-    
+        
+        public List<Product> GetProductsFromCatalog(int id)
+        {
+            return m_productsRepository.GetAll().Where(x => x.CatalogId == id).ToList();
+        }
+        
         public Product GetProductById(int id)
         {
             return m_productsRepository.GetById(id);

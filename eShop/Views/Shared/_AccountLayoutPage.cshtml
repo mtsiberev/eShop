@@ -1,0 +1,68 @@
+﻿@model eShop.Models.Account
+
+<!doctype html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+
+
+    <link rel="stylesheet" href="~/AngularJS/Mdl/material.css">
+
+    <style>
+        #view-source {
+            position: fixed;
+            display: block;
+            right: 0;
+            bottom: 0;
+            margin-right: 40px;
+            margin-bottom: 40px;
+            z-index: 900;
+        }
+
+
+        main {
+            height: 100%;
+        }
+
+
+        .high {
+            height: 80%;
+        }
+
+        .center {
+            margin: auto;
+            width: 30%;
+            padding: 10px;
+            position: relative;
+        }
+
+        .register {
+            text-align: right;
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-size: 14px;
+            color: #FF0000;
+        }
+    </style>
+</head>
+<body>
+
+
+    @RenderBody()
+
+
+    <script src="~/Scripts/jquery-2.1.4.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/angular.js"></script>
+    <script src="~/Scripts/angular-route.js"></script>
+    <script src="~/AngularJS/Mdl/material.js"></script>
+
+</body>
+</html>

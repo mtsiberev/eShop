@@ -14,7 +14,7 @@ namespace eShop.Controllers
     {
         private Logger m_logger = LogManager.GetCurrentClassLogger();
 
-
+        
         [HttpGet]
         public ActionResult RedirectToHome()
         {
@@ -44,7 +44,8 @@ namespace eShop.Controllers
 
             if (success)
             {
-                return RedirectToAction("Index", "Home");
+                //return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Shop");
             }
 
             const string loginErrorMsg = "Login error";

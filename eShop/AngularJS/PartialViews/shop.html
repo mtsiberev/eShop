@@ -1,15 +1,15 @@
 ﻿<style>
     .layer1 {
-        float: left; 
-        padding: 10px; 
-        margin-right: 20px; 
-        margin-left: 20px; 
-        width: 70%; 
+        float: left;
+        padding: 10px;
+        margin-right: 20px;
+        margin-left: 20px;
+        width: 70%;
     }
 
     .layer2 {
-        float: right; 
-        padding: 0px; 
+        float: right;
+        padding: 0px;
         margin: 0 0 0 25%;
         left: 50%;
         position: fixed;
@@ -43,8 +43,6 @@
 <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
     <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
         <div class="mdl-layout__header-row">
-            <span class="mdl-layout-title">Home</span>
-            <div class="mdl-layout-spacer"></div>
 
 
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
@@ -57,35 +55,46 @@
                 </div>
             </div>
 
-            
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
-                <img src="../../AngularJS/Mdl/ic_menu_black_24px.svg" alt="search">
-            </button>
-        
+            <span class="mdl-layout-title">    </span>
+            <div class="mdl-layout-spacer"></div>
 
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
+                <img src="../../AngularJS/Mdl/ic_menu_black_24px.svg" alt="menu">
+            </button>
             <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
-                <li class="mdl-menu__item">About</li>
-                <li class="mdl-menu__item">Contact</li>
-                <li class="mdl-menu__item">Legal information</li>
+
+                <a class="mdl-menu__item" href="Account/Logout">Logout</a>
+                <a class="mdl-menu__item" href="Administration">Administration</a>
+
             </ul>
         </div>
     </header>
-    
+
     <div class="mdl-layout__drawer">
-        <span class="mdl-layout-title">Title</span>
+        <span class="mdl-layout-title">eShop</span>
         <nav class="mdl-navigation">
+            
+            
+            <div class="mdl-navigation__link mdl-button" ng-click="selectAllCatalogs()">
+                All
+            </div>
+            
 
-            <a class="mdl-navigation__link" href="@Url.Action(" index", "Home" )"><span>Main Menu</span></a>
-            <a class="mdl-navigation__link" href="@Url.Action(" index", "Home" )"><span>Main Menu</span></a>
-            <a class="mdl-navigation__link" href="@Url.Action(" index", "Home" )"><span>Main Menu</span></a>
-            <a class="mdl-navigation__link" href="@Url.Action(" index", "Home" )"><span>Main Menu</span></a>
+            <div ng-repeat="catalog in catalogs | orderBy:'name' | filter:search">
+                <div class="mdl-navigation__link mdl-button" ng-click="selectCatalog(catalog.id)">
+                    {{catalog.name}}
+                </div>
+            </div>
 
+            <a class="mdl-navigation__link" href="Account/Logout">Logout</a>
+            <a class="mdl-navigation__link" href="Administration">Admin</a>
+            
         </nav>
     </div>
-    
+
     <main class="mdl-layout__content mdl-color--grey-100">
         <div class="mdl-grid demo-content">
-            
+
             <div class="layer1">
                 <div style="background-color: #eee">
                     <div>
@@ -119,7 +128,7 @@
                 </div>
             </div>
 
-            
+
             <div class="layer2">
                 <h4 class="well">
                     Shopping Cart

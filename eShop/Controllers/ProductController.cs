@@ -33,6 +33,24 @@ namespace eShop.Controllers
             return Json(product, JsonRequestBehavior.AllowGet);
         }
 
+        
+        public JsonResult GetProductsFromCatalog(int id)
+        {
+            var productsListBo = m_facade.GetProductsFromCatalog(id);
+
+            if (productsListBo == null)
+                return Json(new { success = false }, JsonRequestBehavior.AllowGet);
+
+            var anonArray = new List<dynamic>();
+            foreach (var productBo in productsListBo)
+            {
+                anonArray.Add(
+                    new { id = productBo.Id, catalogId = productBo.CatalogId, name = productBo.Name, description = productBo.Description });
+            }
+            return Json(anonArray, JsonRequestBehavior.AllowGet);
+        }
+        
+
         public JsonResult GetAllProducts()
         {
             var productsListBo = m_facade.GetAllProducts();

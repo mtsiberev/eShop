@@ -18,6 +18,9 @@
             <nav class="mdl-navigation">
 
                 <a class="mdl-navigation__link" href="@Url.Action("Index", "Home")"><span>Main Menu</span></a>
+                
+                <a class="mdl-navigation__link" href="@Url.Action("Index", "Shop")"><span>Shop Menu</span></a>
+                
 
                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
                         ng-click="selectMenuOption('users')">
@@ -50,8 +53,6 @@
     <script src="~/Scripts/angular.js"></script>
     <script src="~/Scripts/angular-route.js"></script>
     
-    
-
     <script src="~/AngularJS/Services/UsersService.js"></script>
     <script src="~/AngularJS/Services/ProductsService.js"></script>
     <script src="~/AngularJS/Services/CatalogsService.js"></script>

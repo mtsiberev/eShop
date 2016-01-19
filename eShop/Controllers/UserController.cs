@@ -13,7 +13,6 @@ using NLog;
 
 namespace eShop.Controllers
 {
-    [Authorize(Roles = "admin")]
     public class UserController : Controller
     {
         private Facade m_facade = ContainerWrapper.Container.GetInstance<Facade>();
@@ -52,6 +51,7 @@ namespace eShop.Controllers
             return Json(anonArray, JsonRequestBehavior.AllowGet);
         }
 
+          [Authorize(Roles = "admin")]
         public JsonResult UpdateUser(int id, string name, string address)
         {
             var updatedUser = new User(id, name, address);
@@ -60,6 +60,7 @@ namespace eShop.Controllers
             return Json(new { success = true }, JsonRequestBehavior.AllowGet);
         }
 
+          [Authorize(Roles = "admin")]
         public JsonResult DeleteUser(int id)
         {
             m_facade.DeleteUser(id);

@@ -74,29 +74,14 @@
             return result.data;
         });
     };
-    
-    
-    var getLoginFunction = function (account) {
-        console.log("UsersService: getCurrentUserFunction");
-        return $http({
-            url: "Login",
-            method: "POST",
-            params: { username: account.username, password: account.password },
-            cache: false
-        }).then(function (result) {
-            console.log("UsersService: getCurrentUserFunction in then");
-
-            return result.data;
-        });
-    };
-    
+  
     return {
         getUser: getUserFunction,
         getUsers: getUsersFunction,
         updateUser: getUpdateUserFunction,
         deleteUser: getDeleteUserFunction,
-        getCurrentUser: getCurrentUserFunction,
-        login: getLoginFunction
+        getCurrentUser: getCurrentUserFunction
+  
     };
 };
 

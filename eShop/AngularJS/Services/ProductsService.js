@@ -81,12 +81,34 @@
         });
     };
 
+
+
+    var getProductsFromCatalogFunction = function (id) {
+
+        console.log("ProductsService: getProductsFunction");
+
+        return $http({
+            url: "Product/GetProductsFromCatalog",
+            method: "GET",
+            params: { id: id },
+            cache: false
+        }).then(function (result) {
+            console.log("ProductsService: getProductsFunction in then");
+
+            return result.data;
+        });
+    };
+
+
+
+
     return {
         getProduct: getProductFunction,
         getProducts: getProductsFunction,
         updateProduct: getUpdateProductFunction,
         deleteProduct: getDeleteProductFunction,
-        addProduct: getAddProductFunction
+        addProduct: getAddProductFunction,
+        getProductsFromCatalog: getProductsFromCatalogFunction
     };
 };
 
