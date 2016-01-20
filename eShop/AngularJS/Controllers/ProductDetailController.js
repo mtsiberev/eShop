@@ -1,7 +1,6 @@
 ﻿'use strict';
 
 var ProductDetailController = function ($scope, $routeParams, $http, $location, CatalogsService, ProductsService) {
-    console.log("ProductDetailController");
 
     if ($routeParams.id != null) {
         var id = $routeParams.id;
@@ -20,7 +19,7 @@ var ProductDetailController = function ($scope, $routeParams, $http, $location, 
     }
 
     $scope.saveProduct = function () {
-        console.log("ProductDetailController: updateProduct function before ProductsService.updateProduct call");
+
         if ($scope.product.id == 0) {
             ProductsService.addProduct($scope.product.catalogId, $scope.product.name, $scope.product.description).
                 then(function () {
@@ -33,7 +32,6 @@ var ProductDetailController = function ($scope, $routeParams, $http, $location, 
              $location.path('/products');
          });
         }
-        console.log("ProductDetailController: updateProduct function after ProductsService.updateProduct call");
     };
 
     $scope.cancel = function () {

@@ -1,47 +1,49 @@
 ﻿var OrdersService = function ($http, $q) {
 
-    console.log("OrdersService");
-    
-    var getOrderContentFunction = function (userId) {
-        console.log("OrdersService: getContentOfShoppingCart");
 
+    var getOrderContentFunction = function (userId) {
         return $http({
             url: "ShoppingCart/GetContentOfShoppingCart",
             method: "GET",
             params: { userId: userId },
             cache: false
         }).then(function (result) {
-            console.log("OrdersService: getContentOfShoppingCart in then");
 
             return result.data;
         });
     };
-    
-    var addToCartFunction = function (productId) {
-        console.log("OrdersService: addToCartFunction");
 
+    var addToCartFunction = function (productId) {
         return $http({
             url: "ShoppingCart/AddToCart",
             method: "GET",
             params: { productId: productId },
             cache: false
         }).then(function (result) {
-            console.log("OrdersService: addToCartFunction in then");
 
             return result.data;
         });
     };
 
     var deleteFromCartFunction = function (productId) {
-        console.log("OrdersService: addToCartFunction");
-
         return $http({
             url: "ShoppingCart/DeleteFromCart",
             method: "GET",
             params: { productId: productId },
             cache: false
         }).then(function (result) {
-            console.log("OrdersService: addToCartFunction in then");
+
+            return result.data;
+        });
+    };
+    
+    var approveOrderFunction = function (userId) {
+        return $http({
+            url: "ShoppingCart/ApproveOrder",
+            method: "GET",
+            params: { userId: userId },
+            cache: false
+        }).then(function (result) {
 
             return result.data;
         });
@@ -50,7 +52,8 @@
     return {
         getOrderContent: getOrderContentFunction,
         addToCart: addToCartFunction,
-        deleteFromCart: deleteFromCartFunction
+        deleteFromCart: deleteFromCartFunction,
+        approveOrder: approveOrderFunction
     };
 };
 

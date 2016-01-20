@@ -1,45 +1,4 @@
-﻿<style>
-    .layer1 {
-        float: left;
-        padding: 10px;
-        margin-right: 20px;
-        margin-left: 20px;
-        width: 70%;
-    }
-
-    .layer2 {
-        float: right;
-        padding: 0px;
-        margin: 0 0 0 25%;
-        left: 50%;
-        position: fixed;
-    }
-
-    .demo-grid .mdl-cell {
-        box-sizing: border-box;
-        background-color: #ffffff;
-        height: 200px;
-        padding-left: 8px;
-        padding-top: 4px;
-        color: white;
-    }
-
-    .demo-grid .mdl-grid:first-of-type .mdl-cell {
-        height: 300px;
-    }
-
-    .add-to-cart {
-        text-align: right;
-        position: absolute;
-        bottom: 20px;
-        right: 20px;
-        font-size: 14px;
-        color: #FF0000;
-    }
-</style>
-
-
-
+﻿
 <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
     <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
         <div class="mdl-layout__header-row">
@@ -62,9 +21,9 @@
                 <img src="../../AngularJS/Mdl/ic_menu_black_24px.svg" alt="menu">
             </button>
             <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
-
-                <a class="mdl-menu__item" href="Account/Logout">Logout</a>
+                
                 <a class="mdl-menu__item" href="Administration">Administration</a>
+                <a class="mdl-menu__item" href="Account/Logout">Logout</a>
 
             </ul>
         </div>
@@ -85,9 +44,9 @@
                     {{catalog.name}}
                 </div>
             </div>
-
-            <a class="mdl-navigation__link" href="Account/Logout">Logout</a>
+            
             <a class="mdl-navigation__link" href="Administration">Admin</a>
+            <a class="mdl-navigation__link" href="Account/Logout">Logout</a>
             
         </nav>
     </div>
@@ -95,7 +54,7 @@
     <main class="mdl-layout__content mdl-color--grey-100">
         <div class="mdl-grid demo-content">
 
-            <div class="layer1">
+            <div class="product-listing-layout">
                 <div style="background-color: #eee">
                     <div>
                         <div class="demo-grid">
@@ -129,7 +88,7 @@
             </div>
 
 
-            <div class="layer2">
+            <div class="shopping-cart-layout">
                 <h4 class="well">
                     Shopping Cart
                 </h4>
@@ -165,6 +124,10 @@
                         </tr>
                     </tbody>
                 </table>
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                        ng-click="checkout()">
+                    Checkout
+                </button>
             </div>
 
         </div>

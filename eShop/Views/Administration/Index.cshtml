@@ -10,17 +10,29 @@
 </head>
 
 <body>
-
+    
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer">
         <div ng-controller="AdminMenuController"
              class="mdl-layout__drawer">
+            
+            
+
+
+            <div align="left" style="font-size: 14pt;" class="mdl-color--orange">
+                <span>@WebSecurity.CurrentUserName</span>
+            </div>
+
+
+            
+
+
             <span class="mdl-layout-title">Title</span>
+            
+
             <nav class="mdl-navigation">
 
                 <a class="mdl-navigation__link" href="@Url.Action("Index", "Home")"><span>Main Menu</span></a>
-                
                 <a class="mdl-navigation__link" href="@Url.Action("Index", "Shop")"><span>Shop Menu</span></a>
-                
 
                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
                         ng-click="selectMenuOption('users')">

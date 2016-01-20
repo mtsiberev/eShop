@@ -20,7 +20,6 @@ namespace ClassLibrary.Mappers
             using (var table = DataBaseHelper.GetExecutionResult(queryString))
             {
                 if (table.Rows.Count == 0) return null;
-                //if (table == null) return null;
                 try
                 {
                     for (var i = 0; i < table.Rows.Count; i++)

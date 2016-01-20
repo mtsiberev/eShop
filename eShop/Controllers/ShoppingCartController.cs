@@ -15,7 +15,7 @@ namespace eShop.Controllers
     public class ShoppingCartController : Controller
     {
         private Facade m_facade = ContainerWrapper.Container.GetInstance<Facade>();
-        
+
         public void AddToCart(int productId)
         {
             var userId = Convert.ToInt32(Membership.GetUser().ProviderUserKey.ToString());
@@ -28,13 +28,13 @@ namespace eShop.Controllers
                 m_facade.AddOrderItem(new OrderItem(order.Id, productId, 1, product.Name));
                 return;
             }
-            
+
             var newQty = orderItem.Qty + 1;
             orderItem.Qty = newQty;
             var orderItemUpdated = orderItem;
             m_facade.UpdateOrderItem(orderItemUpdated);
         }
-        
+
         public void DeleteFromCart(int productId)
         {
             var userId = Convert.ToInt32(Membership.GetUser().ProviderUserKey.ToString());
@@ -43,7 +43,7 @@ namespace eShop.Controllers
 
             if (orderItem == null)
             {
-               return;
+                return;
             }
 
             var newQty = orderItem.Qty - 1;
@@ -52,12 +52,12 @@ namespace eShop.Controllers
                 m_facade.DeleteOrderItem(orderItem);
                 return;
             }
-            
+
             orderItem.Qty = newQty;
             var orderItemUpdated = orderItem;
             m_facade.UpdateOrderItem(orderItemUpdated);
         }
-        
+
         public JsonResult GetContentOfShoppingCart(int userId)
         {
             var orderForCurrentUser = m_facade.GetOrderByUserId(userId);
@@ -68,17 +68,20 @@ namespace eShop.Controllers
             }
 
             if (orderForCurrentUser == null)
-               return Json(new { success = false }, JsonRequestBehavior.AllowGet);
-            
-           return Json(orderForCurrentUser, JsonRequestBehavior.AllowGet);
+                return Json(new { success = false }, JsonRequestBehavior.AllowGet);
+
+            return Json(orderForCurrentUser, JsonRequestBehavior.AllowGet);
         }
 
         public void ApproveOrder(int userId)
         {
+            var order = m_facade.GetOrderByUserId(userId);
+
+            if (order == null) return;
             var orderId = m_facade.GetOrderByUserId(userId).Id;
             m_facade.DeleteOrder(orderId);
         }
-        
+
         public JsonResult GetAllProducts()
         {
             var productsListBo = m_facade.GetAllProducts();
@@ -94,6 +97,6 @@ namespace eShop.Controllers
             }
             return Json(anonArray, JsonRequestBehavior.AllowGet);
         }
-        
+
     }
 }

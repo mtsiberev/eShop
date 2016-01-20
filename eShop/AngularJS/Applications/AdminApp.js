@@ -1,6 +1,5 @@
 ﻿'use strict';
 
-//var AdminApp = angular.module('AdminApp', ["ngRoute"]);
 var AdminApp = angular.module('AdminApp', ["ngRoute"]).run(function ($rootScope, $location, $timeout) {
     $rootScope.$on('$viewContentLoaded', function () {
         $timeout(function () {

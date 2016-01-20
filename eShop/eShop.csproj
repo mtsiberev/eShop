@@ -186,6 +186,7 @@
     <Content Include="AngularJS\PartialViews\product-detail.html" />
     <Content Include="AngularJS\PartialViews\products.html" />
     <Content Include="AngularJS\PartialViews\shop.html" />
+    <Content Include="AngularJS\PartialViews\shopping-cart.html" />
     <Content Include="AngularJS\PartialViews\user-detail.html" />
     <Content Include="AngularJS\PartialViews\users.html" />
     <Content Include="AngularJS\Services\CatalogsService.js" />

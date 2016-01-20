@@ -18,7 +18,6 @@ namespace ClassLibrary.Mappers
             var resultList = new List<Order>();
             using (var table = DataBaseHelper.GetExecutionResult(queryString))
             {
-                //if (table == null) return null;
                 if (table.Rows.Count == 0) return null;
 
                 try

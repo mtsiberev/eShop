@@ -8,6 +8,7 @@ namespace eShop.Controllers
 {
     public class AdministrationController : Controller
     {
+        [Authorize(Roles = "admin")]
         public ActionResult Index()
         {
             return View();

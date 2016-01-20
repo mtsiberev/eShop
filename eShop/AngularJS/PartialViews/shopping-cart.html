@@ -1,0 +1,71 @@
+﻿
+<div class="
+     mdl-shadow--4dp mdl-color-text--grey-800 mdl-cell mdl-cell--3-col center mdl-color--grey-100">
+    <h4>
+        Shopping Cart
+    </h4>
+    <table class="mdl-data-table mdl-js-data-table shopping-cart-checkout">
+        <thead>
+            <tr>
+                <th>OrderId</th>
+                <th>ProductId</th>
+                <th>Qty</th>
+                <th>ProductName</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody class="shopping-cart-checkout">
+            <tr ng-repeat="item in content.OrderItemsList | orderBy:'name' | filter:search">
+                <td>
+                    {{item.OrderId}}
+                </td>
+                <td>
+                    {{item.ProductId}}
+                </td>
+                <td>
+                    {{item.Qty}}
+                </td>
+                <td>
+                    {{item.ProductName}}
+                </td>
+                <td>
+                    <button ng-click="addToCart(item.ProductId)">
+                        +
+                    </button>
+                </td>
+                <td>
+                    <button ng-click="deleteFromCart(item.ProductId)">
+                        -
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+            ng-click="approveOrder()">
+        Approve
+    </button>
+    
+    <br>
+    <br>
+    <br>
+
+    <div class="span4">
+        <p class="text-info">
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                    onclick="window.location.href='/shop'">
+              back to shop
+            </button>
+
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent mdl-color--red-A700"
+                    ng-click="approveOrder()">
+                clear cart
+            </button>
+        </p>
+    </div>
+
+
+</div>
+
+

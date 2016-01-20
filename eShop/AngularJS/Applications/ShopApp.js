@@ -1,6 +1,5 @@
 ﻿'use strict';
 
-//var ShopApp = angular.module('ShopApp', ["ngRoute"]);
 var ShopApp = angular.module('ShopApp', ["ngRoute"]).run(function ($rootScope, $location, $timeout) {
     $rootScope.$on('$viewContentLoaded', function () {
         $timeout(function () {
@@ -8,7 +7,6 @@ var ShopApp = angular.module('ShopApp', ["ngRoute"]).run(function ($rootScope, $
         });
     });
 });
-
 
 ShopApp.controller('ShopController', ShopController);
 
@@ -23,8 +21,8 @@ var configFunction = function ($routeProvider) {
             templateUrl: '/AngularJS/PartialViews/shop.html',
             controller: ShopController
         }).
-        when('/cart', {
-            templateUrl: '/AngularJS/PartialViews/cart.html',
+        when('/shopping-cart', {
+            templateUrl: '/AngularJS/PartialViews/shopping-cart.html',
             controller: ShopController
         }).
         otherwise({
