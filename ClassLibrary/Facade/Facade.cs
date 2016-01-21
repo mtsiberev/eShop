@@ -63,6 +63,9 @@ namespace ClassLibrary.Facade
         
         public List<Product> GetProductsFromCatalog(int id)
         {
+            var allCatalogs = m_productsRepository.GetAll();
+            if (allCatalogs == null) return null;
+
             return m_productsRepository.GetAll().Where(x => x.CatalogId == id).ToList();
         }
         
