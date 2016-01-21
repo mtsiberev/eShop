@@ -5,37 +5,16 @@
     Search: <input ng-model="search">
 </p>
 
-<table class="table table-bordered">
-    <tr ng-repeat="catalog in catalogs | orderBy:'name' | filter:search">
-        <td>
-            {{catalog.id}}
-            {{catalog.name}}
-        </td>
-
-        <td>
-            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-                    ng-click="editCatalog(catalog.id)">
-                Update
-            </button>
-        </td>
-        <td>
-            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-                    ng-click="deleteCatalog(catalog.id)">
-                Delete
-            </button>
-        </td>
-    </tr>
-</table>
-
-<button ng-click="addCatalog()">
+<button class="mdl-button mdl-button--raised mdl-button--accent" ng-click="addCatalog()">
     Add Catalog
 </button>
+
 
 <table class="mdl-data-table mdl-js-data-table">
     <thead>
         <tr>
             <th>Id</th>
-            <th class="mdl-data-table__cell--non-numeric">Name</th>
+            <th class="mdl-data-table__cell--non-numeric" style="text-align: right">Name</th>
             <th></th>
             <th></th>
         </tr>
@@ -48,7 +27,7 @@
             <td>
                 {{catalog.name}}
             </td>
-            
+
             <td>
                 <img class="mdl-button mdl-button--icon" ng-click="editCatalog(catalog.id)" src="../../AngularJS/Mdl/ic_mode_edit_black_24px.svg" alt="Edit">
             </td>

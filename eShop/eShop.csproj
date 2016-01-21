@@ -167,6 +167,8 @@
     <Content Include="AngularJS\Controllers\ShopController.js" />
     <Content Include="AngularJS\Controllers\UserDetailController.js" />
     <Content Include="AngularJS\Controllers\UsersController.js" />
+    <Content Include="AngularJS\Mdl\close-box.png" />
+    <Content Include="AngularJS\Mdl\close-circle.png" />
     <Content Include="AngularJS\Mdl\ic_arrow_drop_down_white_24px.svg" />
     <Content Include="AngularJS\Mdl\ic_build_white_24px.svg" />
     <Content Include="AngularJS\Mdl\ic_delete_black_24px.svg" />

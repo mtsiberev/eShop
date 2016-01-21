@@ -1,9 +1,8 @@
 ﻿
 <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
-    <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
+    <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600" style="margin-left: 14%;">
         <div class="mdl-layout__header-row">
-
-
+            
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
                 <label class="mdl-button mdl-js-button mdl-button--icon" for="search">
                     <img src="../../AngularJS/Mdl/ic_search_black_24px.svg" alt="search">
@@ -21,7 +20,7 @@
                 <img src="../../AngularJS/Mdl/ic_menu_black_24px.svg" alt="menu">
             </button>
             <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
-                
+
                 <a class="mdl-menu__item" href="Administration">Administration</a>
                 <a class="mdl-menu__item" href="Account/Logout">Logout</a>
 
@@ -29,29 +28,29 @@
         </div>
     </header>
 
-    <div class="mdl-layout__drawer">
+    <div class="mdl-layout__drawer" style="width: 15%;">
+        
+
         <span class="mdl-layout-title">eShop</span>
         <nav class="mdl-navigation">
-            
             
             <div class="mdl-navigation__link mdl-button" ng-click="selectAllCatalogs()">
                 All
             </div>
             
-
-            <div ng-repeat="catalog in catalogs | orderBy:'name' | filter:search">
+            <div ng-repeat="catalog in catalogs | orderBy:'name' ">
                 <div class="mdl-navigation__link mdl-button" ng-click="selectCatalog(catalog.id)">
                     {{catalog.name}}
                 </div>
             </div>
-            
+
             <a class="mdl-navigation__link" href="Administration">Admin</a>
             <a class="mdl-navigation__link" href="Account/Logout">Logout</a>
-            
+
         </nav>
     </div>
 
-    <main class="mdl-layout__content mdl-color--grey-100">
+    <main class="mdl-layout__content mdl-color--grey-100" style="margin-left:15%;">
         <div class="mdl-grid demo-content">
 
             <div class="product-listing-layout">
@@ -89,37 +88,30 @@
 
 
             <div class="shopping-cart-layout">
-                <h4 class="well">
+                <h4>
                     Shopping Cart
                 </h4>
                 <table class="mdl-data-table mdl-js-data-table">
                     <thead>
                         <tr>
-                            <th>OrderId</th>
-                            <th>ProductId</th>
-                            <th>Qty</th>
                             <th>ProductName</th>
+                            <th>Qty</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="item in content.OrderItemsList | orderBy:'name' | filter:search">
-                            <td>
-                                {{item.OrderId}}
-                            </td>
-                            <td>
-                                {{item.ProductId}}
+                        <tr ng-repeat="item in content.OrderItemsList | orderBy:'name' ">
+                            <td style="text-align: left;">
+                                {{item.ProductName}}
                             </td>
                             <td>
                                 {{item.Qty}}
                             </td>
                             <td>
-                                {{item.ProductName}}
-                            </td>
-                            <td>
-                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-                                        ng-click="deleteFromCart(item.ProductId)">
-                                    Remove
-                                </button>
+                                <img class="mdl-button mdl-button--icon" 
+                                     ng-click="deleteFromCart(item.ProductId)" 
+                                     src="../../AngularJS/Mdl/close-box.png" 
+                                     alt="Delete">
                             </td>
                         </tr>
                     </tbody>

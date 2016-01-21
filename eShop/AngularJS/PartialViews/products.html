@@ -7,36 +7,41 @@
     Search: <input ng-model="search">
 </p>
 
-<table class="table table-bordered">
-
-    <tr ng-repeat="product in products | orderBy:'name' | filter:search">
-
-        <td>
-            {{product.id}}
-            {{product.catalogId}}
-            {{product.name}}
-            {{product.description}}
-        </td>
-
-        <td>
-            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-                    ng-click="editProduct(product.id)">
-                Update
-            </button>
-        </td>
-        <td>
-            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-                    ng-click="deleteProduct(product.id)">
-                Delete
-            </button>
-        </td>
-    </tr>
-</table>
-
-<button ng-click="addProduct()">
+<button class="mdl-button mdl-button--raised mdl-button--accent" ng-click="addProduct()">
     Add Product
 </button>
 
-
-
-
+<table class="mdl-data-table mdl-js-data-table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Catalog Id</th>
+            <th class="mdl-data-table__cell--non-numeric" style="text-align: right">Name</th>
+            <th class="mdl-data-table__cell--non-numeric" style="text-align: right">Description</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="product in products | orderBy:'name' | filter:search">
+            <td>
+                {{product.id}}
+            </td>
+            <td>
+                {{product.catalogId}}
+            </td>
+            <td>
+                {{product.name}}
+            </td>
+            <td>
+                {{product.description}}
+            </td>
+            <td>
+                <img class="mdl-button mdl-button--icon" ng-click="editProduct(product.id)" src="../../AngularJS/Mdl/ic_mode_edit_black_24px.svg" alt="Edit">
+            </td>
+            <td>
+                <img class="mdl-button mdl-button--icon" ng-click="deleteProduct(product.id)" src="../../AngularJS/Mdl/ic_delete_black_24px.svg" alt="Delete">
+            </td>
+        </tr>
+    </tbody>
+</table>
