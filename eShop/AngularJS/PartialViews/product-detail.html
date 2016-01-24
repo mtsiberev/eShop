@@ -8,19 +8,19 @@
                 <input readonly="readonly" type="text" id="inputFirstName" ng-model="product.id" />
             </div>
         </div>
-        
+
         <div class="control-group">
             <label class="control-label" for="inputLastName">CatalogId:</label>
             <div class="controls">
                 <input readonly="readonly" type="text" id="inputLastName" ng-model="product.catalogId" />
             </div>
         </div>
-        
+
         <select ng-model="product.catalogId"
                 data-ng-options="catalog.id as catalog.name for catalog in catalogs">
             <option value="currentCatalog.id">currentCatalog.name</option>
         </select>
-        
+
         <div class="control-group">
             <label class="control-label" for="inputLastName">Name:</label>
             <div class="controls">
@@ -28,18 +28,41 @@
             </div>
         </div>
 
-        
+
         <div class="control-group">
             <label class="control-label" for="inputLastName">Description:</label>
             <div class="controls">
                 <input type="text" id="inputLastName" ng-model="product.description" />
             </div>
         </div>
+
+        <div>
+            <input class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                   type="file" name="file" onchange="angular.element(this).scope().setFileName(this.files)" />
+            <br>
+            {{  product.fileLink }}
+            <br>
+            <br>
+            <br>
+            <div>
+                <img ng-src="{{product.fileLink}}" style="width: 100px; height:100px" />
+            </div>
+            <br>
+
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                    ng-click="uploadFile(filesToUpload, product.id)">
+                Upload file
+            </button>
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                    ng-click="deleteFile(product.id)">
+                Delete file
+            </button>
+        </div>
         
-       
+        <br>
         <div class="control-group">
             <div class="controls">
-                
+
                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
                         ng-click="saveProduct()">
                     Save
@@ -48,7 +71,6 @@
                         ng-click="cancel()">
                     Cancel
                 </button>
-                
             </div>
         </div>
     </form>

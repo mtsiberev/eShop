@@ -7,6 +7,7 @@ using ClassLibrary.BusinessObjects;
 using ClassLibrary.Facade;
 using ClassLibrary.IoC;
 using ClassLibrary.Repository;
+using eShop.Helpers;
 using NLog;
 
 namespace eShop.Controllers
@@ -28,7 +29,8 @@ namespace eShop.Controllers
                 id = productBo.Id,
                 catalogId = productBo.CatalogId,
                 name = productBo.Name,
-                description = productBo.Description
+                description = productBo.Description,
+                fileLink = ImageObject.GetLinkById(productBo.Id)
             };
             return Json(product, JsonRequestBehavior.AllowGet);
         }
@@ -45,7 +47,7 @@ namespace eShop.Controllers
             foreach (var productBo in productsListBo)
             {
                 anonArray.Add(
-                    new { id = productBo.Id, catalogId = productBo.CatalogId, name = productBo.Name, description = productBo.Description });
+                    new { id = productBo.Id, catalogId = productBo.CatalogId, name = productBo.Name, description = productBo.Description, fileLink = ImageObject.GetLinkById(productBo.Id) });
             }
             return Json(anonArray, JsonRequestBehavior.AllowGet);
         }
@@ -54,7 +56,6 @@ namespace eShop.Controllers
         public JsonResult GetAllProducts()
         {
             var productsListBo = m_facade.GetAllProducts();
-
             if (productsListBo == null)
                 return Json(new { success = false }, JsonRequestBehavior.AllowGet);
 
@@ -62,7 +63,7 @@ namespace eShop.Controllers
             foreach (var productBo in productsListBo)
             {
                 anonArray.Add(
-                    new { id = productBo.Id, catalogId = productBo.CatalogId, name = productBo.Name, description = productBo.Description });
+                    new { id = productBo.Id, catalogId = productBo.CatalogId, name = productBo.Name, description = productBo.Description,  fileLink = ImageObject.GetLinkById( productBo.Id) });
             }
             return Json(anonArray, JsonRequestBehavior.AllowGet);
         }
@@ -89,8 +90,33 @@ namespace eShop.Controllers
         public JsonResult DeleteProduct(int id)
         {
             m_facade.DeleteProduct(id);
+            ImageObject.DeleteImage(id);
             return Json(new { success = true }, JsonRequestBehavior.AllowGet);
         }
+
+        
+        [HttpPost]
+        public JsonResult UploadFile(HttpPostedFileBase file, int id)
+        {
+            ImageObject.SaveImage(file, id);
+            var fileLink = ImageObject.GetLinkById(id);
+            return Json(fileLink, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetFileInfoById(int id)
+        {
+            var fileLink = ImageObject.GetLinkById(id);
+            return Json(fileLink, JsonRequestBehavior.AllowGet);
+        }
+        
+
+        public JsonResult DeleteFile(int id)
+        {
+            ImageObject.DeleteImage(id);
+            var fileLink = ImageObject.GetLinkById(0);
+            return Json(fileLink, JsonRequestBehavior.AllowGet);
+        }
+
     }
 
 }

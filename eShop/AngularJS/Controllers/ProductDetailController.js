@@ -28,15 +28,53 @@ var ProductDetailController = function ($scope, $routeParams, $http, $location, 
         }
         else {
             ProductsService.updateProduct($scope.product.id, $scope.product.catalogId, $scope.product.name, $scope.product.description).
-         then(function () {
-             $location.path('/products');
-         });
+                then(function () {
+                    $location.path('/products');
+                });
         }
     };
 
     $scope.cancel = function () {
         $location.path('/products');
     };
+
+  
+
+    $scope.setFileName = function (files) {
+        $scope.filesToUpload = files;
+    };
+
+    $scope.uploadFile = function (files, productId) {
+        var fileData = new FormData();
+        fileData.append("file", files[0]);
+
+        return $http({
+            method: "POST",
+            url: "Product/UploadFile",
+            data: fileData,
+            params: { id: productId },
+            headers: { 'Content-Type': undefined },
+            transformRequest: angular.identity
+        }).then(function (result) {
+
+            $scope.product.fileLink = result.data;
+            return result.data;
+        });
+    };
+ 
+    $scope.deleteFile = function (productId) {
+
+        return $http({
+            method: "GET",
+            url: "Product/DeleteFile",
+            params: { id: productId }
+        }).then(function (result) {
+            
+            $scope.product.fileLink = result.data;
+            return result.data;
+        });
+    };
+    
 };
 
 ProductDetailController.$inject = ['$scope', '$routeParams', '$http', '$location', 'CatalogsService', 'ProductsService'];

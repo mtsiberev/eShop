@@ -14,6 +14,7 @@ var UsersController = function ($scope, $routeParams, $http, $location, UsersSer
             UsersService.getUsers().then(function (data) { $scope.users = data; });
         });
     };
+    
 };
 
 UsersController.$inject = ['$scope', '$routeParams', '$http', '$location', 'UsersService'];
