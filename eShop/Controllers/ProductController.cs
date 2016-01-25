@@ -72,9 +72,9 @@ namespace eShop.Controllers
         public JsonResult AddProduct(int catalogId, string name, string description)
         {
             var newProduct = new Product(0, catalogId, name, description);
-            m_facade.AddProduct(newProduct);
+            var id = m_facade.AddProduct(newProduct);
 
-            return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+            return Json( new { id }, JsonRequestBehavior.AllowGet);
         }
 
         [Authorize(Roles = "admin")]
@@ -83,7 +83,7 @@ namespace eShop.Controllers
             var updatedProduct = new Product(id, catalogId, name, description);
             m_facade.UpdateProduct(updatedProduct);
 
-            return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+            return Json( new { success = true }, JsonRequestBehavior.AllowGet);
         }
 
         [Authorize(Roles = "admin")]
@@ -91,7 +91,7 @@ namespace eShop.Controllers
         {
             m_facade.DeleteProduct(id);
             ImageObject.DeleteImage(id);
-            return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+            return Json( new { success = true }, JsonRequestBehavior.AllowGet);
         }
 
         

@@ -17,15 +17,37 @@ namespace ClassLibrary.Repository
 
         private const string c_productsDatabaseName = "Products";
 
-        private readonly IMapper<Product> m_productMapper = new ProductMapper();
+        private readonly BaseMapper<Product> m_productMapper = new ProductMapper();
 
-        public void Add(Product entity)
+        public int GetLastCreatedId(string queryString)
+        {
+            var resultId = 0;
+            using (var table = DataBaseHelper.GetExecutionResult(queryString))
+            {
+                if (table.Rows.Count == 0) return resultId;
+                try
+                {
+                    var type = table.Rows[0]["Id"].GetType();
+                    if (type.Name != "DBNull")
+                    {
+                        resultId = Convert.ToInt32(table.Rows[0]["Id"]);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    logger.Error(ex.Message);
+                }
+            }
+            return resultId;
+        }
+        
+        public int Add(Product entity)
         {
             var queryString = "";
 
             if (entity.CatalogId == 0)
             {
-                queryString = String.Format("INSERT INTO {0} (Name, Description) VALUES ('{1}', '{2}');",
+                queryString = String.Format("INSERT INTO {0} (Name, Description) VALUES ('{1}', '{2}'); SELECT IDENT_CURRENT('{0}') AS Id;",
                     c_productsDatabaseName,
                     entity.Name,
                     entity.Description
@@ -33,14 +55,14 @@ namespace ClassLibrary.Repository
             }
             else
             {
-                queryString = String.Format("INSERT INTO {0} (Name, Description, CatalogId) VALUES ('{1}', '{2}', {3});",
+                queryString = String.Format("INSERT INTO {0} (Name, Description, CatalogId) VALUES ('{1}', '{2}', {3}); SELECT IDENT_CURRENT('{0}') AS Id;",
                     c_productsDatabaseName,
                     entity.Name,
                     entity.Description,
                     entity.CatalogId);
             }
-
-            DataBaseHelper.ExecuteCommand(queryString);
+           // DataBaseHelper.ExecuteCommand(queryString);
+            return m_productMapper.GetLastCreatedId(queryString);
         }
 
         public void Delete(int id)

@@ -48,17 +48,18 @@
                 <img ng-src="{{product.fileLink}}" style="width: 100px; height:100px" />
             </div>
             <br>
-
+            
             <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
                     ng-click="uploadFile(filesToUpload, product.id)">
-                Upload file
+                Preview file
             </button>
+            
             <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
                     ng-click="deleteFile(product.id)">
                 Delete file
             </button>
         </div>
-        
+
         <br>
         <div class="control-group">
             <div class="controls">

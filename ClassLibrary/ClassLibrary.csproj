@@ -58,7 +58,7 @@
     <Compile Include="Helpers\DataBaseHelper.cs" />
     <Compile Include="IoC\ContainerWrapper.cs" />
     <Compile Include="Mappers\CatalogMapper.cs" />
-    <Compile Include="Mappers\IMapper.cs" />
+    <Compile Include="Mappers\BaseMapper.cs" />
     <Compile Include="Mappers\OrderItemMapper.cs" />
     <Compile Include="Mappers\OrderMapper.cs" />
     <Compile Include="Mappers\ProductMapper.cs" />

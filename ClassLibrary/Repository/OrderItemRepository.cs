@@ -13,7 +13,7 @@ namespace ClassLibrary.Repository
     public class OrderItemRepository : IJunctionEntityRepository<OrderItem>
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
-        private readonly IMapper<OrderItem> m_orderItemMapper = new OrderItemMapper();
+        private readonly BaseMapper<OrderItem> m_orderItemMapper = new OrderItemMapper();
 
         private const string c_ordersDatabaseName = "Orders";
         private const string c_orderItemsDatabaseName = "OrderItems";

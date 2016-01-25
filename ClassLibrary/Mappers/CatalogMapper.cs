@@ -10,11 +10,11 @@ using NLog;
 
 namespace ClassLibrary.Mappers
 {
-    public class CatalogMapper : IMapper<Catalog>
+    public class CatalogMapper : BaseMapper<Catalog>
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
-        public List<Catalog> GetEntityList(string queryString)
+        public override List<Catalog> GetEntityList(string queryString)
         {
             var resultList = new List<Catalog>();
             using (var table = DataBaseHelper.GetExecutionResult(queryString))

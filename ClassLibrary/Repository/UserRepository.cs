@@ -15,15 +15,16 @@ namespace ClassLibrary.Repository
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
         private const string c_usersDatabaseName = "Users";
-        private readonly IMapper<User> m_userMapper = new UserMapper();
+        private readonly BaseMapper<User> m_userMapper = new UserMapper();
         
-        public void Add(User entity)
+        public int Add(User entity)
         {
             var queryString = String.Format("INSERT INTO {0} (Name, Address) VALUES ('{1}', '{2}');",
                 c_usersDatabaseName, 
                 entity.Name, 
                 entity.Address);
             DataBaseHelper.ExecuteCommand(queryString);
+            return m_userMapper.GetLastCreatedId(queryString);
         }
 
         public void Delete(int id)

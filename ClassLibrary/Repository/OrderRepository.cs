@@ -13,19 +13,20 @@ namespace ClassLibrary.Repository
     public class OrderRepository : IRepository<Order>
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
-        private readonly IMapper<Order> m_orderMapper = new OrderMapper();
+        private readonly BaseMapper<Order> m_orderMapper = new OrderMapper();
 
         private const string c_ordersDatabaseName = "Orders";
         private const string c_orderItemsDatabaseName = "OrderItems";
         private const string c_productsDatabaseName = "Products";
-
-        public void Add(Order entity)
+        
+        public int Add(Order entity)
         {
             var queryString = String.Format("INSERT INTO {0} (UserId) VALUES ({1});",
                 c_ordersDatabaseName,
                 entity.UserId
         );
-            DataBaseHelper.ExecuteCommand(queryString);
+            //DataBaseHelper.ExecuteCommand(queryString);
+            return m_orderMapper.GetLastCreatedId(queryString);
         }
 
         public void Delete(int id)

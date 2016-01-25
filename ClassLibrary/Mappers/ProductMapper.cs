@@ -10,11 +10,11 @@ using NLog;
 
 namespace ClassLibrary.Mappers
 {
-    public class ProductMapper : IMapper<Product>
+    public class ProductMapper : BaseMapper<Product>
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
-
-        public List<Product> GetEntityList(string queryString)
+        
+        public override List<Product> GetEntityList(string queryString)
         {
             var resultList = new List<Product>();
             using (var table = DataBaseHelper.GetExecutionResult(queryString))

@@ -9,11 +9,11 @@ using NLog;
 
 namespace ClassLibrary.Mappers
 {
-    public class OrderMapper : IMapper<Order>
+    public class OrderMapper : BaseMapper<Order>
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
-        public List<Order> GetEntityList(string queryString)
+        public override List<Order> GetEntityList(string queryString)
         {
             var resultList = new List<Order>();
             using (var table = DataBaseHelper.GetExecutionResult(queryString))

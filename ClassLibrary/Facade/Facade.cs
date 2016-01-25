@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ClassLibrary.BusinessObjects;
+using ClassLibrary.Helpers;
 using ClassLibrary.Repository;
 
 namespace ClassLibrary.Facade
@@ -51,9 +52,9 @@ namespace ClassLibrary.Facade
             m_usersRepository.Delete(id);
         }
         //------------------Products methods
-        public void AddProduct(Product product)
+        public int AddProduct(Product product)
         {
-            m_productsRepository.Add(product);
+          return m_productsRepository.Add(product);
         }
         
         public List<Product> GetAllProducts()

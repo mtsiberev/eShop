@@ -16,15 +16,16 @@ namespace ClassLibrary.Repository
 
         private const string c_catalogsDatabaseName = "Catalogs";
 
-        private readonly IMapper<Catalog> m_catalogMapper = new CatalogMapper();
-
-        public void Add(Catalog entity)
+        private readonly BaseMapper<Catalog> m_catalogMapper = new CatalogMapper();
+        
+        public int Add(Catalog entity)
         {
             var queryString = String.Format("INSERT INTO {0} (Name) VALUES ('{1}');",
              c_catalogsDatabaseName,
                 entity.Name
               );
-            DataBaseHelper.ExecuteCommand(queryString);
+            //DataBaseHelper.ExecuteCommand(queryString);
+            return m_catalogMapper.GetLastCreatedId(queryString);
         }
 
         public void Delete(int id)

@@ -22,14 +22,26 @@ var ProductDetailController = function ($scope, $routeParams, $http, $location, 
 
         if ($scope.product.id == 0) {
             ProductsService.addProduct($scope.product.catalogId, $scope.product.name, $scope.product.description).
-                then(function () {
-                    $location.path('/products');
+                then(function (data) {
+                    if ($scope.filesToUpload != undefined) {
+                        $scope.uploadFile($scope.filesToUpload, data.id).then(function () {
+                            $location.path('/products');
+                        });
+                    } else {
+                        $location.path('/products');
+                    }
                 });
         }
         else {
             ProductsService.updateProduct($scope.product.id, $scope.product.catalogId, $scope.product.name, $scope.product.description).
                 then(function () {
-                    $location.path('/products');
+                    if ($scope.filesToUpload != undefined) {
+                        $scope.uploadFile($scope.filesToUpload, $scope.product.id).then(function () {
+                            $location.path('/products');
+                        });
+                    } else {
+                        $location.path('/products');
+                    }
                 });
         }
     };
@@ -38,11 +50,11 @@ var ProductDetailController = function ($scope, $routeParams, $http, $location, 
         $location.path('/products');
     };
 
-  
 
     $scope.setFileName = function (files) {
         $scope.filesToUpload = files;
     };
+
 
     $scope.uploadFile = function (files, productId) {
         var fileData = new FormData();
@@ -61,7 +73,8 @@ var ProductDetailController = function ($scope, $routeParams, $http, $location, 
             return result.data;
         });
     };
- 
+
+
     $scope.deleteFile = function (productId) {
 
         return $http({
@@ -69,12 +82,12 @@ var ProductDetailController = function ($scope, $routeParams, $http, $location, 
             url: "Product/DeleteFile",
             params: { id: productId }
         }).then(function (result) {
-            
+
             $scope.product.fileLink = result.data;
             return result.data;
         });
     };
-    
+
 };
 
 ProductDetailController.$inject = ['$scope', '$routeParams', '$http', '$location', 'CatalogsService', 'ProductsService'];

@@ -10,11 +10,11 @@ using NLog;
 
 namespace ClassLibrary.Mappers
 {
-    public class UserMapper : IMapper<User>
+    public class UserMapper : BaseMapper<User>
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
-        public List<User> GetEntityList(string queryString)
+        public override List<User> GetEntityList(string queryString)
         {
             var resultList = new List<User>();
             using (var table = DataBaseHelper.GetExecutionResult(queryString))
