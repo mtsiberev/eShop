@@ -49,7 +49,7 @@ var ProductDetailController = function ($scope, $routeParams, $http, $location, 
     $scope.cancel = function () {
         $location.path('/products');
     };
-    
+
     $scope.setFileName = function (files) {
         $scope.filesToUpload = files;
     };
@@ -67,7 +67,9 @@ var ProductDetailController = function ($scope, $routeParams, $http, $location, 
             transformRequest: angular.identity
         }).then(function (result) {
 
-            $scope.product.fileLink = result.data;
+            $scope.product.fileLink = result.data.fileLink;
+            $scope.product.isDefaultImage = result.data.isDefaultImage;
+
             return result.data;
         });
     };
