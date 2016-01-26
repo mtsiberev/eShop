@@ -14,7 +14,7 @@ var ProductDetailController = function ($scope, $routeParams, $http, $location, 
     else {
         CatalogsService.getCatalogs().then(function (data) {
             $scope.catalogs = data;
-            $scope.product = { id: 0, catalogId: 0, name: "", description: "" };
+            $scope.product = { id: 0, catalogId: 0, name: "", description: "", isDefaultImage: true };
         });
     }
 
@@ -49,12 +49,10 @@ var ProductDetailController = function ($scope, $routeParams, $http, $location, 
     $scope.cancel = function () {
         $location.path('/products');
     };
-
-
+    
     $scope.setFileName = function (files) {
         $scope.filesToUpload = files;
     };
-
 
     $scope.uploadFile = function (files, productId) {
         var fileData = new FormData();
@@ -83,7 +81,9 @@ var ProductDetailController = function ($scope, $routeParams, $http, $location, 
             params: { id: productId }
         }).then(function (result) {
 
-            $scope.product.fileLink = result.data;
+            $scope.product.fileLink = result.data.fileLink;
+            $scope.product.isDefaultImage = result.data.isDefaultImage;
+
             return result.data;
         });
     };

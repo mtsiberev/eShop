@@ -9,6 +9,19 @@ using WebMatrix.WebData;
 
 namespace eShop.Helpers
 {
+    public class ProductImageDescription
+    {
+        public string FileLink { get; private set; }
+        public bool IsDefaultImage { get; private set; }
+
+        public ProductImageDescription(string fileLink, bool isDefault)
+        {
+            FileLink = fileLink;
+            IsDefaultImage = isDefault;
+        }
+    }
+
+    
     public static class ImageObject
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
@@ -55,35 +68,17 @@ namespace eShop.Helpers
                 logger.Error(ex.Message);
             }
         }
-
-        public static FilePathResult GetImage(int id)
-        {
-            try
-            {
-                var file = GetFileInfoById(id);
-                var fileName = file.Name;
-                var filePath = string.Concat(c_folderName, fileName);
-                string contentType = string.Concat("application/", file.Extension);
-
-                return new FilePathResult(filePath, contentType);
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex.Message);
-            }
-            var filepath = string.Concat(c_folderName, c_defaultImgName);
-
-            return new FilePathResult(filepath, c_defaultContentType);
-        }
         
 
-        public static string GetLinkById(int id)
+        public static ProductImageDescription GetImageLinkById(int id)
         {
             var fileDescription = GetFileInfoById(id);
             if (fileDescription == null)
-                return "/Content/orange.jpg";
-
-            return  String.Format("/Content/{0}", fileDescription.Name);
+            {
+                return new ProductImageDescription("/Content/orange.jpg", true);
+            }
+         
+            return new ProductImageDescription(String.Format("/Content/{0}", fileDescription.Name), false);
         }
         
         
@@ -102,22 +97,6 @@ namespace eShop.Helpers
                 logger.Error(ex.Message);
                 return null;
             }
-        }
-
-        public static bool IsImageForUserExists(int id)
-        {
-            bool result;
-            try
-            {
-                GetFileInfoById(id);
-                result = true;
-            }
-            catch (Exception ex)
-            {
-                logger.Warn(ex.Message);
-                result = false;
-            }
-            return result;
         }
     }
 }

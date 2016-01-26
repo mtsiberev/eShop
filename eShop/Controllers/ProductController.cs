@@ -24,18 +24,21 @@ namespace eShop.Controllers
             if (productBo == null)
                 return Json(new { success = false }, JsonRequestBehavior.AllowGet);
 
+
+            var imageFileDescription = ImageObject.GetImageLinkById(productBo.Id);
             var product = new
             {
                 id = productBo.Id,
                 catalogId = productBo.CatalogId,
                 name = productBo.Name,
                 description = productBo.Description,
-                fileLink = ImageObject.GetLinkById(productBo.Id)
+                fileLink = imageFileDescription.FileLink,
+                isDefaultImage = imageFileDescription.IsDefaultImage
             };
             return Json(product, JsonRequestBehavior.AllowGet);
         }
 
-        
+
         public JsonResult GetProductsFromCatalog(int id)
         {
             var productsListBo = m_facade.GetProductsFromCatalog(id);
@@ -46,12 +49,22 @@ namespace eShop.Controllers
             var anonArray = new List<dynamic>();
             foreach (var productBo in productsListBo)
             {
+                var imageFileDescription = ImageObject.GetImageLinkById(productBo.Id);
+
                 anonArray.Add(
-                    new { id = productBo.Id, catalogId = productBo.CatalogId, name = productBo.Name, description = productBo.Description, fileLink = ImageObject.GetLinkById(productBo.Id) });
+                    new
+                    {
+                        id = productBo.Id,
+                        catalogId = productBo.CatalogId,
+                        name = productBo.Name,
+                        description = productBo.Description,
+                        fileLink = imageFileDescription.FileLink,
+                        isDefaultImage = imageFileDescription.IsDefaultImage
+                    });
             }
             return Json(anonArray, JsonRequestBehavior.AllowGet);
         }
-        
+
 
         public JsonResult GetAllProducts()
         {
@@ -62,8 +75,18 @@ namespace eShop.Controllers
             var anonArray = new List<dynamic>();
             foreach (var productBo in productsListBo)
             {
+                var imageFileDescription = ImageObject.GetImageLinkById(productBo.Id);
+
                 anonArray.Add(
-                    new { id = productBo.Id, catalogId = productBo.CatalogId, name = productBo.Name, description = productBo.Description,  fileLink = ImageObject.GetLinkById( productBo.Id) });
+                    new
+                    {
+                        id = productBo.Id,
+                        catalogId = productBo.CatalogId,
+                        name = productBo.Name,
+                        description = productBo.Description,
+                        fileLink = imageFileDescription.FileLink,
+                        isDefaultImage = imageFileDescription.IsDefaultImage
+                    });
             }
             return Json(anonArray, JsonRequestBehavior.AllowGet);
         }
@@ -74,7 +97,7 @@ namespace eShop.Controllers
             var newProduct = new Product(0, catalogId, name, description);
             var id = m_facade.AddProduct(newProduct);
 
-            return Json( new { id }, JsonRequestBehavior.AllowGet);
+            return Json(new { id }, JsonRequestBehavior.AllowGet);
         }
 
         [Authorize(Roles = "admin")]
@@ -83,7 +106,7 @@ namespace eShop.Controllers
             var updatedProduct = new Product(id, catalogId, name, description);
             m_facade.UpdateProduct(updatedProduct);
 
-            return Json( new { success = true }, JsonRequestBehavior.AllowGet);
+            return Json(new { success = true }, JsonRequestBehavior.AllowGet);
         }
 
         [Authorize(Roles = "admin")]
@@ -91,30 +114,38 @@ namespace eShop.Controllers
         {
             m_facade.DeleteProduct(id);
             ImageObject.DeleteImage(id);
-            return Json( new { success = true }, JsonRequestBehavior.AllowGet);
+            return Json(new { success = true }, JsonRequestBehavior.AllowGet);
         }
 
-        
         [HttpPost]
         public JsonResult UploadFile(HttpPostedFileBase file, int id)
         {
             ImageObject.SaveImage(file, id);
-            var fileLink = ImageObject.GetLinkById(id);
-            return Json(fileLink, JsonRequestBehavior.AllowGet);
+            var imageFileDescription = ImageObject.GetImageLinkById(id);
+            return Json(new
+            {
+                fileLink = imageFileDescription.FileLink,
+                isDefaultImage = imageFileDescription.IsDefaultImage
+            }, JsonRequestBehavior.AllowGet);
         }
 
+        /*
         public JsonResult GetFileInfoById(int id)
         {
-            var fileLink = ImageObject.GetLinkById(id);
-            return Json(fileLink, JsonRequestBehavior.AllowGet);
+            var imageFileDescription = ImageObject.GetImageLinkById(id);
+            return Json(imageFileDescription, JsonRequestBehavior.AllowGet);
         }
-        
+        */
 
         public JsonResult DeleteFile(int id)
         {
             ImageObject.DeleteImage(id);
-            var fileLink = ImageObject.GetLinkById(0);
-            return Json(fileLink, JsonRequestBehavior.AllowGet);
+            var imageFileDescription = ImageObject.GetImageLinkById(0);
+            return Json(new
+            {
+                fileLink = imageFileDescription.FileLink,
+                isDefaultImage = imageFileDescription.IsDefaultImage
+            }, JsonRequestBehavior.AllowGet);
         }
 
     }

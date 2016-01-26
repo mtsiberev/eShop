@@ -40,24 +40,19 @@
             <input class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
                    type="file" name="file" onchange="angular.element(this).scope().setFileName(this.files)" />
             <br>
-            {{  product.fileLink }}
             <br>
             <br>
             <br>
-            <div>
-                <img ng-src="{{product.fileLink}}" style="width: 100px; height:100px" />
+            <div ng-show="!product.isDefaultImage">
+                <div>
+                    <img ng-src="{{product.fileLink}}" style="width: 100px; height:100px" />
+                </div>
+                <br>
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                        ng-click="deleteFile(product.id)">
+                    Delete file
+                </button>
             </div>
-            <br>
-            
-            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-                    ng-click="uploadFile(filesToUpload, product.id)">
-                Preview file
-            </button>
-            
-            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-                    ng-click="deleteFile(product.id)">
-                Delete file
-            </button>
         </div>
 
         <br>
