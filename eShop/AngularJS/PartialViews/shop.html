@@ -2,7 +2,7 @@
 <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
     <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600" style="margin-left: 14%;">
         <div class="mdl-layout__header-row">
-            
+
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
                 <label class="mdl-button mdl-js-button mdl-button--icon" for="search">
                     <img src="../../AngularJS/Mdl/ic_search_black_24px.svg" alt="search">
@@ -29,15 +29,15 @@
     </header>
 
     <div class="mdl-layout__drawer" style="width: 15%;">
-        
+
 
         <span class="mdl-layout-title">eShop</span>
         <nav class="mdl-navigation">
-            
+
             <div class="mdl-navigation__link mdl-button" ng-click="selectAllCatalogs()">
                 All
             </div>
-            
+
             <div ng-repeat="catalog in catalogs | orderBy:'name' ">
                 <div class="mdl-navigation__link mdl-button" ng-click="selectCatalog(catalog.id)">
                     {{catalog.name}}
@@ -63,14 +63,8 @@
                      mdl-cell mdl-cell--3-col
                      mdl-shadow--4dp"
                                      style="position:relative;">
-                                    
-                                    <!--
-                                          <img src="../../Content/orange.jpg" alt="Smiley face" style="max-width: 100%; max-height: 100%;">                         
-                                        
-                                        -->
+
                                     <img ng-src="{{product.fileLink}}" style="max-width: 100%; max-height:100%" />
-                                    
-                                    
 
                                     <div class="mdl-card__title">
                                         <h1 class="mdl-card__title-text">
@@ -79,9 +73,14 @@
                                             </div>
                                         </h1>
                                     </div>
+                                   
+                                    <div class="product-qty">
+                                        <input max = "50" min="0" type="number" ng-model="qty">
+                                    </div>
+                              
                                     <div class="add-to-cart">
                                         <button class=" mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-                                                ng-click="addToCart(product.id)">
+                                                ng-click="addToCart(product.id, qty)">
                                             Add to Cart
                                         </button>
                                     </div>
@@ -114,9 +113,9 @@
                                 {{item.Qty}}
                             </td>
                             <td>
-                                <img class="mdl-button mdl-button--icon" 
-                                     ng-click="deleteFromCart(item.ProductId)" 
-                                     src="../../AngularJS/Mdl/close-box.png" 
+                                <img class="mdl-button mdl-button--icon"
+                                     ng-click="deleteFromCart(item.ProductId)"
+                                     src="../../AngularJS/Mdl/close-box.png"
                                      alt="Delete">
                             </td>
                         </tr>

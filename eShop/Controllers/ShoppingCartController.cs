@@ -16,8 +16,12 @@ namespace eShop.Controllers
     {
         private Facade m_facade = ContainerWrapper.Container.GetInstance<Facade>();
 
-        public void AddToCart(int productId)
+        public void AddToCart(int productId, int qty)
         {
+            if (qty > 50) qty = 50;
+            if (qty < 0) qty = 0;
+
+
             var userId = Convert.ToInt32(Membership.GetUser().ProviderUserKey.ToString());
             var order = m_facade.GetOrderByUserId(userId);
             var orderItem = m_facade.GetOrderItem(order.Id, productId);
@@ -25,11 +29,13 @@ namespace eShop.Controllers
             if (orderItem == null)
             {
                 var product = m_facade.GetProductById(productId);
-                m_facade.AddOrderItem(new OrderItem(order.Id, productId, 1, product.Name));
+                m_facade.AddOrderItem(new OrderItem(order.Id, productId, qty, product.Name));
                 return;
             }
 
-            var newQty = orderItem.Qty + 1;
+            var newQty = orderItem.Qty + qty;
+            if (newQty > 50) newQty = 50;
+
             orderItem.Qty = newQty;
             var orderItemUpdated = orderItem;
             m_facade.UpdateOrderItem(orderItemUpdated);

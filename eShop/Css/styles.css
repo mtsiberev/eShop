@@ -93,3 +93,13 @@ main {
     font-size: 14px;
     color: #FF0000;
 }
+
+
+.product-qty {
+    text-align: right;
+    position: absolute;
+    bottom: 60px;
+    right: 20px;
+    font-size: 14px;
+}
+

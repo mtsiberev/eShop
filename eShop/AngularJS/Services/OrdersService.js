@@ -13,11 +13,11 @@
         });
     };
 
-    var addToCartFunction = function (productId) {
+    var addToCartFunction = function (productId, qty) {
         return $http({
             url: "ShoppingCart/AddToCart",
             method: "GET",
-            params: { productId: productId },
+            params: { productId: productId, qty: qty },
             cache: false
         }).then(function (result) {
 
