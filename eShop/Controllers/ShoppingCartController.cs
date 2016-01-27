@@ -16,11 +16,12 @@ namespace eShop.Controllers
     {
         private Facade m_facade = ContainerWrapper.Container.GetInstance<Facade>();
 
-        public void AddToCart(int productId, int qty = 1)
+        public void AddToCart(int productId, int qty = 0)
         {
-            if (qty > 50) qty = 50;
-            if (qty <= 0) qty = 1;
-
+            if ( (qty > 50) || (qty <= 0) )
+            {
+                return;
+            };
 
             var userId = Convert.ToInt32(Membership.GetUser().ProviderUserKey.ToString());
             var order = m_facade.GetOrderByUserId(userId);

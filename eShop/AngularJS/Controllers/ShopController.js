@@ -3,10 +3,6 @@
 var ShopController = function ($scope, $routeParams, $http, $location, ProductsService, OrdersService, UsersService, CatalogsService) {
 
 
-   $scope.qty = 1;
-
-
-
     CatalogsService.getCatalogs().then(function (data) { $scope.catalogs = data; });
     ProductsService.getProducts().then(function (data) { $scope.products = data; });
 
@@ -17,6 +13,11 @@ var ShopController = function ($scope, $routeParams, $http, $location, ProductsS
 
 
     $scope.addToCart = function (productId, qty) {
+    
+        if ((qty > 50) || (qty <= 0) || (qty == undefined)) {
+            return;
+        };
+     
         OrdersService.addToCart(productId, qty).then(function () {
             ProductsService.getProducts().then(function (products) {
                 $scope.products = products;
@@ -43,11 +44,11 @@ var ShopController = function ($scope, $routeParams, $http, $location, ProductsS
         $scope.currentCatalogId = 0;
         ProductsService.getProducts().then(function (data) { $scope.products = data; });
     };
-    
+
     $scope.checkout = function () {
         UsersService.getCurrentUser().then(function (id) {
             $scope.userId = id;
-            OrdersService.getOrderContent($scope.userId).then(function(data) {
+            OrdersService.getOrderContent($scope.userId).then(function (data) {
                 $scope.content = data;
                 $location.path('/shopping-cart');
             });

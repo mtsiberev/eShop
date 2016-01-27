@@ -73,17 +73,19 @@
                                             </div>
                                         </h1>
                                     </div>
-                                   
-                                    <div class="product-qty">
-                                        <input max = "50" min="1" type="number" ng-model="qty">
-                                    </div>
-                              
-                                    <div class="add-to-cart">
-                                        <button class=" mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-                                                ng-click="addToCart(product.id, qty)">
-                                            Add to Cart
-                                        </button>
-                                    </div>
+                                    
+                                    <form name="qtyForm">
+                                        <div class="product-qty">
+                                            <input min="1" max="50" type="number" ng-model="product.qty" required>
+                                        </div>
+                                        <div class="add-to-cart">
+                                            <button class=" mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                                                    ng-click="addToCart(product.id, product.qty)">
+                                                Add to Cart
+                                            </button>
+                                        </div>
+                                    </form>
+
                                 </div>
                             </div>
                         </div>
