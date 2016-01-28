@@ -34,10 +34,7 @@ namespace eShop.Controllers
         public JsonResult GetAllCatalogs()
         {
             var catalogsListBo = m_facade.GetAllCatalogs();
-
-            if (catalogsListBo == null)
-                return Json(new { success = false }, JsonRequestBehavior.AllowGet);
-
+         
             var anonArray = new List<dynamic>();
             foreach (var catalogBo in catalogsListBo)
             {

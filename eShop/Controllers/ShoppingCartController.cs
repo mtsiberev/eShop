@@ -14,11 +14,13 @@ namespace eShop.Controllers
 {
     public class ShoppingCartController : Controller
     {
+        private const int c_maxProductQty = 50;
+
         private Facade m_facade = ContainerWrapper.Container.GetInstance<Facade>();
 
         public void AddToCart(int productId, int qty = 0)
         {
-            if ( (qty > 50) || (qty <= 0) )
+            if ((qty > c_maxProductQty) || (qty <= 0))
             {
                 return;
             };
@@ -35,7 +37,7 @@ namespace eShop.Controllers
             }
 
             var newQty = orderItem.Qty + qty;
-            if (newQty > 50) newQty = 50;
+            if (newQty > c_maxProductQty) newQty = c_maxProductQty;
 
             orderItem.Qty = newQty;
             var orderItemUpdated = orderItem;
@@ -89,21 +91,26 @@ namespace eShop.Controllers
             m_facade.DeleteOrder(orderId);
         }
 
+        /*
         public JsonResult GetAllProducts()
         {
             var productsListBo = m_facade.GetAllProducts();
-
-            if (productsListBo == null)
-                return Json(new { success = false }, JsonRequestBehavior.AllowGet);
 
             var anonArray = new List<dynamic>();
             foreach (var productBo in productsListBo)
             {
                 anonArray.Add(
-                    new { id = productBo.Id, catalogId = productBo.CatalogId, name = productBo.Name, description = productBo.Description });
+                    new
+                    {
+                        id = productBo.Id,
+                        catalogId = productBo.CatalogId,
+                        name = productBo.Name,
+                        description = productBo.Description
+                    });
             }
             return Json(anonArray, JsonRequestBehavior.AllowGet);
         }
+        */
 
     }
 }

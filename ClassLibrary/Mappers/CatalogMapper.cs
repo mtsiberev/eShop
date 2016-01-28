@@ -19,7 +19,7 @@ namespace ClassLibrary.Mappers
             var resultList = new List<Catalog>();
             using (var table = DataBaseHelper.GetExecutionResult(queryString))
             {
-                if (table.Rows.Count == 0) return null;
+                if (table.Rows.Count == 0) return resultList;
                 try
                 {
                     for (var i = 0; i < table.Rows.Count; i++)
@@ -33,7 +33,7 @@ namespace ClassLibrary.Mappers
                 catch (Exception ex)
                 {
                     logger.Error(ex.Message);
-                    return null;
+                    return resultList;
                 }
             }
             return resultList;

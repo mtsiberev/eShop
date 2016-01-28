@@ -65,9 +65,9 @@ namespace ClassLibrary.Facade
         public List<Product> GetProductsFromCatalog(int id)
         {
             var allCatalogs = m_productsRepository.GetAll();
-            return allCatalogs == null ? null : allCatalogs.Where(x => x.CatalogId == id).ToList();
+            return allCatalogs.Count() != 0 ? allCatalogs.Where(x => x.CatalogId == id).ToList() : allCatalogs;
         }
-        
+
         public Product GetProductById(int id)
         {
             return m_productsRepository.GetById(id);
@@ -85,7 +85,6 @@ namespace ClassLibrary.Facade
         //------------------Catalogs methods
         public void AddCatalog(Catalog catalog)
         {
-            var cat = catalog;
             m_catalogsRepository.Add(catalog);
         }
         

@@ -21,10 +21,10 @@ namespace eShop.Controllers
         public JsonResult GetProduct(int id)
         {
             var productBo = m_facade.GetProductById(id);
+
             if (productBo == null)
                 return Json(new { success = false }, JsonRequestBehavior.AllowGet);
-
-
+            
             var imageFileDescription = ImageObject.GetImageLinkById(productBo.Id);
             var product = new
             {
@@ -42,10 +42,7 @@ namespace eShop.Controllers
         public JsonResult GetProductsFromCatalog(int id)
         {
             var productsListBo = m_facade.GetProductsFromCatalog(id);
-
-            if (productsListBo == null)
-                return Json(new { success = false }, JsonRequestBehavior.AllowGet);
-
+            
             var anonArray = new List<dynamic>();
             foreach (var productBo in productsListBo)
             {
@@ -69,8 +66,6 @@ namespace eShop.Controllers
         public JsonResult GetAllProducts()
         {
             var productsListBo = m_facade.GetAllProducts();
-            if (productsListBo == null)
-                return Json(new { success = false }, JsonRequestBehavior.AllowGet);
 
             var anonArray = new List<dynamic>();
             foreach (var productBo in productsListBo)
@@ -128,15 +123,7 @@ namespace eShop.Controllers
                 isDefaultImage = imageFileDescription.IsDefaultImage
             }, JsonRequestBehavior.AllowGet);
         }
-
-        /*
-        public JsonResult GetFileInfoById(int id)
-        {
-            var imageFileDescription = ImageObject.GetImageLinkById(id);
-            return Json(imageFileDescription, JsonRequestBehavior.AllowGet);
-        }
-        */
-
+        
         public JsonResult DeleteFile(int id)
         {
             ImageObject.DeleteImage(id);
