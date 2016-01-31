@@ -8,7 +8,6 @@ using System.Web.Security;
 using ClassLibrary.BusinessObjects;
 using ClassLibrary.Facade;
 using ClassLibrary.IoC;
-using ClassLibrary.Repository;
 using NLog;
 
 namespace eShop.Controllers
@@ -31,7 +30,7 @@ namespace eShop.Controllers
             if (userBo == null)
                 return Json(new { success = false }, JsonRequestBehavior.AllowGet);
 
-            var user = new { id = userBo.Id, name = userBo.Name, address = userBo.Address };
+            var user = new { id = userBo.Id, name = userBo.Name };
             return Json(user, JsonRequestBehavior.AllowGet);
         }
 
@@ -52,9 +51,9 @@ namespace eShop.Controllers
         }
 
           [Authorize(Roles = "admin")]
-        public JsonResult UpdateUser(int id, string name, string address)
+        public JsonResult UpdateUser(int id, string name)
         {
-            var updatedUser = new User(id, name, address);
+            var updatedUser = new User(id, name);
             m_facade.UpdateUser(updatedUser);
 
             return Json(new { success = true }, JsonRequestBehavior.AllowGet);

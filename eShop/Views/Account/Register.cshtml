@@ -45,19 +45,13 @@
                                 @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                                 <label class="mdl-textfield__label" for="password">Password...</label>
                             </div>
-
-
+                            
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                 @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "mdl-textfield__input", @id = "confirm" })
-                                @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+                                @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
                                 <label class="mdl-textfield__label" for="confirm">ConfirmPassword...</label>
                             </div>
-
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                @Html.PasswordFor(m => m.Address, new { @class = "mdl-textfield__input", @id = "address" })
-                                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-                                <label class="mdl-textfield__label" for="address">Address...</label>
-                            </div>
+                       
                             <br>
                             <br>
                             <br>

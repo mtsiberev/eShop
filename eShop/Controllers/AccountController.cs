@@ -13,7 +13,6 @@ namespace eShop.Controllers
     public class AccountController : Controller
     {
         private Logger m_logger = LogManager.GetCurrentClassLogger();
-
         
         [HttpGet]
         public ActionResult RedirectToHome()
@@ -21,14 +20,12 @@ namespace eShop.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-
         [HttpGet]
         public ActionResult Login()
         {
             return View();
         }
-
-
+        
         [HttpPost]
         public ActionResult Login(Account account)
         {
@@ -44,7 +41,6 @@ namespace eShop.Controllers
 
             if (success)
             {
-                //return RedirectToAction("Index", "Home");
                 return RedirectToAction("Index", "Shop");
             }
 
@@ -88,23 +84,19 @@ namespace eShop.Controllers
                 {
                     WebSecurity.CreateUserAndAccount(
                         account.UserName,
-                        account.Password,
-                        propertyValues: new
-                        {
-                            Address = account.Address
-                        });
+                        account.Password);
                 }
 
                 if (account.UserName == "admin")
                 {
-                    var role = System.Web.Security.Roles.Provider;
+                    var role = Roles.Provider;
                     role.AddUsersToRoles(
                         new[] { account.UserName },
                         new[] { "admin" });
                 }
                 else
                 {
-                    var role = System.Web.Security.Roles.Provider;
+                    var role = Roles.Provider;
                     role.AddUsersToRoles(
                         new[] { account.UserName },
                         new[] { "user" });
@@ -113,7 +105,9 @@ namespace eShop.Controllers
             catch (Exception ex)
             {
                 m_logger.Error(ex);
-                return RedirectToAction("Register", "Account");
+                ViewData["error"] = ex.Message;
+
+                return View();
             }
 
             return Login(new Account(account.UserName, account.Password));

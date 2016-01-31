@@ -8,7 +8,6 @@ var AdminApp = angular.module('AdminApp', ["ngRoute"]).run(function ($rootScope,
     });
 });
 
-
 AdminApp.controller('AdminMenuController', AdminMenuController);
 
 AdminApp.controller('UsersController', UsersController);

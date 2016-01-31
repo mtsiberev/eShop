@@ -1,6 +1,6 @@
 ﻿'use strict';
 
-var ShopApp = angular.module('ShopApp', ["ngRoute"]).run(function ($rootScope, $location, $timeout) {
+var ShopApp = angular.module('ShopApp', ["ngRoute", "ngDialog"]).run(function ($rootScope, $location, $timeout) {
     $rootScope.$on('$viewContentLoaded', function () {
         $timeout(function () {
             componentHandler.upgradeAllRegistered();
@@ -9,7 +9,6 @@ var ShopApp = angular.module('ShopApp', ["ngRoute"]).run(function ($rootScope, $
 });
 
 ShopApp.controller('ShopController', ShopController);
-
 ShopApp.factory('ProductsService', ProductsService);
 ShopApp.factory('CatalogsService', CatalogsService);
 ShopApp.factory('OrdersService', OrdersService);

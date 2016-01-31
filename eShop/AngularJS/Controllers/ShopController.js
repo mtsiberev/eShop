@@ -1,8 +1,7 @@
 ﻿'use strict';
 
-var ShopController = function ($scope, $routeParams, $http, $location, ProductsService, OrdersService, UsersService, CatalogsService) {
-
-
+var ShopController = function ($scope, $routeParams, $http, $location, ProductsService, OrdersService, UsersService, CatalogsService, ngDialog) {
+    
     CatalogsService.getCatalogs().then(function (data) { $scope.catalogs = data; });
     ProductsService.getProducts().then(function (data) { $scope.products = data; });
 
@@ -10,14 +9,12 @@ var ShopController = function ($scope, $routeParams, $http, $location, ProductsS
         $scope.userId = id;
         OrdersService.getOrderContent($scope.userId).then(function (data) { $scope.content = data; });
     });
-
-
-    $scope.addToCart = function (productId, qty) {
     
+    $scope.addToCart = function (productId, qty) {
         if ((qty > 50) || (qty <= 0) || (qty == undefined)) {
             return;
         };
-     
+
         OrdersService.addToCart(productId, qty).then(function () {
             ProductsService.getProducts().then(function (products) {
                 $scope.products = products;
@@ -54,8 +51,7 @@ var ShopController = function ($scope, $routeParams, $http, $location, ProductsS
             });
         });
     };
-
-
+    
     $scope.approveOrder = function () {
         UsersService.getCurrentUser().then(function (id) {
             $scope.userId = id;
@@ -65,8 +61,19 @@ var ShopController = function ($scope, $routeParams, $http, $location, ProductsS
             });
         });
     };
-
-
+    
+    $scope.openConfirm = function () {
+        ngDialog.openConfirm({
+            template: 'AngularJS/PartialViews/modalConfirm.html',
+            className: 'ngdialog-theme-default'
+        }).then(function (value) {
+            console.log('Modal promise resolved. Value: ', value);
+            $scope.approveOrder();
+        }, function (reason) {
+            console.log('Modal promise rejected. Reason: ', reason);
+        });
+    };
+    
 };
 
-ShopController.$inject = ['$scope', '$routeParams', '$http', '$location', 'ProductsService', 'OrdersService', 'UsersService', 'CatalogsService'];
+ShopController.$inject = ['$scope', '$routeParams', '$http', '$location', 'ProductsService', 'OrdersService', 'UsersService', 'CatalogsService', 'ngDialog'];

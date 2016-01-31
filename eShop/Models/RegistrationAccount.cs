@@ -21,6 +21,5 @@ namespace eShop.Models
         */
     
         public string ConfirmPassword { get; set; }
-        public string Address { get; set; }
     }
 }

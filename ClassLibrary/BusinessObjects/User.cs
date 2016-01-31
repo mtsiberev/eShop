@@ -8,15 +8,13 @@ namespace ClassLibrary.BusinessObjects
 {
     public class User
     {
-        public User(int id, string name, string address)
+        public User(int id, string name)
         {
             Id = id;
             Name = name;
-            Address = address;
         }
 
         public int Id { get; private set; }
         public string Name { get; set; }
-        public string Address { get; set; }
     }
 }

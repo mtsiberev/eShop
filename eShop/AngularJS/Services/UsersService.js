@@ -24,11 +24,11 @@
         });
     };
 
-    var getUpdateUserFunction = function (id, name, address) {
+    var getUpdateUserFunction = function (id, name) {
         return $http({
             url: "User/UpdateUser",
             method: "GET",
-            params: { id: id, name: name, address: address },
+            params: { id: id, name: name },
             cache: false
         }).then(function (result) {
 

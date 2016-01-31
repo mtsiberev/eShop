@@ -6,7 +6,7 @@ var UserDetailController = function ($scope, $routeParams, $http, $location, Use
     UsersService.getUser(id).then(function (data) { $scope.user = data; });
 
     $scope.updateUser = function () {
-        UsersService.updateUser($scope.user.id, $scope.user.name, $scope.user.address).then(function () {
+        UsersService.updateUser($scope.user.id, $scope.user.name).then(function () {
             $location.path('/users');
         });
     };

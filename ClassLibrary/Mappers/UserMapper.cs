@@ -26,9 +26,8 @@ namespace ClassLibrary.Mappers
                     {
                         var id = Convert.ToInt32(table.Rows[i]["Id"]);
                         var name = table.Rows[i]["Name"].ToString();
-                        var address = table.Rows[i]["Address"].ToString();
 
-                        var entity = new User(id, name, address);
+                        var entity = new User(id, name);
                         resultList.Add(entity);
                     }
                 }

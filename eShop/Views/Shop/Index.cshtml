@@ -5,52 +5,52 @@
     <title>Shopping with AngularJS</title>
     <link rel="stylesheet" href="~/AngularJS/Mdl/material.css">
     <link rel="stylesheet" href="~/Css/styles.css">
+    
+    <link rel="stylesheet" href="~/AngularJS/NgDialog/ngDialog.css">
+    <link rel="stylesheet" href="~/AngularJS/NgDialog/ngDialog-custom-width.css">
+    <link rel="stylesheet" href="~/AngularJS/NgDialog/ngDialog-theme-default.css">
+    <link rel="stylesheet" href="~/AngularJS/NgDialog/ngDialog-theme-plain.css">
+    
 </head>
 
-    <body>
-        
-        
-        
+<body>
 
-        <div align="left" style="font-size: 14pt;" class="mdl-color--orange">
-            <span>@WebSecurity.CurrentUserName</span>
-        </div>
+    <div align="left" style="font-size: 14pt;" class="mdl-color--orange">
+        <span>@WebSecurity.CurrentUserName</span>
+    </div>
 
-        
-        
-        
-        
+    <div ng-view></div>
 
-        <div ng-view></div>
+    @*Bundle is not working yet*@
+    @Scripts.Render("~/angularBundle")
 
-        @*Bundle is not working yet*@
-        @Scripts.Render("~/angularBundle")
+    <script src="~/Scripts/jquery-2.1.4.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/angular.js"></script>
+    <script src="~/Scripts/angular-route.js"></script>
 
-        <script src="~/Scripts/jquery-2.1.4.js"></script>
-        <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
-        <script src="~/Scripts/jquery.validate.js"></script>
-        <script src="~/Scripts/angular.js"></script>
-        <script src="~/Scripts/angular-route.js"></script>
+    <script src="~/AngularJS/Services/UsersService.js"></script>
+    <script src="~/AngularJS/Services/ProductsService.js"></script>
+    <script src="~/AngularJS/Services/CatalogsService.js"></script>
+    <script src="~/AngularJS/Services/OrdersService.js"></script>
 
-        <script src="~/AngularJS/Services/UsersService.js"></script>
-        <script src="~/AngularJS/Services/ProductsService.js"></script>
-        <script src="~/AngularJS/Services/CatalogsService.js"></script>
-        <script src="~/AngularJS/Services/OrdersService.js"></script>
+    <script src="~/AngularJS/Controllers/AdminMenuController.js"></script>
+    <script src="~/AngularJS/Controllers/UsersController.js"></script>
+    <script src="~/AngularJS/Controllers/UserDetailController.js"></script>
+    <script src="~/AngularJS/Controllers/ProductsController.js"></script>
+    <script src="~/AngularJS/Controllers/ProductDetailController.js"></script>
+    <script src="~/AngularJS/Controllers/CatalogsController.js"></script>
+    <script src="~/AngularJS/Controllers/CatalogDetailController.js"></script>
+    <script src="~/AngularJS/Controllers/ShopController.js"></script>
 
-        <script src="~/AngularJS/Controllers/AdminMenuController.js"></script>
-        <script src="~/AngularJS/Controllers/UsersController.js"></script>
-        <script src="~/AngularJS/Controllers/UserDetailController.js"></script>
-        <script src="~/AngularJS/Controllers/ProductsController.js"></script>
-        <script src="~/AngularJS/Controllers/ProductDetailController.js"></script>
-        <script src="~/AngularJS/Controllers/CatalogsController.js"></script>
-        <script src="~/AngularJS/Controllers/CatalogDetailController.js"></script>
-        <script src="~/AngularJS/Controllers/ShopController.js"></script>
+    <script src="~/AngularJS/Applications/AdminApp.js"></script>
+    <script src="~/AngularJS/Applications/ShopApp.js"></script>
 
-        <script src="~/AngularJS/Applications/AdminApp.js"></script>
-        <script src="~/AngularJS/Applications/ShopApp.js"></script>
+    <script src="~/AngularJS/Bootstrap/bootstrap.js"></script>
+    <script src="~/AngularJS/Mdl/material.js"></script>
+    
+    <script src="~/AngularJS/NgDialog/ngDialog.js"></script>
 
-        <script src="~/AngularJS/Bootstrap/bootstrap.js"></script>
-        <script src="~/AngularJS/Mdl/material.js"></script>
-
-    </body>
+</body>
 </html>

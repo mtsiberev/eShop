@@ -184,8 +184,14 @@
     <Content Include="AngularJS\Mdl\material.js" />
     <Content Include="AngularJS\Mdl\orange.jpg" />
     <Content Include="AngularJS\Mdl\styles.css" />
+    <Content Include="AngularJS\NgDialog\ngDialog-custom-width.css" />
+    <Content Include="AngularJS\NgDialog\ngDialog-theme-default.css" />
+    <Content Include="AngularJS\NgDialog\ngDialog-theme-plain.css" />
+    <Content Include="AngularJS\NgDialog\ngDialog.css" />
+    <Content Include="AngularJS\NgDialog\ngDialog.js" />
     <Content Include="AngularJS\PartialViews\catalog-detail.html" />
     <Content Include="AngularJS\PartialViews\catalogs.html" />
+    <Content Include="AngularJS\PartialViews\modalConfirm.html" />
     <Content Include="AngularJS\PartialViews\product-detail.html" />
     <Content Include="AngularJS\PartialViews\products.html" />
     <Content Include="AngularJS\PartialViews\shop.html" />

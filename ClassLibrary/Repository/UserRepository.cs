@@ -19,10 +19,9 @@ namespace ClassLibrary.Repository
         
         public int Add(User entity)
         {
-            var queryString = String.Format("INSERT INTO {0} (Name, Address) VALUES ('{1}', '{2}');",
+            var queryString = String.Format("INSERT INTO {0} (Name) VALUES ('{1}');",
                 c_usersDatabaseName, 
-                entity.Name, 
-                entity.Address);
+                entity.Name);
             DataBaseHelper.ExecuteCommand(queryString);
             return m_userMapper.GetLastCreatedId(queryString);
         }
@@ -37,10 +36,9 @@ namespace ClassLibrary.Repository
 
         public void Update(User entity)
         {
-            var queryString = String.Format("UPDATE {0} SET Name = '{1}', Address = '{2}' WHERE Id = {3}",
+            var queryString = String.Format("UPDATE {0} SET Name = '{1}' WHERE Id = {2}",
                 c_usersDatabaseName,
                 entity.Name,
-                entity.Address,
                 entity.Id);
             DataBaseHelper.ExecuteCommand(queryString);
         }
