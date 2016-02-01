@@ -67,12 +67,28 @@ var ShopController = function ($scope, $routeParams, $http, $location, ProductsS
             template: 'AngularJS/PartialViews/modalConfirm.html',
             className: 'ngdialog-theme-default'
         }).then(function (value) {
-            console.log('Modal promise resolved. Value: ', value);
+            //console.log('Modal promise resolved. Value: ', value);
             $scope.approveOrder();
         }, function (reason) {
-            console.log('Modal promise rejected. Reason: ', reason);
+            //console.log('Modal promise rejected. Reason: ', reason);
         });
     };
+
+    
+    $scope.openProductInfo = function (product) {
+        $scope.product = product;
+
+        ngDialog.openConfirm({
+            template: 'AngularJS/PartialViews/modalProductInfo.html',
+            className: 'ngdialog-theme-default',
+            scope: $scope
+        }).then(function (value) {
+            //console.log('Modal promise resolved. Value: ', value);
+        }, function (reason) {
+            //console.log('Modal promise rejected. Reason: ', reason);
+        });
+    };
+    
     
 };
 

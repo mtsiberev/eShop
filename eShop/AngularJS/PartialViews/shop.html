@@ -64,7 +64,8 @@
                      mdl-shadow--4dp"
                                      style="position:relative;">
 
-                                    <img ng-src="{{product.fileLink}}" style="max-width: 100%; max-height:100%" />
+                                    <img ng-src="{{product.fileLink}}" style="max-width: 100%; max-height:100%; cursor: pointer;"
+                                         ng-click="openProductInfo(product)" />
 
                                     <div class="mdl-card__title">
                                         <h1 class="mdl-card__title-text">
@@ -73,7 +74,7 @@
                                             </div>
                                         </h1>
                                     </div>
-                                    
+
                                     <form name="qtyForm">
                                         <div class="product-qty">
                                             <input min="1" max="50" type="number" ng-model="product.qty" required>

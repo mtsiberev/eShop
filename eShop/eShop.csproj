@@ -192,6 +192,7 @@
     <Content Include="AngularJS\PartialViews\catalog-detail.html" />
     <Content Include="AngularJS\PartialViews\catalogs.html" />
     <Content Include="AngularJS\PartialViews\modalConfirm.html" />
+    <Content Include="AngularJS\PartialViews\modalProductInfo.html" />
     <Content Include="AngularJS\PartialViews\product-detail.html" />
     <Content Include="AngularJS\PartialViews\products.html" />
     <Content Include="AngularJS\PartialViews\shop.html" />
