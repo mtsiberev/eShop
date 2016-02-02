@@ -42,61 +42,48 @@
             </tr>
         </tbody>
     </table>
-    
-    <form action="#">
+
+    <form name="orderForm">
+
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input class="mdl-textfield__input" type="text" id="firstName">
+            <input class="mdl-textfield__input" type="text" id="firstName" ng-model="firstName" required>
             <label class="mdl-textfield__label" for="firstName">First name:</label>
         </div>
-    </form>
-    
-    <form action="#">
+
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input class="mdl-textfield__input" type="text" id="lastName">
+            <input class="mdl-textfield__input" type="text" id="lastName" ng-model="lastName" required>
             <label class="mdl-textfield__label" for="lastName">Last name:</label>
         </div>
-    </form>
-    
-    <form action="#">
+
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input class="mdl-textfield__input" type="text" id="city">
+            <input class="mdl-textfield__input" type="text" id="city" ng-model="city" required>
             <label class="mdl-textfield__label" for="city">City:</label>
         </div>
-    </form>
-    
 
-    <form action="#">
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input class="mdl-textfield__input" type="text" id="street">
+            <input class="mdl-textfield__input" type="text" id="street" ng-model="street" required>
             <label class="mdl-textfield__label" for="street">Street:</label>
         </div>
-    </form>
 
-    
-    <form action="#">
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="building">
+            <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="building" ng-model="building" required>
             <label class="mdl-textfield__label" for="building">Building</label>
             <span class="mdl-textfield__error">Input is not a number!</span>
         </div>
-    </form>
 
-    
-     <form action="#">
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="phone">
+            <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="phone" ng-model="phone" required>
             <label class="mdl-textfield__label" for="phone">Phone</label>
             <span class="mdl-textfield__error">Input is not a number!</span>
         </div>
-    </form>
- 
-    
-    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-            ng-click="openConfirm()">
-        Confirm
-    </button>
-    
+        <br>
 
+        <button ng-disabled="orderForm.$invalid" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                ng-click="openConfirm()">
+            Confirm
+        </button>
+    </form>
+    
     <br>
     <br>
     <br>
@@ -113,7 +100,6 @@
             </button>
         </p>
     </div>
-
 
 </div>
 

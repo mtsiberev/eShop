@@ -9,7 +9,7 @@ var ShopController = function ($scope, $routeParams, $http, $location, ProductsS
         $scope.userId = id;
         OrdersService.getOrderContent($scope.userId).then(function (data) { $scope.content = data; });
     });
-    
+
     $scope.addToCart = function (productId, qty) {
         if ((qty > 50) || (qty <= 0) || (qty == undefined)) {
             return;
@@ -51,29 +51,26 @@ var ShopController = function ($scope, $routeParams, $http, $location, ProductsS
             });
         });
     };
-    
+
     $scope.approveOrder = function () {
         UsersService.getCurrentUser().then(function (id) {
             $scope.userId = id;
             OrdersService.approveOrder($scope.userId).then(function (data) {
                 $scope.content = data;
-                $location.path('/shopping-cart');
+                $location.path('/shop');
             });
         });
     };
-    
+
     $scope.openConfirm = function () {
         ngDialog.openConfirm({
             template: 'AngularJS/PartialViews/modalConfirm.html',
             className: 'ngdialog-theme-default'
-        }).then(function (value) {
-            //console.log('Modal promise resolved. Value: ', value);
+        }).then(function () {
             $scope.approveOrder();
-        }, function (reason) {
-            //console.log('Modal promise rejected. Reason: ', reason);
+        }, function () {
         });
     };
-
     
     $scope.openProductInfo = function (product) {
         $scope.product = product;
@@ -82,13 +79,10 @@ var ShopController = function ($scope, $routeParams, $http, $location, ProductsS
             template: 'AngularJS/PartialViews/modalProductInfo.html',
             className: 'ngdialog-theme-default',
             scope: $scope
-        }).then(function (value) {
-            //console.log('Modal promise resolved. Value: ', value);
-        }, function (reason) {
-            //console.log('Modal promise rejected. Reason: ', reason);
+        }).then(function () {
+        }, function () {
         });
     };
-    
     
 };
 
