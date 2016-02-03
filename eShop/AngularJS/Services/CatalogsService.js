@@ -58,13 +58,26 @@
             return result.data;
         });
     };
+    
+    var getCatalogsForOnePageFunction = function (pageNum, pageSize, parentId) {
+        return $http({
+            url: "Catalog/GetCatalogsForOnePage",
+            method: "GET",
+            params: { pageNum: pageNum, pageSize: pageSize, parentId: parentId },
+            cache: false
+        }).then(function (result) {
 
+            return result.data;
+        });
+    };
+    
     return {
         getCatalog: getCatalogFunction,
         getCatalogs: getCatalogsFunction,
         updateCatalog: getUpdateCatalogFunction,
         deleteCatalog: getDeleteCatalogFunction,
-        addCatalog: getAddCatalogFunction
+        addCatalog: getAddCatalogFunction,
+        getCatalogsForOnePage: getCatalogsForOnePageFunction
     };
 };
 

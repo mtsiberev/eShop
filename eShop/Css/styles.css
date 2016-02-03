@@ -34,10 +34,17 @@ main {
 
 .shopping-cart-checkout {
     font-size: 12pt;
-        font-family: "Roboto","Helvetica","Arial",sans-serif;
-        font-size: 14pt;
+    font-family: "Roboto","Helvetica","Arial",sans-serif;
+    font-size: 14pt;
 }
 
+
+.text-error {
+    color: red;
+    font-size: 12pt;
+    font-family: "Roboto","Helvetica","Arial",sans-serif;
+    font-size: 14pt;
+}
 
 
 .register {
@@ -68,7 +75,7 @@ main {
 }
 
 .shopping-cart-layout {
-  position: absolute;
+    position: absolute;
     right: 5%;
 }
 
@@ -82,7 +89,7 @@ main {
 }
 
 .demo-grid .mdl-grid:first-of-type .mdl-cell {
-    height: 300px;
+    height: 350px;
 }
 
 .add-to-cart {
@@ -102,4 +109,3 @@ main {
     right: 20px;
     font-size: 14px;
 }
-

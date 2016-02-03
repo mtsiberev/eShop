@@ -5,7 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using ClassLibrary.BusinessObjects;
 using ClassLibrary.Helpers;
+using ClassLibrary.IoC;
 using ClassLibrary.Mappers;
+using ClassLibrary.Paging;
 using NLog;
 
 
@@ -118,6 +120,19 @@ namespace ClassLibrary.Repository
                 logger.Error(ex.Message);
                 return null;
             }
+        }
+
+        public List<Product> GetEntitiesForOnePage(int pageNum, int pageSize, int parentId)
+        {
+            var queryString = String.Format(
+                "SELECT * FROM {0} " +
+                "WHERE CatalogId = {1} " +
+                "ORDER BY Name " +
+                "OFFSET ({2} - 1) * {3} ROWS " +
+                "FETCH NEXT {3} ROWS ONLY;",
+                c_productsDatabaseName, parentId, pageNum, pageSize);
+
+            return m_productMapper.GetEntityList(queryString);
         }
     }
 }

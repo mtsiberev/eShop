@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using ClassLibrary.BusinessObjects;
 using ClassLibrary.Helpers;
 using ClassLibrary.Mappers;
+using ClassLibrary.Paging;
 using NLog;
 
 namespace ClassLibrary.Repository
@@ -66,5 +67,18 @@ namespace ClassLibrary.Repository
                 return null;
             }
         }
+
+        public List<Catalog> GetEntitiesForOnePage(int pageNum, int pageSize, int parentId)
+        {
+            var queryString = String.Format(
+             "SELECT * FROM {0} " +
+             "ORDER BY Name " +
+             "OFFSET ({1} - 1) * {2} ROWS " +
+             "FETCH NEXT {2} ROWS ONLY;",
+             c_catalogsDatabaseName, pageNum, pageSize);
+
+            return m_catalogMapper.GetEntityList(queryString);
+        }
+   
     }
 }

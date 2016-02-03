@@ -34,7 +34,7 @@ namespace eShop.Controllers
         public JsonResult GetAllCatalogs()
         {
             var catalogsListBo = m_facade.GetAllCatalogs();
-         
+
             var anonArray = new List<dynamic>();
             foreach (var catalogBo in catalogsListBo)
             {
@@ -43,7 +43,20 @@ namespace eShop.Controllers
             }
             return Json(anonArray, JsonRequestBehavior.AllowGet);
         }
+        
+        public JsonResult GetCatalogsForOnePage(int pageNum, int pageSize, int parentId)
+        {
+            var catalogsListBo = m_facade.GetCatalogsForOnePage(pageNum, pageSize, parentId);
 
+            var anonArray = new List<dynamic>();
+            foreach (var catalogBo in catalogsListBo)
+            {
+                anonArray.Add(
+                    new { id = catalogBo.Id, name = catalogBo.Name });
+            }
+            return Json(anonArray, JsonRequestBehavior.AllowGet);
+        }
+     
         [Authorize(Roles = "admin")]
         public JsonResult AddCatalog(string name)
         {

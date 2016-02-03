@@ -27,7 +27,7 @@
                 <div style="padding-left: 10%; padding-top: 5%;">
                     <h3>Please enter your data</h3>
 
-                    <span class="text-danger">
+                    <span class="text-error">
                         @ViewData["error"]
                     </span>
 
@@ -35,20 +35,20 @@
                         @using (Html.BeginForm("Register", "Account", FormMethod.Post))
                         {
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                @Html.PasswordFor(m => m.UserName, new { @class = "mdl-textfield__input", @id = "username" })
-                                @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+                                @Html.PasswordFor(m => m.UserName, new { @class = "mdl-textfield__input", @id = "username", required = "required" })
+                                @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-error" })
                                 <label class="mdl-textfield__label" for="username">Username...</label>
                             </div>
 
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                @Html.PasswordFor(m => m.Password, new { @class = "mdl-textfield__input", @id = "password" })
-                                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                @Html.PasswordFor(m => m.Password, new { @class = "mdl-textfield__input", @id = "password", required = "required" })
+                                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-error" })
                                 <label class="mdl-textfield__label" for="password">Password...</label>
                             </div>
                             
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "mdl-textfield__input", @id = "confirm" })
-                                @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
+                                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "mdl-textfield__input", @id = "confirm", required = "required" })
+                                @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-error" })
                                 <label class="mdl-textfield__label" for="confirm">ConfirmPassword...</label>
                             </div>
                        

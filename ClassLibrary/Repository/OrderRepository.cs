@@ -81,5 +81,10 @@ namespace ClassLibrary.Repository
                 return null;
             }
         }
+
+        public List<Order> GetEntitiesForOnePage(int pageNum, int pageSize, int parentId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

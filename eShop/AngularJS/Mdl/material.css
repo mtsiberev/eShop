@@ -6088,10 +6088,12 @@ _:-ms-input-placeholder, :root .mdl-slider.mdl-slider.is-upgraded {
     outline: none;
 }
 
+/*
 .mdl-textfield.is-invalid .mdl-textfield__input {
     border-color: #de3226;
     box-shadow: none;
 }
+*/
 
 .mdl-textfield.is-disabled .mdl-textfield__input {
     background-color: transparent;
@@ -6144,11 +6146,12 @@ _:-ms-input-placeholder, :root .mdl-slider.mdl-slider.is-upgraded {
 .mdl-textfield--floating-label.is-focused .mdl-textfield__expandable-holder .mdl-textfield__label, .mdl-textfield--floating-label.is-dirty .mdl-textfield__expandable-holder .mdl-textfield__label {
     top: -16px;
 }
-
+/*
 .mdl-textfield--floating-label.is-invalid .mdl-textfield__label {
     color: #de3226;
     font-size: 12px;
 }
+*/
 
 .mdl-textfield__label:after {
     background-color: rgb(63,81,181);

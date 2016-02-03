@@ -5,7 +5,6 @@
 }
 
 
-
 <div class="demo-layout mdl-layout mdl-layout--fixed-header mdl-js-layout mdl-color--grey-100">
         <header class=" demo-header mdl-layout__header mdl-layout__header--scroll mdl-color--grey-100 mdl-color-text--grey-800">
             <div class="mdl-layout__header-row">
@@ -28,22 +27,22 @@
                     <div style="padding-left: 10%; padding-top: 5%;">
                         <h3>Please login</h3>
 
-                        <span class="text-danger">
+                        <span class="text-error">
                             @ViewData["error"]
                         </span>
 
                         @using (Html.BeginForm("Login", "Account"))
                         {
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                @Html.PasswordFor(m => m.UserName, new { @class = "mdl-textfield__input", @id = "username" })
-                                @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+                                @Html.PasswordFor(m => m.UserName, new { @class = "mdl-textfield__input", @id = "username", required = "required" })
+                                @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-error" })
                                 <label class="mdl-textfield__label" for="username">Username...</label>
                             </div>
 
 
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                @Html.PasswordFor(m => m.Password, new { @class = "mdl-textfield__input", @id = "password" })
-                                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                @Html.PasswordFor(m => m.Password, new { @class = "mdl-textfield__input", @id = "password", required = "required" })
+                                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-error" })
                                 <label class="mdl-textfield__label" for="password">Password...</label>
                             </div>
                             <br>

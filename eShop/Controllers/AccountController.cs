@@ -79,6 +79,18 @@ namespace eShop.Controllers
         [HttpPost]
         public ActionResult Register(RegistrationAccount account)
         {
+            if (account == null)
+            {
+                return View();
+            }
+            
+            if (account.Password != account.ConfirmPassword)
+            {
+                const string errorMessage = "Password does not match the confirm password.";
+                ViewData["error"] = errorMessage;
+                return View();
+            }
+
             try
             {
                 {

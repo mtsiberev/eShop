@@ -93,6 +93,11 @@ namespace ClassLibrary.Facade
             return m_catalogsRepository.GetAll();
         }
         
+        public List<Catalog> GetCatalogsForOnePage(int pageNum, int pageSize,  int parentId)
+        {
+            return m_catalogsRepository.GetEntitiesForOnePage(pageNum, pageSize, 0);
+        }
+        
         public Catalog GetCatalogById(int id)
         {
             return m_catalogsRepository.GetById(id);
