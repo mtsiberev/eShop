@@ -63,7 +63,6 @@ namespace ClassLibrary.Repository
                     entity.Description,
                     entity.CatalogId);
             }
-           // DataBaseHelper.ExecuteCommand(queryString);
             return m_productMapper.GetLastCreatedId(queryString);
         }
 
@@ -133,6 +132,12 @@ namespace ClassLibrary.Repository
                 c_productsDatabaseName, parentId, pageNum, pageSize);
 
             return m_productMapper.GetEntityList(queryString);
+        }
+
+        public int GetCountOfEntities(int parentId)
+        {
+            var queryString = String.Format("SELECT * FROM {0} WHERE CatalogId = {1};", c_productsDatabaseName, parentId);
+            return m_productMapper.GetEntityList(queryString).Count;
         }
     }
 }

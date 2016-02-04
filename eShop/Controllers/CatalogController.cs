@@ -56,7 +56,14 @@ namespace eShop.Controllers
             }
             return Json(anonArray, JsonRequestBehavior.AllowGet);
         }
-     
+        
+        public JsonResult GetCountOfCatalogs(int parentId)
+        {
+            var catalogsCount = m_facade.GetAllCatalogs().Count();
+            return Json(catalogsCount, JsonRequestBehavior.AllowGet);
+        }
+        
+        
         [Authorize(Roles = "admin")]
         public JsonResult AddCatalog(string name)
         {

@@ -86,5 +86,10 @@ namespace ClassLibrary.Repository
         {
             throw new NotImplementedException();
         }
+
+        public int GetCountOfEntities(int parentId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

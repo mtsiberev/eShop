@@ -79,6 +79,10 @@ namespace ClassLibrary.Repository
 
             return m_catalogMapper.GetEntityList(queryString);
         }
-   
+
+        public int GetCountOfEntities(int parentId)
+        {
+            return GetAll().Count();
+        }
     }
 }

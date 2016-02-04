@@ -32,7 +32,7 @@ namespace ClassLibrary.Helpers
                 catch (Exception ex)
                 {
                     logger.Error(ex.Message);
-                    return null;
+                    return table;
                 }
 
                 using (var adapter = new SqlDataAdapter(queryString, connection))
@@ -44,7 +44,7 @@ namespace ClassLibrary.Helpers
                     catch (Exception ex)
                     {
                         logger.Error(ex.Message);
-                        return null;
+                        return table;
                     }
 
                     try
@@ -55,7 +55,7 @@ namespace ClassLibrary.Helpers
                     catch (Exception ex)
                     {
                         logger.Error(ex.Message);
-                        return null;
+                        return table; 
                     }
                 }
             }

@@ -40,10 +40,14 @@
 </table>
 
 
-<button class="mdl-button mdl-button--raised mdl-button--accent" ng-click="prevPage()">
-    Prev page
-</button>
-
-<button class="mdl-button mdl-button--raised mdl-button--accent" ng-click="nextPage()">
-    Next page
-</button>
+<ul class="pagination">
+    <li>
+        <a href="" ng-click="prevPage()">&lsaquo;</a>
+    </li>
+    <li>
+        <a> {{ pageNum }} / {{ maxPageNumber }}</a>
+    </li>
+    <li>
+        <a href="" ng-click="nextPage()">&rsaquo;</a>
+    </li>
+</ul>

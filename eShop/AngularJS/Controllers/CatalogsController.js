@@ -2,14 +2,36 @@
 
 var CatalogsController = function ($scope, $routeParams, $http, $location, CatalogsService) {
 
-    console.log("in controller");
-
-    var pageNum = 1;
-    var pageSize = 5;
-    var parentId = 0;
-    CatalogsService.getCatalogsForOnePage(pageNum, pageSize, parentId).then(function (data) { $scope.catalogs = data; });
-    //CatalogsService.getCatalogs().then(function (data) { $scope.catalogs = data; });
+    initPage();
     
+    function log() {
+        console.log(
+            "pageNum", $scope.pageNum,
+            "pageSize", $scope.pageSize,
+            "parentId", $scope.parentId,
+            "maxPageNumber", $scope.maxPageNumber);
+    }
+    
+    function initPage() {
+        $scope.pageNum = 1;
+        $scope.pageSize = 5;
+        $scope.parentId = 0;
+        $scope.maxPageNumber = 0;
+        refreshPage();
+    }
+    
+    function refreshPage() {
+        CatalogsService.getCount($scope.parentId).then(function (count) {
+            $scope.maxPageNumber = Math.floor(count / $scope.pageSize);
+            if ((count % $scope.pageSize) != 0) $scope.maxPageNumber++;
+            if ($scope.maxPageNumber == 0) $scope.maxPageNumber++;
+            if ($scope.pageNum > $scope.maxPageNumber) $scope.pageNum = $scope.maxPageNumber;
+
+            CatalogsService.getCatalogsForOnePage($scope.pageNum, $scope.pageSize, $scope.parentId).then(function (data) {
+                $scope.catalogs = data;
+            });
+        });
+    };
 
     $scope.addCatalog = function () {
 
@@ -24,20 +46,20 @@ var CatalogsController = function ($scope, $routeParams, $http, $location, Catal
     $scope.deleteCatalog = function (catalogId) {
 
         CatalogsService.deleteCatalog(catalogId).then(function () {
-            CatalogsService.getCatalogs().then(function (data) { $scope.catalogs = data; });
+            refreshPage();
         });
     };
 
     $scope.prevPage = function () {
-
-        pageNum--;
-        CatalogsService.getCatalogsForOnePage(pageNum, pageSize, parentId).then(function (data) { $scope.catalogs = data; });
+        $scope.pageNum--;
+        if ($scope.pageNum <= 0) $scope.pageNum = 1;
+        CatalogsService.getCatalogsForOnePage($scope.pageNum, $scope.pageSize, $scope.parentId).then(function (data) { $scope.catalogs = data; });
     };
 
     $scope.nextPage = function () {
-
-        pageNum++;
-        CatalogsService.getCatalogsForOnePage(pageNum, pageSize, parentId).then(function (data) { $scope.catalogs = data; });
+        $scope.pageNum++;
+        if ($scope.pageNum > $scope.maxPageNumber) $scope.pageNum = $scope.maxPageNumber;
+        CatalogsService.getCatalogsForOnePage($scope.pageNum, $scope.pageSize, $scope.parentId).then(function (data) { $scope.catalogs = data; });
     };
 
 };

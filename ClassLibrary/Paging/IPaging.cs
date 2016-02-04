@@ -9,6 +9,6 @@ namespace ClassLibrary.Paging
     public interface IPaging<T>
     {
         List<T> GetEntitiesForOnePage(int pageNum, int pageSize, int parentId);
-        // int GetCount(int id);
+        int GetCountOfEntities(int parentId);
     }
 }

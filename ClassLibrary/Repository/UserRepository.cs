@@ -77,6 +77,10 @@ namespace ClassLibrary.Repository
 
             return m_userMapper.GetEntityList(queryString);
         }
-      
+
+        public int GetCountOfEntities(int parentId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

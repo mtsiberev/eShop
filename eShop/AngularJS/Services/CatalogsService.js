@@ -59,6 +59,18 @@
         });
     };
     
+    var getCountFunction = function (parentId) {
+        return $http({
+            url: "Catalog/GetCountOfCatalogs",
+            method: "GET",
+            params: { parentId: parentId },
+            cache: false
+        }).then(function (result) {
+
+            return result.data;
+        });
+    };
+
     var getCatalogsForOnePageFunction = function (pageNum, pageSize, parentId) {
         return $http({
             url: "Catalog/GetCatalogsForOnePage",
@@ -77,6 +89,7 @@
         updateCatalog: getUpdateCatalogFunction,
         deleteCatalog: getDeleteCatalogFunction,
         addCatalog: getAddCatalogFunction,
+        getCount: getCountFunction,
         getCatalogsForOnePage: getCatalogsForOnePageFunction
     };
 };
