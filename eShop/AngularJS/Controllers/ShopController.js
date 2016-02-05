@@ -4,12 +4,19 @@ var ShopController = function ($scope, $routeParams, $http, $location, ProductsS
     
     CatalogsService.getCatalogs().then(function (data) { $scope.catalogs = data; });
     ProductsService.getProducts().then(function (data) { $scope.products = data; });
-
     UsersService.getCurrentUser().then(function (id) {
         $scope.userId = id;
         OrdersService.getOrderContent($scope.userId).then(function (data) { $scope.content = data; });
     });
 
+
+    
+    $scope.isCartEmpty = function () {
+        if($scope.content == undefined)return true;
+        if ($scope.content.OrderItemsList.length == 0) return true;
+        return false;
+    };
+    
     $scope.addToCart = function (productId, qty) {
         if ((qty > 50) || (qty <= 0) || (qty == undefined)) {
             return;

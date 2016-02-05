@@ -22,7 +22,7 @@
             <div class="mdl-color--white
                  mdl-shadow--4dp
                  mdl-color-text--grey-800
-                 mdl-cell mdl-cell--3-col center">
+                 mdl-cell mdl-cell--3-col account-form">
 
                 <div style="padding-left: 10%; padding-top: 5%;">
                     <h3>Please enter your data</h3>
@@ -45,13 +45,13 @@
                                 @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-error" })
                                 <label class="mdl-textfield__label" for="password">Password...</label>
                             </div>
-                            
+
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                 @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "mdl-textfield__input", @id = "confirm", required = "required" })
                                 @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-error" })
                                 <label class="mdl-textfield__label" for="confirm">ConfirmPassword...</label>
                             </div>
-                       
+
                             <br>
                             <br>
                             <br>
