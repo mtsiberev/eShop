@@ -1,52 +1,72 @@
 ﻿'use strict';
 
 var ShopController = function ($scope, $routeParams, $http, $location, ProductsService, OrdersService, UsersService, CatalogsService, ngDialog) {
-    
-    CatalogsService.getCatalogs().then(function (data) { $scope.catalogs = data; });
-    ProductsService.getProducts().then(function (data) { $scope.products = data; });
-    UsersService.getCurrentUser().then(function (id) {
-        $scope.userId = id;
-        OrdersService.getOrderContent($scope.userId).then(function (data) { $scope.content = data; });
-    });
 
+    initShop();
 
-    
+    function initShop() {
+        console.log("ShopController init function");
+        CatalogsService.getCatalogs().then(function (data) {
+            $scope.catalogs = data;
+            $scope.selectedCatalogId = null;
+        });
+        UsersService.getCurrentUser().then(function (id) {
+            $scope.userId = id;
+            refreshShopPage();
+        });
+    };
+
+    function refreshShopPage() {
+        if ($scope.selectedCatalogId == null) {
+            ProductsService.getProducts().then(function (products) {
+                $scope.products = products;
+                OrdersService.getOrderContent($scope.userId).then(function (order) { $scope.content = order; });
+            });
+        }
+        else {
+            ProductsService.getProductsFromCatalog($scope.selectedCatalogId).then(function (products) {
+                $scope.products = products;
+                OrdersService.getOrderContent($scope.userId).then(function (order) { $scope.content = order; });
+            });
+        }
+    };
+
+    $scope.isCatalogSelected = function (id) {
+        if ($scope.selectedCatalogId == id) return true;
+        else {
+            return false;
+        }
+    };
+
     $scope.isCartEmpty = function () {
-        if($scope.content == undefined)return true;
+        if ($scope.content == undefined) return true;
         if ($scope.content.OrderItemsList.length == 0) return true;
         return false;
     };
-    
+
     $scope.addToCart = function (productId, qty) {
         if ((qty > 50) || (qty <= 0) || (qty == undefined)) {
             return;
         };
-
         OrdersService.addToCart(productId, qty).then(function () {
-            ProductsService.getProducts().then(function (products) {
-                $scope.products = products;
-                OrdersService.getOrderContent($scope.userId).then(function (data) { $scope.content = data; });
-            });
+            refreshShopPage();
         });
     };
 
     $scope.deleteFromCart = function (productId) {
         OrdersService.deleteFromCart(productId).then(function () {
-            ProductsService.getProducts().then(function (products) {
-                $scope.products = products;
-                OrdersService.getOrderContent($scope.userId).then(function (data) { $scope.content = data; });
-            });
+            refreshShopPage();
         });
     };
 
     $scope.selectCatalog = function (catalogId) {
-        $scope.currentCatalogId = catalogId;
-        ProductsService.getProductsFromCatalog($scope.currentCatalogId).then(function (data) { $scope.products = data; });
+        $scope.selectedCatalogId = catalogId;
+        refreshShopPage();
     };
 
     $scope.selectAllCatalogs = function () {
-        $scope.currentCatalogId = 0;
-        ProductsService.getProducts().then(function (data) { $scope.products = data; });
+        $scope.selectedCatalogId = null;
+        refreshShopPage();
     };
 
     $scope.checkout = function () {
@@ -78,7 +98,7 @@ var ShopController = function ($scope, $routeParams, $http, $location, ProductsS
         }, function () {
         });
     };
-    
+
     $scope.openProductInfo = function (product) {
         $scope.product = product;
 
@@ -90,7 +110,7 @@ var ShopController = function ($scope, $routeParams, $http, $location, ProductsS
         }, function () {
         });
     };
-    
+
 };
 
 ShopController.$inject = ['$scope', '$routeParams', '$http', '$location', 'ProductsService', 'OrdersService', 'UsersService', 'CatalogsService', 'ngDialog'];

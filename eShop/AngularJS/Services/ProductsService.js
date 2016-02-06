@@ -25,17 +25,6 @@
         });
     };
 
-    var getProductsFunction = function () {
-        return $http({
-            url: "Product/GetAllProducts",
-            method: "GET",
-            cache: false
-        }).then(function (result) {
-
-            return result.data;
-        });
-    };
-
     var getUpdateProductFunction = function (id, catalogId, name, description) {
         return $http({
             url: "Product/UpdateProduct",
@@ -72,9 +61,20 @@
         });
     };
 
+    var getAllProductsFunction = function () {
+        return $http({
+            url: "Product/GetAllProducts",
+            method: "GET",
+            cache: false
+        }).then(function (result) {
+
+            return result.data;
+        });
+    };
+
     return {
         getProduct: getProductFunction,
-        getProducts: getProductsFunction,
+        getProducts: getAllProductsFunction,
         updateProduct: getUpdateProductFunction,
         deleteProduct: getDeleteProductFunction,
         addProduct: getAddProductFunction,

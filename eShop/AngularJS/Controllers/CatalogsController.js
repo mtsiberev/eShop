@@ -4,14 +4,6 @@ var CatalogsController = function ($scope, $routeParams, $http, $location, Catal
 
     initPage();
     
-    function log() {
-        console.log(
-            "pageNum", $scope.pageNum,
-            "pageSize", $scope.pageSize,
-            "parentId", $scope.parentId,
-            "maxPageNumber", $scope.maxPageNumber);
-    }
-    
     function initPage() {
         $scope.pageNum = 1;
         $scope.pageSize = 5;

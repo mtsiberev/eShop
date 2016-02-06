@@ -29,8 +29,7 @@
     </header>
 
     <div class="mdl-layout__drawer" style="width: 15%;">
-
-
+        
         <span class="mdl-layout-title">eShop</span>
         <nav class="mdl-navigation">
 
@@ -38,7 +37,7 @@
                 All
             </div>
 
-            <div ng-repeat="catalog in catalogs | orderBy:'name' ">
+            <div ng-repeat="catalog in catalogs | orderBy:'name' " ng-class="{selected : isCatalogSelected(catalog.id)}">
                 <div class="mdl-navigation__link mdl-button" ng-click="selectCatalog(catalog.id)">
                     {{catalog.name}}
                 </div>

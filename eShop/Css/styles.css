@@ -32,6 +32,11 @@ main {
 }
 
 
+.selected {
+     background-color: #e0e0e0;
+}
+
+
 .shopping-cart-container {
     margin: auto;
     width: 40%;

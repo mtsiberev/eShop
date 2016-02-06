@@ -65,8 +65,8 @@ namespace ClassLibrary.Facade
         public List<Product> GetProductsFromCatalog(int id)
         {
             //TODO: this query should be performed by SQL 
-            var allCatalogs = m_productsRepository.GetAll();
-            return allCatalogs.Count() != 0 ? allCatalogs.Where(x => x.CatalogId == id).ToList() : allCatalogs;
+            var allProducts = m_productsRepository.GetAll();
+            return allProducts.Count() != 0 ? allProducts.Where(x => x.CatalogId == id).ToList() : allProducts;
         }
 
         public Product GetProductById(int id)
