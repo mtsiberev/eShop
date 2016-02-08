@@ -90,27 +90,5 @@ namespace eShop.Controllers
             var orderId = m_facade.GetOrderByUserId(userId).Id;
             m_facade.DeleteOrder(orderId);
         }
-
-        /*
-        public JsonResult GetAllProducts()
-        {
-            var productsListBo = m_facade.GetAllProducts();
-
-            var anonArray = new List<dynamic>();
-            foreach (var productBo in productsListBo)
-            {
-                anonArray.Add(
-                    new
-                    {
-                        id = productBo.Id,
-                        catalogId = productBo.CatalogId,
-                        name = productBo.Name,
-                        description = productBo.Description
-                    });
-            }
-            return Json(anonArray, JsonRequestBehavior.AllowGet);
-        }
-        */
-
     }
 }

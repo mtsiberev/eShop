@@ -29,7 +29,7 @@ namespace ClassLibrary.IoC
                             x.For<IRepository<Order>>().Singleton().Use<OrderRepository>();
                             x.For<IRepository<Product>>().Singleton().Use<ProductRepository>();
                             x.For<IRepository<User>>().Singleton().Use<UserRepository>();
-                            x.For<IJunctionEntityRepository<OrderItem>>().Singleton().Use<OrderItemRepository>();
+                            x.For<IOrderItemRepository>().Singleton().Use<OrderItemRepository>();
 
                             x.For<Facade.Facade>().Singleton().Use<Facade.Facade>()
                                 .Ctor<IRepository<Catalog>>()
@@ -40,7 +40,7 @@ namespace ClassLibrary.IoC
                                 .Is(new ProductRepository())
                                 .Ctor<IRepository<User>>()
                                 .Is(new UserRepository())
-                                .Ctor<IJunctionEntityRepository<OrderItem>>()
+                                .Ctor<IOrderItemRepository>()
                                 .Is(new OrderItemRepository())
                                 ;
                         });

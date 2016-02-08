@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ClassLibrary.BusinessObjects;
-using ClassLibrary.Helpers;
 using ClassLibrary.Repository;
 
 namespace ClassLibrary.Facade
@@ -15,14 +14,14 @@ namespace ClassLibrary.Facade
         private readonly IRepository<Product> m_productsRepository;
         private readonly IRepository<Catalog> m_catalogsRepository;
         private readonly IRepository<Order> m_ordersRepository;
-        private readonly IJunctionEntityRepository<OrderItem> m_orderItemsRepository;
-        
+        private readonly IOrderItemRepository m_orderItemsRepository;
+
         public Facade(
             IRepository<User> users,
             IRepository<Product> products,
             IRepository<Catalog> catalogs,
             IRepository<Order> orders,
-            IJunctionEntityRepository<OrderItem> orderItems 
+            IOrderItemRepository orderItems
             )
         {
             m_usersRepository = users;
@@ -46,7 +45,7 @@ namespace ClassLibrary.Facade
         {
             m_usersRepository.Update(user);
         }
-        
+
         public void DeleteUser(int id)
         {
             m_usersRepository.Delete(id);
@@ -54,14 +53,14 @@ namespace ClassLibrary.Facade
         //------------------Products methods
         public int AddProduct(Product product)
         {
-          return m_productsRepository.Add(product);
+            return m_productsRepository.Add(product);
         }
-        
+
         public List<Product> GetAllProducts()
         {
             return m_productsRepository.GetAll();
         }
-        
+
         public List<Product> GetProductsFromCatalog(int id)
         {
             //TODO: this query should be performed by SQL 
@@ -73,12 +72,12 @@ namespace ClassLibrary.Facade
         {
             return m_productsRepository.GetById(id);
         }
-        
+
         public void UpdateProduct(Product product)
         {
             m_productsRepository.Update(product);
         }
-      
+
         public void DeleteProduct(int id)
         {
             m_productsRepository.Delete(id);
@@ -88,17 +87,17 @@ namespace ClassLibrary.Facade
         {
             m_catalogsRepository.Add(catalog);
         }
-        
+
         public List<Catalog> GetAllCatalogs()
         {
             return m_catalogsRepository.GetAll();
         }
-        
-        public List<Catalog> GetCatalogsForOnePage(int pageNum, int pageSize,  int parentId)
+
+        public List<Catalog> GetCatalogsForOnePage(int pageNum, int pageSize, int parentId)
         {
             return m_catalogsRepository.GetEntitiesForOnePage(pageNum, pageSize, 0);
         }
-        
+
         public Catalog GetCatalogById(int id)
         {
             return m_catalogsRepository.GetById(id);
@@ -154,7 +153,7 @@ namespace ClassLibrary.Facade
         {
             m_orderItemsRepository.Update(orderItem);
         }
-        
+
         public List<OrderItem> GetAllOrderItems()
         {
             return m_orderItemsRepository.GetAll();

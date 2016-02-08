@@ -35,35 +35,29 @@ namespace eShop.Controllers
         {
             var catalogsListBo = m_facade.GetAllCatalogs();
 
-            var anonArray = new List<dynamic>();
-            foreach (var catalogBo in catalogsListBo)
-            {
-                anonArray.Add(
-                    new { id = catalogBo.Id, name = catalogBo.Name });
-            }
-            return Json(anonArray, JsonRequestBehavior.AllowGet);
+            var catalogsList = (from catalog in catalogsListBo
+                            select new { id = catalog.Id, name = catalog.Name }).ToList();
+
+            return Json(catalogsList, JsonRequestBehavior.AllowGet);
         }
-        
+
         public JsonResult GetCatalogsForOnePage(int pageNum, int pageSize, int parentId)
         {
             var catalogsListBo = m_facade.GetCatalogsForOnePage(pageNum, pageSize, parentId);
 
-            var anonArray = new List<dynamic>();
-            foreach (var catalogBo in catalogsListBo)
-            {
-                anonArray.Add(
-                    new { id = catalogBo.Id, name = catalogBo.Name });
-            }
-            return Json(anonArray, JsonRequestBehavior.AllowGet);
+            var catalogsList = (from catalog in catalogsListBo
+                            select new { id = catalog.Id, name = catalog.Name }).ToList();
+
+            return Json(catalogsList, JsonRequestBehavior.AllowGet);
         }
-        
+
         public JsonResult GetCountOfCatalogs(int parentId)
         {
             var catalogsCount = m_facade.GetAllCatalogs().Count();
             return Json(catalogsCount, JsonRequestBehavior.AllowGet);
         }
-        
-        
+
+
         [Authorize(Roles = "admin")]
         public JsonResult AddCatalog(string name)
         {

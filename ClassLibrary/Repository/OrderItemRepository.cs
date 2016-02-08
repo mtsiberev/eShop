@@ -10,7 +10,7 @@ using NLog;
 
 namespace ClassLibrary.Repository
 {
-    public class OrderItemRepository : IJunctionEntityRepository<OrderItem>
+    public class OrderItemRepository : IOrderItemRepository
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private readonly BaseMapper<OrderItem> m_orderItemMapper = new OrderItemMapper();

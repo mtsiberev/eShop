@@ -5,7 +5,6 @@ var ShopController = function ($scope, $routeParams, $http, $location, ProductsS
     initShop();
 
     function initShop() {
-        console.log("ShopController init function");
         CatalogsService.getCatalogs().then(function (data) {
             $scope.catalogs = data;
             $scope.selectedCatalogId = null;
