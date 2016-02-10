@@ -21,7 +21,8 @@
             </button>
             <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
 
-                <a class="mdl-menu__item" href="Administration">Administration</a>
+                <a ng-show="isCurrentUserAdmin()" class="mdl-menu__item" href="Administration">Administration</a>
+                
                 <a class="mdl-menu__item" href="Account/Logout">Logout</a>
 
             </ul>
@@ -31,6 +32,7 @@
     <div class="mdl-layout__drawer" style="width: 15%;">
         
         <span class="mdl-layout-title">eShop</span>
+        <div class="mdl-layout-title mdl-color--deep-orange-400">{{user.name}}</div>
         <nav class="mdl-navigation">
 
             <div class="mdl-navigation__link mdl-button" ng-click="selectAllCatalogs()">
@@ -43,7 +45,7 @@
                 </div>
             </div>
 
-            <a class="mdl-navigation__link" href="Administration">Admin</a>
+            <a ng-show="isCurrentUserAdmin()" class="mdl-navigation__link" href="Administration">Admin</a>
             <a class="mdl-navigation__link" href="Account/Logout">Logout</a>
 
         </nav>

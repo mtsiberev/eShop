@@ -9,8 +9,8 @@ var ShopController = function ($scope, $routeParams, $http, $location, ProductsS
             $scope.catalogs = data;
             $scope.selectedCatalogId = null;
         });
-        UsersService.getCurrentUser().then(function (id) {
-            $scope.userId = id;
+        UsersService.getCurrentUser().then(function (user) {
+            $scope.user = user;
             refreshShopPage();
         });
     };
@@ -19,16 +19,23 @@ var ShopController = function ($scope, $routeParams, $http, $location, ProductsS
         if ($scope.selectedCatalogId == null) {
             ProductsService.getProducts().then(function (products) {
                 $scope.products = products;
-                OrdersService.getOrderContent($scope.userId).then(function (order) { $scope.content = order; });
+                OrdersService.getOrderContent($scope.user.id).then(function (order) { $scope.content = order; });
             });
         }
         else {
             ProductsService.getProductsFromCatalog($scope.selectedCatalogId).then(function (products) {
                 $scope.products = products;
-                OrdersService.getOrderContent($scope.userId).then(function (order) { $scope.content = order; });
+                OrdersService.getOrderContent($scope.user.id).then(function (order) { $scope.content = order; });
             });
         }
     };
+
+
+    $scope.isCurrentUserAdmin = function () {
+        if ($scope.user == undefined) return false;
+        return $scope.user.isAdmin;
+    };
+
 
     $scope.isCatalogSelected = function (id) {
         if ($scope.selectedCatalogId == id) return true;
@@ -69,9 +76,9 @@ var ShopController = function ($scope, $routeParams, $http, $location, ProductsS
     };
 
     $scope.checkout = function () {
-        UsersService.getCurrentUser().then(function (id) {
-            $scope.userId = id;
-            OrdersService.getOrderContent($scope.userId).then(function (data) {
+        UsersService.getCurrentUser().then(function (user) {
+            $scope.user.id = user.id;
+            OrdersService.getOrderContent($scope.user.id).then(function (data) {
                 $scope.content = data;
                 $location.path('/shopping-cart');
             });
@@ -79,9 +86,9 @@ var ShopController = function ($scope, $routeParams, $http, $location, ProductsS
     };
 
     $scope.approveOrder = function () {
-        UsersService.getCurrentUser().then(function (id) {
-            $scope.userId = id;
-            OrdersService.approveOrder($scope.userId).then(function (data) {
+        UsersService.getCurrentUser().then(function (user) {
+            $scope.user = user;
+            OrdersService.approveOrder($scope.user.id).then(function (data) {
                 $scope.content = data;
                 $location.path('/shop');
             });

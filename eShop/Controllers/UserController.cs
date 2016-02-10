@@ -9,6 +9,7 @@ using ClassLibrary.BusinessObjects;
 using ClassLibrary.Facade;
 using ClassLibrary.IoC;
 using NLog;
+using WebMatrix.WebData;
 
 namespace eShop.Controllers
 {
@@ -18,19 +19,23 @@ namespace eShop.Controllers
 
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
-        public JsonResult GetUserId()
+        public JsonResult GetCurrentUser()
         {
-            var userId = 0;
             try
             {
-                userId = Convert.ToInt32(Membership.GetUser().ProviderUserKey.ToString());
+                var roles = (SimpleRoleProvider)Roles.Provider;
+                var user = (Membership.GetUser());
+                var userRoles = roles.GetRolesForUser(user.UserName);
+                bool isAdmin = userRoles.Contains("admin");
+
+                var plainUser = new { id = Convert.ToInt32(user.ProviderUserKey.ToString()), name = user.UserName, isAdmin };
+                return Json(plainUser, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
+                return Json(new { success = false }, JsonRequestBehavior.AllowGet);
             }
-        
-            return Json(userId, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult GetUser(int id)
@@ -48,7 +53,7 @@ namespace eShop.Controllers
             var usersListBo = m_facade.GetAllUsers();
 
             var usersList = (from user in usersListBo
-                            select new { id = user.Id, name = user.Name }).ToList();
+                             select new { id = user.Id, name = user.Name }).ToList();
 
             return Json(usersList, JsonRequestBehavior.AllowGet);
         }

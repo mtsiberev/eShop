@@ -19,7 +19,7 @@ namespace eShop.Controllers
             {
                 return RedirectToAction("Login", "Account");
             }
-            //return View();
+  
             return RedirectToAction("Index", "Shop");
         }
 

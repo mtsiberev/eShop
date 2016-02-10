@@ -50,7 +50,7 @@
 
     var getCurrentUserFunction = function () {
         return $http({
-            url: "User/GetUserId",
+            url: "User/GetCurrentUser",
             method: "GET",
             cache: false
         }).then(function (result) {
