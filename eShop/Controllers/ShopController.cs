@@ -8,6 +8,7 @@ namespace eShop.Controllers
 {
     public class ShopController : Controller
     {
+        [Authorize]
         public ActionResult Index()
         {
             return View();
