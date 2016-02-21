@@ -25,7 +25,7 @@ namespace ClassLibrary.Repository
              c_catalogsDatabaseName,
                 entity.Name
               );
-            //DataBaseHelper.ExecuteCommand(queryString);
+         
             return m_catalogMapper.GetLastCreatedId(queryString);
         }
 

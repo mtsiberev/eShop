@@ -81,14 +81,13 @@ main {
 }
 
 
-
 .product-listing-layout {
     float: left;
     width: 70%;
 }
 
 .shopping-cart-layout {
-    position: absolute;
+    position: fixed;
     right: 5%;
 }
 

@@ -25,7 +25,7 @@ namespace ClassLibrary.Repository
                 c_ordersDatabaseName,
                 entity.UserId
         );
-            //DataBaseHelper.ExecuteCommand(queryString);
+     
             return m_orderMapper.GetLastCreatedId(queryString);
         }
 

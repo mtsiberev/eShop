@@ -78,11 +78,11 @@
 
                                     <form name="qtyForm">
                                         <div class="product-qty">
-                                            <input min="1" max="50" type="number" ng-model="product.qty" required>
+                                            <input name="qtyInput" min="1" max="50" type="number" ng-model="product.qty" ng-required='(product.qty == "") || (product.qty == null)'>
                                         </div>
                                         <div class="add-to-cart">
                                             <button class=" mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-                                                    ng-click="addToCart(product.id, product.qty)">
+                                                    ng-click="addToCart(product)">
                                                 Add to Cart
                                             </button>
                                         </div>

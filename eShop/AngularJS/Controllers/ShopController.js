@@ -5,6 +5,7 @@ var ShopController = function ($scope, $routeParams, $http, $location, ProductsS
     initShop();
 
     function initShop() {
+      
         CatalogsService.getCatalogs().then(function (data) {
             $scope.catalogs = data;
             $scope.selectedCatalogId = null;
@@ -50,18 +51,24 @@ var ShopController = function ($scope, $routeParams, $http, $location, ProductsS
         return false;
     };
 
-    $scope.addToCart = function (productId, qty) {
-        if ((qty > 50) || (qty <= 0) || (qty == undefined)) {
+    $scope.addToCart = function (product) {
+
+        if ((product.qty > 50) || (product.qty <= 0) || (product.qty == undefined)) {
             return;
         };
-        OrdersService.addToCart(productId, qty).then(function () {
-            refreshShopPage();
+        OrdersService.addToCart(product.id, product.qty).then(function () {
+            OrdersService.getOrderContent($scope.user.id).then(function(order) {
+                product.qty = null;
+                $scope.content = order;
+            });
         });
     };
 
-    $scope.deleteFromCart = function (productId) {
-        OrdersService.deleteFromCart(productId).then(function () {
-            refreshShopPage();
+    $scope.deleteFromCart = function (id) {
+        OrdersService.deleteFromCart(id).then(function () {
+            OrdersService.getOrderContent($scope.user.id).then(function(order) {
+                $scope.content = order;
+            });
         });
     };
 

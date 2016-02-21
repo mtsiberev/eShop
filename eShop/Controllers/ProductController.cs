@@ -33,7 +33,8 @@ namespace eShop.Controllers
                 name = productBo.Name,
                 description = productBo.Description,
                 fileLink = imageFileDescription.FileLink,
-                isDefaultImage = imageFileDescription.IsDefaultImage
+                isDefaultImage = imageFileDescription.IsDefaultImage,
+                qty = ""
             };
             return Json(product, JsonRequestBehavior.AllowGet);
         }
@@ -50,7 +51,8 @@ namespace eShop.Controllers
                                 name = product.Name,
                                 description = product.Description,
                                 fileLink = ImageObject.GetImageLinkById(product.Id).FileLink,
-                                isDefaultImage = ImageObject.GetImageLinkById(product.Id).IsDefaultImage
+                                isDefaultImage = ImageObject.GetImageLinkById(product.Id).IsDefaultImage,
+                                qty = ""
                             }).ToList();
 
             return Json(productsList, JsonRequestBehavior.AllowGet);
@@ -68,7 +70,8 @@ namespace eShop.Controllers
                                 name = product.Name,
                                 description = product.Description,
                                 fileLink = ImageObject.GetImageLinkById(product.Id).FileLink,
-                                isDefaultImage = ImageObject.GetImageLinkById(product.Id).IsDefaultImage
+                                isDefaultImage = ImageObject.GetImageLinkById(product.Id).IsDefaultImage,
+                                qty = ""
                             }).ToList();
 
             return Json(productsList, JsonRequestBehavior.AllowGet);
